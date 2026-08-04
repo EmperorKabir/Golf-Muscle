@@ -28,6 +28,15 @@
 - **D-006 Free app.** No paid tiers.
 - **D-007 Right-handed for V1.** Left-handed is a whole-system mirror and treated as straightforward once the right-handed path exists — not a separate build.
 
+### Research findings that constrain the spec (added as they land — each needs a user decision or a labelled assumption)
+- **F-001 Activation exceeds 100% MVC in the golf swing.** Erector spinae means reach 83–106% MVC in acceleration (Marta et al. 2013; J Sports Sci 2018). Isometric MVC underestimates ballistic activation across sports (giant slalom 283%, baseball pitching 226% — Clarys et al. 2010). **Consequence:** the colour scale must not hard-clip at 100%. Needs an explicit decision on ceiling and saturation behaviour. Source: `docs/research/06-activation-curve-and-colour-method.md`.
+- **F-002 Club barely changes trunk activation.** Direct EMG comparison across driver/4-iron/7-iron/pitching wedge found **no significant trunk activation difference** (p>0.05). Lower-limb activation does vary by club, but non-monotonically (4-iron > pitching wedge; driver never shown to exceed irons). **Consequence:** club personalisation can confidently modulate kinematics and timing, but activation magnitude only as a labelled inference. Source: `docs/research/05-club-shot-golfer-and-anthropometry.md`.
+- **F-003 No golf-specific evidence exists for femur length effects.** Zero peer-reviewed sources link femur length or leg-to-torso ratio to golf swing mechanics or muscle demand. Only cross-domain, non-peer-reviewed strength-training inference is available. **Consequence:** the V1 subject's defining "long femurs" trait cannot be evidence-based. It must be modelled from first principles and labelled in-product as modelled, not measured. Source: `docs/research/05-club-shot-golfer-and-anthropometry.md`.
+- **F-004 No iron-specific swing timing data exists.** All published phase durations are driver-based (backswing ≈730–850 ms, downswing ≈230–300 ms, ratio ≈3:1). Any 8-iron timing must be scaled from driver data and labelled an unverified assumption. Source: `docs/research/T-011a-phase-taxonomy-and-timing.md`.
+- **F-005 A pure red-to-transparent ramp fails accessibility and mid-range discrimination.** Red-green colour deficiency affects up to 8% of people; flat-luminance red gradients collapse to indistinguishable shades (Crameri et al., Nature Communications 11:5444, 2020). **Consequence:** retain the red-hot metaphor but pair it with a monotonic luminance ramp. Awaiting user decision via study 10 of the model style studies. Source: `docs/research/06-activation-curve-and-colour-method.md`.
+- **F-006 Partial and full swings share one sequencing strategy.** Proximal-to-distal sequencing held across partial wedge shots and full swings, both sexes, both skill tiers (n=45, Sports Biomechanics 2010). **Consequence:** shot-length personalisation scales amplitude and timing only — the sequence pattern is not re-modelled per shot. Source: `docs/research/05-club-shot-golfer-and-anthropometry.md`.
+- **F-007 Draw/fade is distal, not trunk.** Swing path and lead-forearm supination differ significantly between shapes; pelvis and thorax rotation do not. **Consequence:** shot-shaping affects forearm activation, not core. Source: `docs/research/05-club-shot-golfer-and-anthropometry.md`.
+
 ## Phase 0 — Project initialisation
 - T-001 Project autonomy settings (.claude/settings.json) — DONE 2026-08-04
 - T-002 PROJECT_RULES.md with lifecycle skill bindings — DONE 2026-08-04
@@ -38,12 +47,12 @@
 
 ## Phase 1 — Research and definition
 - T-011 Maximum-breadth research into golf-swing muscle activation (EMG literature and all other available sources), cross-referenced, with citations. Output: `docs/research/` — IN PROGRESS
-  - T-011a Swing phase taxonomy and timing (durations, kinematic sequence, transition) — IN PROGRESS
+  - T-011a Swing phase taxonomy and timing (durations, kinematic sequence, transition) — DONE 2026-08-04 (`docs/research/T-011a-phase-taxonomy-and-timing.md`; several sub-findings flagged unverified — iron-specific durations, some ms-level segment-peak offsets, provenance of a few secondary citations — see file's "Open verification gaps")
   - T-011b Trunk/core activation by phase — IN PROGRESS
   - T-011c Lower-limb and hip activation by phase, weight shift, ground reaction — IN PROGRESS
   - T-011d Shoulder girdle, arm, forearm and grip activation by phase; lead/trail asymmetry — IN PROGRESS
-  - T-011e Modulation by club, shot type, skill level, tempo, and anthropometry (height, femur/limb length) — IN PROGRESS
-  - T-011f Method for converting published %MVC values into a continuous 0–1 activation timeline — IN PROGRESS
+  - T-011e Modulation by club, shot type, skill level, tempo, and anthropometry (height, femur/limb length) — DONE 2026-08-04 (`docs/research/05-club-shot-golfer-and-anthropometry.md`)
+  - T-011f Method for converting published %MVC values into a continuous 0–1 activation timeline — DONE 2026-08-04 (`docs/research/06-activation-curve-and-colour-method.md`)
 - T-012 Define the muscle-group list at swing-relevant granularity (err toward more), rationale per group — TODO
 - T-013 Choose and validate the Android 3D rendering approach (Context7 + on-device spike rendering and orbiting a test mesh) — TODO
 - T-014 Generate the V1 body model (189 cm male, long femurs) in the D-002 style, meeting the all-angles bar — TODO
