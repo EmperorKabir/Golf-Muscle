@@ -106,6 +106,73 @@ Corroborating narrative, Kim p.1325 verbatim:
 That last clause is directly useful: constant low lead-side serratus activity across the whole swing is a
 distinctive pattern worth showing, and it explains a real fatigue mechanism in golfers.
 
+## Pink, Jobe & Perry 1990 — the full shoulder grid (%MMT, n=13 professionals)
+
+The primary paper is paywalled, but this grid **cross-checks 20 of 20 values against McHardy & Pollard's
+independently verified Table 3**. That is a strong validation: every value that appears in both sources
+agrees exactly. High confidence.
+
+**Trail (right) side**
+
+| Muscle | Back swing | Forward swing | Acceleration | Early FT | Late FT |
+|---|---|---|---|---|---|
+| Pectoralis major | 12 | 64 | **93** | 74 | 37 |
+| Subscapularis | 16 | 49 | **68** | 64 | 56 |
+| Supraspinatus | **25** | 14 | 12 | 7 | 7 |
+| Infraspinatus | **27** | 13 | 7 | 12 | 9 |
+| Anterior deltoid | 5 | **21** | 10 | 11 | 8 |
+
+**Lead (left) side**
+
+| Muscle | Back swing | Forward swing | Acceleration | Early FT | Late FT |
+|---|---|---|---|---|---|
+| Pectoralis major | 21 | 18 | **93** | 74 | 39 |
+| Subscapularis | **33** | 29 | 41 | 23 | 35 |
+| Supraspinatus | 21 | 21 | 18 | **28** | 28 |
+| Infraspinatus | 14 | 16 | 27 | **61** | 40 |
+| Anterior deltoid | 13 | 9 | 10 | 21 | **26** |
+
+**Middle and posterior deltoid** span 2–8% and 5–24% respectively across all phases with **no discernible
+pattern** — quantitatively non-contributory. Jobe, Moynes & Antonelli 1986 state this directly: deltoid was
+inactive on the trail side throughout, and "likewise inactive on the left [lead] except for a brief spurt
+from the anterior portion during the milliseconds immediately preceding ball contact."
+
+This is a genuine finding worth rendering, not a gap: two large, visually prominent shoulder muscles do
+almost nothing in the golf swing. Exactly the contrast the user asked to preserve.
+
+### The identical 93/93 is real, and it is the most interesting number in the dataset
+
+Pectoralis major reads **93% on both sides simultaneously** at acceleration, and 74% on both sides at early
+follow-through. Confirmed against the primary McHardy PDF — not a transcription error.
+
+McHardy's own discussion explains the mechanism: the **trail** pectoralis contracts **concentrically**,
+driving internal rotation and adduction. The **lead** pectoralis contracts **eccentrically** at comparable
+amplitude, braking and controlling arm abduction and external rotation.
+
+**Identical EMG amplitude, opposite mechanical role.** This is a fundamental limitation of what colour alone
+can express: our visualisation will show both sides equally red at impact while they are doing opposite
+jobs. Worth considering whether the app should distinguish concentric from eccentric work.
+
+### The dominant organising pattern of the whole upper body
+
+**Trail side peaks early; lead side peaks late.** This holds for supraspinatus, infraspinatus, middle
+trapezius, anterior deltoid and the wrist extensors alike. Infraspinatus is the clearest case: trail peaks at
+back swing (27%) then falls to 7–12%, while lead climbs to 61% at early follow-through.
+
+The trail side positions and drives; the lead side stabilises then decelerates. Subscapularis and pectoralis
+major are the exceptions, peaking together at acceleration.
+
+**Corroborated by injury epidemiology:** over 90% of golfers' shoulder injuries involve the **lead** shoulder,
+roughly three times the trail rate (Kim et al. 2004) — consistent with the lead cuff absorbing deceleration
+load.
+
+### Confidence differs sharply by body region
+
+The shoulder and scapular data is **single-lab, single-era, never replicated** — Kerlan-Jobe, 1986–1995,
+n=7–15 per study. The forearm has **five independent modern replications** (Farber 2009, Sorbie 2016/2017,
+Robinson 2023, Bochnia 2024, Grieß 2026). Weight confidence accordingly: forearm findings are robust,
+shoulder findings rest on one laboratory's work from three decades ago.
+
 ## Latissimus dorsi — numbers at last, and a three-way dispute
 
 `02-trunk-and-core-activation.md` recorded that no numeric latissimus value existed in any accessible source.

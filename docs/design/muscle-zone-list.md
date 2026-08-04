@@ -47,23 +47,24 @@ golfers. It is the only muscle in the body with a flat profile.
 
 | # | Zone | Tier | Evidence |
 |---|---|---|---|
-| 8 | Supraspinatus | B | Measured (Jobe 1986, Pink 1990); per-phase numbers paywalled (F-015) |
-| 9 | Infraspinatus | A | 61% MMT lead early follow-through; 40% MMT lead late follow-through |
-| 10 | Subscapularis | A | 33% MMT lead backswing; 64% MMT trail early FT; 56% MMT trail late FT |
+| 8 | Supraspinatus | A | Full Pink 1990 grid. Trail 25/14/12/7/7 (peaks back swing); lead 21/21/18/28/28 (peaks follow-through) |
+| 9 | Infraspinatus | A | Trail 27/13/7/12/9; lead 14/16/27/**61**/40. Sharpest side-inversion in the body |
+| 10 | Subscapularis | A | Trail 16/49/**68**/64/56; lead 33/29/41/23/35. Trail-dominant throughout |
 | 11 | Teres minor | D | **Never measured in golf** (F-018) |
 
 ## Shoulder and upper arm
 
 | # | Zone | Tier | Evidence |
 |---|---|---|---|
-| 12 | Pectoralis major | A | **93% MMT bilaterally at acceleration** — highest upper-body value in the dataset. Not split into heads (F-018) |
-| 13 | Latissimus dorsi | A | Pink 1990 %MMT — trail 9/50/47/39/28, lead 17/46/31/32/18 across five phases. Peak phase disputed three ways (F-024) |
-| 14 | Anterior deltoid | B | Measured; per-phase numbers paywalled (F-015) |
-| 15 | Middle deltoid | B | As above |
-| 16 | Posterior deltoid | B | As above |
+| 12 | Pectoralis major | A | Trail 12/64/**93**/74/37; lead 21/18/**93**/74/39. Identical peak both sides — trail concentric, lead eccentric. Not split into heads (F-018) |
+| 13 | Latissimus dorsi | A | Trail 9/**50**/47/39/28; lead 17/**46**/31/32/18. Peak phase disputed three ways (F-024) |
+| 14 | Anterior deltoid | A | Trail 5/**21**/10/11/8; lead 13/9/10/21/**26**. Side-inverted, low throughout |
+| 15 | Middle deltoid | A | 2–8% across all phases, **no pattern — quantitatively non-contributory** |
+| 16 | Posterior deltoid | A | 5–24% across all phases, **no pattern — quantitatively non-contributory** |
 | 17 | Teres major | D | **Never measured in golf** (F-018) |
-| 18 | Biceps brachii | B | Sparse; no accessible per-phase table |
-| 19 | Triceps brachii | D | **Never measured in golf** (F-018) |
+| 18 | Biceps brachii | B | Peak phase disputed: backswing (26% MVC, n=3) vs late follow-through (raw µV, n=30/40). Unresolved (F-028) |
+| 19 | Triceps brachii, trail | B | 50% MVC peaking downswing (Pezarat-Correia 2006, n=3, conference proceedings — indicative only) |
+| 19b | Triceps brachii, lead | D | **Never measured** — trail-only data exists |
 
 ## Forearm and hand
 
@@ -72,7 +73,8 @@ golfers. It is the only muscle in the body with a flat profile.
 | 20 | Wrist and finger flexors | A | **90.77% MVC burst at contact** (Glazebrook 1994) — highest true-%MVC figure in the upper limb (F-017). The "flexor burst", attributed to the trail side |
 | 21 | Wrist and finger extensors | A | 33.59% MVC at address ramping to 58.77% MVC at contact (Glazebrook 1994) |
 | 22 | Pronator teres | A | Farber 2009 %MMT: amateur trail 120.9% vs professional 57.4% — the clearest skill contrast found anywhere (F-019) |
-| 23 | Brachioradialis | D | **Never measured in golf** (F-018) |
+| 23 | Brachioradialis, trail | B | 45% MVC peaking backswing (Pezarat-Correia 2006, n=3) — highest elbow-flexor value in the golf literature |
+| 23b | Brachioradialis, lead | D | **Never measured.** Only a clinical case report of lead-forearm compartment syndrome establishes loading |
 | 24 | Supinator | D | **Never measured in golf** (F-018) |
 | 25 | Intrinsic hand and grip muscles | D | **Never measured in golf** (F-018). Grip *force* data exists but is not EMG, and varies ~3× by sensor method |
 
@@ -140,16 +142,37 @@ golfers. It is the only muscle in the body with a flat profile.
 
 ## Summary by tier
 
+Revised after the full Pink 1990 shoulder grid became available (2026-08-04). Seven zones moved up a tier;
+two split into a measured trail side and an unmeasured lead side. 59 zone entries.
+
 | Tier | Count | Share |
 |---|---|---|
-| A — numeric data available | 23 | 40% |
-| B — measured, magnitude inaccessible | 15 | 26% |
+| A — numeric data available | 30 | 51% |
+| B — measured, magnitude inaccessible or weak-sample | 10 | 17% |
 | C — measured, never reported | 1 | 2% |
-| D — never measured in golf | 18 | 32% |
+| D — never measured in golf | 18 | 30% |
 
 **Roughly a third of the human musculature relevant to the golf swing has never been measured during one.**
 That is the single most important fact this research produced, and the model must state it rather than hide
 it behind a transparent zone.
+
+### Two findings that are content, not gaps
+
+**Middle and posterior deltoid do almost nothing.** 2–8% and 5–24% respectively, no pattern across phases.
+Jobe 1986 states the deltoid is inactive on the trail side throughout, and on the lead side "except for a
+brief spurt from the anterior portion during the milliseconds immediately preceding ball contact." Two large,
+visually prominent shoulder muscles that stay cold through the whole swing — exactly the contrast the user
+asked to preserve.
+
+**Lead serratus anterior is the only flat muscle in the body.** Constant low activity across the entire
+swing rather than phasic. Offered by Kao 1995 as the fatigue mechanism in high-volume golfers.
+
+### Confidence is not uniform across the body
+
+Shoulder and scapular data is **single-lab, single-era, never replicated** — Kerlan-Jobe, 1986–1995, n=7–15
+per study. The forearm has **five independent modern replications** (Farber 2009, Sorbie 2016/2017, Robinson
+2023, Bochnia 2024, Grieß 2026). A tier-A shoulder value and a tier-A forearm value do not carry equal
+weight, and the renderer's uncertainty treatment should reflect that.
 
 ## Consequences for the renderer
 
