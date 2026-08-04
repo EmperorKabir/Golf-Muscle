@@ -30,3 +30,10 @@
 ## Version control
 - Every change, throughout the entire project lifecycle, is committed and pushed to GitHub automatically — not only the initial commit.
 <!-- ANDROID-PROJECT-INIT:END -->
+
+## Task tracking (binding — outside the init block so skill re-runs cannot remove it)
+- `TASKS.md` in the project root is the single source of truth for all project work.
+- At every session start, read TASKS.md in full before any other work.
+- No work starts without a TASKS.md entry; statuses are updated immediately on completion; tasks are never deleted or silently dropped.
+- All new relevant information from the user (answers, decisions, spec changes) is recorded in TASKS.md the moment it arrives.
+- If TASKS.md, this section, or the memory index entry is found missing, restore it before any other work.
