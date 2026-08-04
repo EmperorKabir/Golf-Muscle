@@ -129,17 +129,22 @@ all phases of the activity (2% to 8% MMT)"; posterior deltoid shows "low activit
 significant differences nor pattern of activity throughout all phases for both the right and left sides
 (5% to 24% MMT)".
 
-**Flagged anomaly:** pectoralis major reads identically on both sides at acceleration (93) and at early
-follow-through (74). Both routes give these figures, but two identical cross-side values at two separate
-phases is unusual and may be a transcription artefact in the source table rather than true bilateral
-identity. Treat the lead-side pec major acceleration and early-FT cells as lower-confidence than the trail
-side.
+**Flagged anomaly — now independently confirmed as printed.** Pectoralis major reads identically on both
+sides at acceleration (93) and at early follow-through (74). [[07-verbatim-source-tables]] reproduces
+McHardy's Table 3 directly and gives the same cross-side identities, so this **is** what the published
+table prints — it is not an OCR error in this document's extraction. Whether McHardy's table faithfully
+reflects Pink 1990's underlying per-side data, or itself collapsed two cells, cannot be checked without
+the paywalled Pink original. Two identical cross-side values at two separate phases remains
+physiologically surprising, so treat the *bilateral identity* claim (not the magnitude) as the uncertain
+part.
 
 ### Scapular muscles — %MMT, McHardy & Pollard 2005 Table 3
 
-Peak cells only. Table 3 lists just the two most active muscles per side per phase, so a blank means that
-side's top two in that phase were not scapular muscles (they were pectoralis major, infraspinatus or
-subscapularis) — **not** that the muscle was silent.
+**Critical reading rule — see [[07-verbatim-source-tables]].** Table 3 lists only the **two most active
+muscles per side per phase**. It is *not* an activation grid. A blank means "not in the top two for that
+side and phase" — it does **not** mean inactive and it does **not** mean no data. Kao 1995 measured all
+four scapular groups bilaterally across all five phases; McHardy reproduces only the fraction that made
+the top two. **For an animated app, blank cells must never be rendered as zero.**
 
 | Phase | Lead (left) | Trail (right) |
 |---|---|---|
@@ -154,9 +159,17 @@ These %MMT figures are consistent in rank order with Escamilla & Andrews' pooled
 highest, trapezius lowest — despite the different normalisation. That agreement across two independent
 normalisation methods raises confidence in the relative ordering, though not in the absolute values.
 
-**Lower trapezius still has no recovered numeric value at any phase, on either side.** Kao 1995
+**Lower trapezius still has no recovered *numeric* value at any phase, on either side.** Kao 1995
 instrumented upper, middle and lower trapezius separately, but only upper (52) and middle (37) surface in
 Table 3.
+
+**Qualitative fallback for the blank cells:** [[07-verbatim-source-tables]] reproduces **Kim et al. 2004
+Table 2**, the only complete four-muscle, both-sides, all-phases scapular grid located anywhere. It is
+**ordinal (+ to +++++), not numeric**, and is a secondary reproduction of Kao 1995, but it fills the shape
+of the curves that Table 3 leaves blank — notably trail-side rhomboids and levator scapulae (both peaking
+++ in downswing/acceleration) and the lead serratus anterior's flat low "+" across every phase. Kim's
+phase scheme splits takeaway from backswing and does **not** split follow-through, so it cannot be merged
+cell-to-cell with the table above.
 
 ---
 
@@ -308,10 +321,20 @@ Table 3.
   forward-swing→acceleration boundary, but no source explicitly reconciles the two statements.)
 - **Marta et al. 2012** review: confirms latissimus dorsi (with pec major, subscapularis) “peaked during
   acceleration phase” across the reviewed literature — sides with the Jobe 1986 framing.
-- No numeric %MVC or %MMT value, or lead/trail split, was recoverable for latissimus dorsi — §1A does not
-  help here, as lat dorsi never appears among the two most active muscles per side per phase in McHardy's
-  Table 3, and it was not legible in the scanned Pink 1990 grid. The peak-phase dispute (forward swing vs
-  acceleration) therefore remains unresolved and unquantified.
+- **Numbers now exist — see [[07-verbatim-source-tables]].** Pink et al. 1990 per-phase %MMT:
+
+  | Side | Takeaway | Forward swing | Acceleration | Early FT | Late FT |
+  |---|---|---|---|---|---|
+  | Trail (R) | 9 | **50** | 47 | 39 | 28 |
+  | Lead (L) | 17 | **46** | 31 | 32 | 18 |
+
+  Peak is **forward swing bilaterally**, trail slightly higher than lead throughout the downswing.
+  **Single-source caveat:** latissimus never appears in McHardy Table 3, so unlike the other nine muscle
+  rows this one could not be independently cross-validated.
+- The peak-phase dispute is now **three-way**: Pink 1990 says forward swing; Kim et al. 2004 says
+  downswing and acceleration; Marta et al. 2012 says acceleration. Plausibly a phase-boundary artefact —
+  Pink's "forward swing" *is* the early downswing, which is Kim's "downswing" column — but the sources
+  differ as printed. Report the range.
 - The nearest numeric anchor is **Pezarat-Correia et al. 2006**, which recorded trail-side latissimus
   dorsi at **53% MVC — the highest of the 12 dominant-arm muscles it measured** — but with n=3 and a
   3-phase scheme, so it fixes magnitude only loosely and cannot settle the phase question.
@@ -680,17 +703,42 @@ backswing and follow-through, and the two large raw-µV studies put most muscle/
     forearm datasets (Robinson, Bochnia, Farber), though none of the three use the same normalisation
     convention (§0), so the *shape* of the asymmetry is well corroborated while the *magnitude* is not
     cross-comparable.
-- **Shoulder:**
-  - Serratus anterior: lead-side shows sustained/constant activity across the whole swing (Kao 1995) —
-    the clearest single lead-side-specific shoulder-girdle finding in this pass.
-  - Deltoid: trail-side specifically described as largely inactive (Jobe 1986).
-  - Subscapularis, pectoralis major, latissimus dorsi: described as active/power-generating during
-    acceleration, but **no source in this pass explicitly separates lead vs trail contribution** for
-    these three muscles — commonly assumed trail-dominant in secondary/coaching literature given their
-    internal-rotation/adduction role on the trail humerus, but this is **inference, not a directly cited
-    lead/trail EMG split** — flagged, do not present as verified.
-- **Grip force:** lead hand supplies the dominant share of total grip force throughout the swing,
-  especially the last three fingers, per Langlais & Broker 2014 and (lower-confidence) Schmidt 2007.
+- **Shoulder — now quantified per side via §1A** (this supersedes the first pass's note that no source
+  separated lead from trail):
+  - **Rotator cuff is starkly side-inverted.** Trail supraspinatus (25%) and infraspinatus (27%) peak at
+    takeaway then fall to 7–9% by late follow-through. Lead infraspinatus does the opposite — 14% at
+    takeaway rising to **61% at early follow-through**, the lead shoulder acting as the decelerator.
+    Lead supraspinatus likewise peaks late (28%).
+  - **Subscapularis is trail-dominant and always on** — 68% vs 41% at acceleration, higher on the trail
+    side in every phase after takeaway. Confirms Jobe 1986's "more active than any other muscle
+    throughout the swing" with numbers.
+  - **Pectoralis major is the exception to the asymmetry**: 93% MMT on *both* sides at acceleration. The
+    asymmetry is in timing, not peak — trail 64% vs lead 18% at forward swing. (See §1A's flagged
+    caveat on the identical cross-side values.)
+  - **Anterior deltoid is side-inverted**: trail peaks at forward swing (21%), lead at late
+    follow-through (26%). Middle (2–8%) and posterior (5–24%) deltoid are quantitatively confirmed as
+    non-contributory on both sides.
+  - **Scapular muscles split cleanly by phase**: trail peaks at back swing (upper trapezius 52%, middle
+    trapezius 37%, plus rhomboids and levator scapulae retracting/elevating per Kao); lead peaks through
+    forward swing and acceleration (rhomboid 68%, middle trapezius 51%, levator scapulae 62%).
+  - **Lead serratus anterior is the outlier — constant activity across all phases** (Kao 1995), which Kao
+    links to fatigue in high-volume golfers. Trail serratus peaks at acceleration (69%).
+  - **Latissimus dorsi remains the one shoulder muscle with no per-side quantification** — do not assume
+    trail-dominance for it.
+  - **Injury laterality corroborates the asymmetry**: over 90% of golfers' shoulder problems involve the
+    lead shoulder, and lead-shoulder injuries are roughly 3× as common as trail (Kim, Millett, Warner &
+    Jobe 2004) — consistent with the lead cuff absorbing the deceleration load.
+- **Grip force — the two hands do different jobs:**
+  - **Lead hand supplies the dominant share of linear grip force** throughout the swing, especially the
+    last three fingers (Langlais & Broker 2014; lower-confidence Schmidt 2007). Trail-hand force is
+    substantially lower except at takeaway, where the two are similar.
+  - **Trail hand supplies roughly threefold more torque** (Choi & Park 2020). Force and torque are
+    different mechanical quantities from different studies — **do not merge into a single "grip
+    strength" curve.**
+  - **Lead-arm joint force/torque leads the trail arm by ~50–200 ms**, with trail-arm peaks clustering
+    around impact at larger magnitude (Choi & Park 2020) — a measured lead-then-trail sequencing.
+  - The lead hand's grip signature is far more club-invariant than the trail hand's (r²=0.90 vs 0.73,
+    Langlais & Broker 2014).
 
 ---
 
@@ -801,7 +849,8 @@ saturates at 100% would silently truncate the single highest-activation muscle i
     were recovered. Kao itself is paywalled with no OA copy (Unpaywall confirms `is_oa: false`).
   - **Lower trapezius** — no value at any phase, either side, despite Kao instrumenting it separately.
   - **Rhomboid major vs minor**, and **serratus anterior upper vs lower digitations** — not separable.
-  - **Latissimus dorsi** — no %MMT value at all; it never enters McHardy's top-two-per-phase table.
+  - **Latissimus dorsi** — now recovered from the Pink 1990 scan (§2.9), but **single-source**: it never
+    enters McHardy's top-two table, so no independent cross-check was possible.
   - **Jobe 1989's per-muscle men-vs-women breakdown** — abstract reports only the non-significant overall
     trend.
   - **Jobe 1986's four segment names and boundaries** — paywalled; the 5-phase scheme postdates it.
@@ -841,6 +890,22 @@ saturates at 100% would silently truncate the single highest-activation muscle i
   papers (Kao 1995, Farber 2009) and were deliberately not used**, per this project's requirement to
   work from legitimate sources only — flagged so a future pass does not mistake their absence here for
   an oversight.
+- **The shoulder and scapular data has never been replicated.** Every review from 2004 to 2025 (Kim 2004,
+  McHardy & Pollard 2005, Escamilla & Andrews 2009, Marta et al. 2012) re-cites the same Kerlan-Jobe
+  fine-wire dataset collected 1986–1995. The forearm *has* been re-measured repeatedly since (Farber
+  2009, Sorbie 2016/2017, Robinson 2023, Bochnia 2024, Grieß 2026); the shoulder has not. So every
+  shoulder/scapular number in this document traces to **one lab, one cohort era, n=7–15 per study**,
+  with no independent confirmation. Weight the app's confidence accordingly: forearm activation is
+  multiply-sourced, shoulder activation is single-sourced.
+- **There is no Jobe/Perry/Pink elbow paper**, contrary to a reasonable assumption that one exists.
+  Confirmed against McHardy & Pollard's reference list: the Kerlan-Jobe golf series covers shoulder,
+  scapula, trunk, hip and knee only. The group's forearm paper is Farber et al. 2009, published under the
+  Kerlan-Jobe Orthopaedic Clinic name (the successor institution to Centinela Hospital), not under the
+  Centinela name.
+- **Whether foot-switches were used** to synchronise the golf EMG recordings could not be confirmed —
+  foot-switch synchronisation is a hallmark of the same lab's *gait* studies, but the golf papers
+  document cinematography (450 fps film) with electronic synchronisation. Do not cite foot-switches for
+  the golf work.
 
 ---
 
@@ -938,3 +1003,8 @@ saturates at 100% would silently truncate the single highest-activation muscle i
 
 - [[T-011a-phase-taxonomy-and-timing]] — swing-phase model and timing this document's phase mapping (§1)
   depends on.
+- [[07-verbatim-source-tables]] — verbatim McHardy & Pollard 2005 Tables 3 and 4, Kim et al. 2004 Table 2
+  (the only complete both-sides all-phases scapular grid, ordinal), and the Pink 1990 latissimus dorsi
+  row. Independently confirms this document's §1A extraction cell-for-cell, including the identical
+  93/93 and 74/74 pectoralis major values flagged there. **Read its "blank cells are not zero" warning
+  before using any Table 3 figure.**
