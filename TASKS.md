@@ -101,6 +101,15 @@
 - T-017 Reconcile the two duplicate upper-limb research files into one canonical document; verify no unique content lost — DONE 2026-08-04. Merged into `docs/research/04-shoulder-arm-forearm-and-grip.md` (53 KB + 35 KB → 87 KB). Merge verified by confirming the distinguishing content markers of both originals (90.77% MVC flexor burst, 120.9% pronator teres, Langlais grip data, Robinson ECU data) are all present in the merged file.
 - T-018 Renumber the research files to a single consistent scheme — DONE 2026-08-04. All seven now follow `0N-topic.md`; TASKS.md references updated. **Note for future sessions: do not round-trip this file through `Get-Content`/`Set-Content` — it misreads UTF-8 as ANSI and corrupts every em-dash. Use `[System.IO.File]::ReadAllText/WriteAllText` with an explicit UTF8Encoding, or the Edit tool.**
 
+## Phase 1b — Inference research (user directive 2026-08-04: ≥50 further sources, video and text; infer mechanism, not just measurement)
+- **D-008 Widen the evidence base beyond direct EMG measurement.** The user requires: (a) many more sources, video as well as text; (b) inference of how muscles actually work mechanically; (c) inference of how the 3D model must MOVE as a result of muscle activation; (d) strict evidence-based back-solving of muscle activation from how the swing visually looks. Guessing is explicitly prohibited. Minimum 50 additional sources.
+- T-030 Musculoskeletal simulation of the golf swing — existing OpenSim/AnyBody models, forward-dynamics muscle-driven simulation: can activation drive motion? — IN PROGRESS
+- T-031 Inverse methods — static optimisation, computed muscle control, EMG-driven and EMG-informed neuromusculoskeletal models. **This is the formal answer to the user's back-solving requirement**: can activation be derived from observed motion, and with what validated error bounds? — IN PROGRESS
+- T-032 Golf swing kinematics — joint angle time series through the swing for every joint the model must animate; publicly available 3D datasets — IN PROGRESS
+- T-033 Video and markerless pose estimation for golf — datasets, accuracy versus marker-based ground truth, whether video yields joint angles of sufficient quality — IN PROGRESS
+- T-034 Functional anatomy — origins, insertions, actions and moment arms for all 57 muscle zones; what motion each zone produces when it contracts — IN PROGRESS
+- T-035 Synthesise T-030..T-034 into a mechanism model linking activation → joint moment → motion, and state precisely what remains unresolvable — TODO
+
 ## Phase 2 — Core app
 - T-020 Time-slider architecture: swing timeline (address → follow-through), scrubbing, playback, slow motion — TODO
 - T-021 Per-muscle colour mapping: activation value → red-to-transparent gradient shading — TODO
