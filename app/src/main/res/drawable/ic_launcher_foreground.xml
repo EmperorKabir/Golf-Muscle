@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Flag pole -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M50,30 h3 v42 h-3 z" />
+    <!-- Pennant -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M53,31 L72,38 L53,45 Z" />
+    <!-- Ball -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M44,73 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 Z" />
+</vector>

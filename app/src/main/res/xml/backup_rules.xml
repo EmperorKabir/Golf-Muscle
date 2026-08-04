@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- Everything is backed up by default; exclusions go here as data grows. -->
+</full-backup-content>
