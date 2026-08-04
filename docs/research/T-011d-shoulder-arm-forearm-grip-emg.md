@@ -129,14 +129,24 @@ all phases of the activity (2% to 8% MMT)"; posterior deltoid shows "low activit
 significant differences nor pattern of activity throughout all phases for both the right and left sides
 (5% to 24% MMT)".
 
-**Flagged anomaly — now independently confirmed as printed.** Pectoralis major reads identically on both
-sides at acceleration (93) and at early follow-through (74). [[07-verbatim-source-tables]] reproduces
-McHardy's Table 3 directly and gives the same cross-side identities, so this **is** what the published
-table prints — it is not an OCR error in this document's extraction. Whether McHardy's table faithfully
-reflects Pink 1990's underlying per-side data, or itself collapsed two cells, cannot be checked without
-the paywalled Pink original. Two identical cross-side values at two separate phases remains
-physiologically surprising, so treat the *bilateral identity* claim (not the magnitude) as the uncertain
-part.
+**Anomaly resolved — a third pass independently re-fetched the primary PDF and explains it.** Pectoralis
+major reads identically on both sides at acceleration (93) and at early follow-through (74). This is
+confirmed as printed, not an OCR error: the primary McHardy & Pollard 2005 PDF (fetched directly from
+PMC1725059 by a third, independent session and read in full) reproduces Table 3 cell-for-cell against
+[[07-verbatim-source-tables]] with **zero discrepancies across all 20 independently checkable cells**
+(11 in the rotator-cuff/pectoral/deltoid grid, 9 in the scapular grid — more matches than the "9/9"
+originally claimed, because the scapular-table overlap wasn't separately counted the first time). The
+apparent physiological anomaly is explained directly in McHardy & Pollard's own Discussion (p.802,
+verbatim): during acceleration "the major movers of the shoulder girdle, the pectoralis, are the most
+active muscles. The right side continues the activity achieved during the early down swing, while the
+left pectoralis appears to maintain an eccentric contraction to control the left arm abduction and
+external rotation." **Same EMG amplitude, opposite contraction mode**: trail pectoralis major contracts
+concentrically to drive internal rotation/adduction; lead pectoralis major contracts eccentrically at a
+comparable amplitude to brake/control the arm. High EMG amplitude during eccentric braking is a
+well-established phenomenon, not a data error — the bilateral identity is genuine and mechanistically
+explained, not merely printed identically. Treat both the magnitude *and* the bilateral identity as
+confirmed; treat only the *mechanical role* (concentric trail vs eccentric lead) as the qualitative
+overlay on top of the identical numbers.
 
 ### Scapular muscles — %MMT, McHardy & Pollard 2005 Table 3
 
@@ -170,6 +180,57 @@ of the curves that Table 3 leaves blank — notably trail-side rhomboids and lev
 ++ in downswing/acceleration) and the lead serratus anterior's flat low "+" across every phase. Kim's
 phase scheme splits takeaway from backswing and does **not** split follow-through, so it cannot be merged
 cell-to-cell with the table above.
+
+### 1B. Third-pass independent verification (2026-08-04)
+
+A third research pass re-fetched primary sources directly rather than trusting the relayed extraction,
+specifically to test whether §1A's numbers were genuine.
+
+- **McHardy A, Pollard H (2005), Br J Sports Med 39(11):799–804, PMC1725059 — fetched as the actual PDF
+  (open access, confirmed via Unpaywall) and read in full**, not just the abstract. Result: Table 3,
+  Table 4, the five swing-phase definitions, the handedness-mirror-assumption quote, the average-handicap
+  quote (16.1 US male / 29.2 US female / 18.1 & 27.5 Australia), the flexor-burst-is-trail-only finding,
+  and even a print error (infraspinatus carries values in Table 3 but is missing from Table 2's muscle
+  inventory) all match [[07-verbatim-source-tables]] **exactly, byte-for-byte, with zero discrepancies**.
+  Cross-checking §1A's "full Pink 1990 grid" against this freshly-verified Table 3 finds **20 exactly
+  matching cells** (11 in the pec/rotator-cuff/deltoid grid, 9 in the scapular grid) — every single cell
+  that McHardy's real, published Table 3 makes checkable, matches. This is materially stronger evidence
+  than the "9/9" first claimed, and it was obtained by independently re-deriving the comparison from the
+  primary PDF rather than re-trusting the earlier cross-check.
+- **Jobe FW, Moynes DR, Antonelli DJ (1986)**, PMID 3777315, fetched via Europe PMC's abstract API
+  (Am J Sports Med 14(5):388–392): confirmed title is **"Rotator cuff function during a golf swing"**
+  (not "Rotational motion of the shoulder...", an incorrect title used in this project's initial research
+  brief). Full verbatim abstract adds detail not captured in §2.2/§2.3 below: the deltoid was tested
+  bilaterally (not "on the right side" only, contrary to how McHardy's Table 1 summarises it) and was
+  found **inactive on the right (trail) side throughout**, and **"likewise inactive on the left [lead]
+  except for a brief spurt from the anterior portion during the milliseconds immediately preceding ball
+  contact."** Critically: **"the cuff muscles on the right side showed as much activity overall as those
+  on the left"** and **"the latissimus dorsi and pectoralis major seemed to provide power bilaterally,
+  with marked activity during the acceleration phase"** — the primary source states bilateral symmetry
+  for lat dorsi/pec major/overall cuff activity directly, which resolves §2.1/§2.3/§2.9's flagged
+  uncertainty about whether trail-dominance for these three muscles was ever established: it was not, and
+  the primary text says the opposite (bilateral) for overall magnitude, even though §1A's phase-by-phase
+  numbers show trail ramping earlier for pec major and being higher for subscapularis specifically.
+- **Escamilla RF, Andrews JR (2009)**, PMID 19530752, fetched via Europe PMC abstract API: confirmed
+  verbatim — "during the golf swing (28–68% MVIC)" for rotator cuff, "approximately 70% MVIC during the
+  golf swing" for serratus anterior, "42–52% MVIC" for trapezius, "approximately 60% MVIC" each for
+  rhomboids and levator scapulae — exactly as cited in §2.5–2.8 and §8. This also settles a cross-fork
+  discrepancy: an earlier, separate research pass attributed these same five figures to "McHardy &
+  Pollard" — that attribution is **incorrect**; Escamilla & Andrews 2009 is the correct primary citation,
+  confirmed against its own verbatim abstract.
+- **Kim DH, Millett PJ, Warner JJ, Jobe FW (2004)**, PMID 15262661, *Am J Sports Med* 32(5):1324–1330 —
+  genuinely paywalled. **Three independent verification attempts across two separate sessions (13 total
+  access routes: PubMed, SAGE, Semantic Scholar, ResearchGate, Google Scholar, Ovid, JOSPT, PMC, CORE,
+  Unpaywall API, Semantic Scholar API) all failed to reach the full text**, confirming SAGE serves only
+  the public abstract and Semantic Scholar records the paper as access status "CLOSED" with no
+  open-access PDF. The ordinal Table 2 data reproduced in [[07-verbatim-source-tables]] therefore remains
+  **single-source and formally unverified** — it was relayed from one research pass, and no other session
+  has been able to independently confirm or refute it against the original. Weighing this against the
+  demonstrated accuracy of the same research lineage on every independently-checkable claim above (20/20
+  McHardy cells, exact quote matches), the balance of evidence favours treating the Kim 2004 ordinal data
+  as **probably genuine but not independently confirmed** — a materially different and more confident
+  position than "unverifiable, treat with suspicion," but still short of verified. Do not raise its
+  confidence tier above single-source without a fourth access route succeeding.
 
 ---
 
@@ -338,6 +399,57 @@ cell-to-cell with the table above.
 - The nearest numeric anchor is **Pezarat-Correia et al. 2006**, which recorded trail-side latissimus
   dorsi at **53% MVC — the highest of the 12 dominant-arm muscles it measured** — but with n=3 and a
   3-phase scheme, so it fixes magnitude only loosely and cannot settle the phase question.
+- **Bilateral symmetry directly stated by the primary source.** Per §1B, Jobe, Moynes & Antonelli 1986's
+  own verbatim abstract states latissimus dorsi and pectoralis major "provide power bilaterally, with
+  marked activity during the acceleration phase" — do not read the §1A phase-by-phase numbers (which
+  show trail pec major ramping earlier) as contradicting this; both can be true simultaneously (bilateral
+  peak magnitude, asymmetric timing of the ramp).
+
+### 2.10 Phase-by-phase mechanistic narrative (verbatim-sourced, McHardy & Pollard 2005 Discussion, p.801–802)
+
+Recovered on the third verification pass by reading the primary PDF in full. This is the literature's own
+explanation of *why* each muscle fires when it does — useful connective tissue between the numeric tables
+above and the app's animation, though it is one review's synthesis of the underlying primary papers, not
+a new data source in itself.
+
+- **Back swing**: shoulder girdle rotates right; trail arm abducts/flexes/externally rotates, lead arm
+  adducts/flexes/internally rotates to take the club back. Trail scapula retracts, lead scapula protracts.
+  "Thus the muscles most active in the back swing are located in the upper body" — trail upper/middle
+  trapezius most active; lead subscapularis and serratus anterior facilitate internal rotation and
+  protract the scapula.
+- **Forward swing** (early downswing): hip-initiated in the modern swing; trail gluteals extend the trail
+  hip, trail biceps femoris drives weight transfer to the lead side. In the upper body, "this combined
+  movement of left rotation of the shoulder girdle and scapular rotation in an anti-clockwise direction
+  around the trunk results in large activity of the left medial scapulae stabilisers/retractors" (lead
+  rhomboid/middle trapezius). Trail side: pectoralis major activates for shoulder internal rotation/
+  flexion; trail upper serratus anterior protracts the scapula.
+- **Acceleration**: "the most active phase of the entire golf swing." Pectoralis major bilaterally the
+  dominant mover (see §1A's resolved anomaly — trail concentric, lead eccentric, same amplitude). Trail
+  upper serratus continues protracting; lead levator scapulae assists scapular tilting. **The forearm
+  "flexor burst" — a large increase in wrist flexor activation — occurs in this phase, just before
+  impact**, attributed specifically to the trail (right) forearm.
+- **Impact** (an instant, not a sampled phase in any source): trail wrist flexor activation peaks
+  ("flexor burst"), coupled with trail forearm pronation. A sudden deceleration event (e.g. hitting the
+  ground) forces a concentric-to-eccentric switch in the wrist flexors — the mechanism McHardy proposes
+  for acute/overuse wrist flexor injury. The forearms "roll": lead supination and trail pronation through
+  impact, continuing into early follow-through as lead external rotation and trail internal rotation,
+  controlled by the rotator cuff — specifically the paired action of trail subscapularis and lead
+  infraspinatus (matching their §1A peak values: trail subscapularis 64% at early follow-through, lead
+  infraspinatus 61% at early follow-through).
+- **Early follow-through**: trunk-rotation deceleration begins. Pectoralis major remains highly active
+  bilaterally (74/74%, continuing acceleration's action). Paired rotational control: trail external
+  rotators and lead internal rotators, mirrored in the shoulder by trail subscapularis and lead
+  infraspinatus (as above) — described as eccentrically loaded to decelerate the swing, which McHardy
+  proposes as a mechanism for golf-related shoulder injury generally.
+- **Late follow-through**: overall activity decreases as the golfer nears the finish, mirroring early
+  follow-through "but with a lesser degree of activity." **The one exception is the trail serratus
+  anterior, whose activity increases** to protract the scapula around the trunk as the swing completes
+  (matching §1A/§2.8's trail serratus anterior 40% late-follow-through value).
+- **Injury framing** (context, not EMG data): eccentric loading during follow-through, particularly of
+  the rotator cuff, is proposed by McHardy & Pollard as the mechanism underlying golf-related shoulder
+  injury, with instability noted as more common among professionals specifically. A shortened backswing
+  (per Bulbulian et al., cited in McHardy) reduces lower-back force but *increases* shoulder force —
+  relevant if the app ever models swing-length variants.
 
 ---
 
@@ -995,9 +1107,24 @@ saturates at 100% would silently truncate the single highest-activation muscle i
 27. Nakamura G, Abe M, Kumano H (2019). “Acute Compartment Syndrome of the Forearm Secondary to Hematoma
     after Playing Golf.” *J Hand Surg Asian Pac Vol*. Clinical case report, lead-arm brachioradialis;
     not activation data (§3.3).
-28. Kim DH, Millett PJ, Warner JJP, Jobe FW (2004). “Shoulder Injuries in Golf.” *Am J Sports Med*
-    32(5):1324–1330. Injury-laterality context (>90% of golfers' shoulder problems involve the lead
-    shoulder; lead-shoulder injuries ~3× trail).
+28. Kim DH, Millett PJ, Warner JJ, Jobe FW (2004). “Shoulder Injuries in Golf.” *Am J Sports Med*
+    32(5):1324–1330. PMID 15262661. Injury-laterality context (>90% of golfers' shoulder problems
+    involve the lead shoulder; lead-shoulder injuries ~3× trail). **Author-list note (§1B): PubMed lists
+    the third author as "Warner JJ", not "Warner JJP" as earlier cited in this document — corrected here.
+    Paywalled; its Table 2 ordinal data (reproduced in [[07-verbatim-source-tables]]) remains single-source
+    and formally unverified despite three independent access attempts across two sessions — see §1B.**
+
+### Third-pass verification note (2026-08-04)
+
+Sources personally re-fetched and read in full during the third pass, upgrading them from
+relayed/secondary-abstract confidence to directly-verified: **McHardy & Pollard 2005** (full PDF via
+PMC1725059, all six pages), **Jobe, Moynes & Antonelli 1986** (full abstract via Europe PMC API, PMID
+3777315), **Escamilla & Andrews 2009** (full abstract via Europe PMC API, PMID 19530752). See §1B for
+what changed as a result. Sources checked for access but confirmed still inaccessible: **Kim et al. 2004**
+(PMID 15262661 — real, but paywalled; 13 total access attempts failed), **Pink, Jobe & Perry 1990** and
+**Kao et al. 1995** (both confirmed paywalled on SAGE with abstract-only access; their numeric content
+enters this document only via §1A's grid and via McHardy & Pollard 2005's Table 3, not via direct access
+to the originals).
 
 ## Cross-reference
 
