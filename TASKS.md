@@ -73,7 +73,10 @@
   - T-011d Shoulder girdle, arm, forearm and grip activation by phase; lead/trail asymmetry — DONE 2026-08-04 (docs/research/T-011d-shoulder-arm-forearm-grip-emg.md)
   - T-011e Modulation by club, shot type, skill level, tempo, and anthropometry (height, femur/limb length) — DONE 2026-08-04 (`docs/research/05-club-shot-golfer-and-anthropometry.md`)
   - T-011f Method for converting published %MVC values into a continuous 0–1 activation timeline — DONE 2026-08-04 (`docs/research/06-activation-curve-and-colour-method.md`)
-- T-012 Define the muscle-group list at swing-relevant granularity (err toward more), rationale per group — TODO
+- T-012 Define the muscle-group list at swing-relevant granularity (err toward more), rationale per group — DONE 2026-08-04 (`docs/design/muscle-zone-list.md`; 57 groups × 2 sides = 114 zones, each assigned a data-confidence tier A/B/C/D)
+- T-019 Define the unit-reconciliation strategy across %MMT / %MVC / %EMGmax / raw µV (F-010, F-016). **Blocks T-021** — no value may reach the colour ramp until this is settled — TODO
+- T-028 Design the visual language for the four render states (active / inactive / uncertain / never-measured) per F-009 and the tier system — TODO
+- T-029 Author posterior-view geometry. The two highest-activation muscles in the body (gluteus maximus, hamstrings) are invisible from the front; the current style studies are anterior-only and omit the most important part of the swing — TODO
 - T-013 Choose and validate the Android 3D rendering approach (Context7 + on-device spike rendering and orbiting a test mesh) — TODO
 - T-014 Generate the V1 body model (189 cm male, long femurs) in the D-002 style, meeting the all-angles bar — TODO
 - T-015 D-004 gate: 10 static-view render studies in a browser artifact with per-option bullet points, for user selection — DONE 2026-08-04 (`docs/design/model-style-studies.html`, published; awaiting user selection)

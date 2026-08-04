@@ -523,15 +523,28 @@ Table 3.
 
 Compiled from the sources above; “phase” uses each source's own terminology per §1.
 
+Side attributions for the shoulder and scapular rows were filled in on the second pass from §1A; rows
+previously marked "not separated" now carry the measured %MMT peak.
+
 | Muscle | Reported peak phase | Side (if specified) | Source |
 |---|---|---|---|
-| Subscapularis | Throughout swing, described as most active overall; explicitly tied to acceleration in Pink 1990 | Not separated | Jobe 1986; Pink 1990 |
-| Pectoralis major | Acceleration | Not separated (trail inferred, not directly cited) | Pink 1990; Marta 2012 |
-| Latissimus dorsi | Forward swing (Pink 1990) / Acceleration (Jobe 1986, Marta 2012) — adjacent-phase discrepancy, not reconciled | Not separated | Jobe 1986; Pink 1990; Marta 2012 |
-| Anterior deltoid | Forward swing → follow-through | Not separated | Pink 1990 |
-| Middle / posterior deltoid | Non-contributory throughout (no distinct peak) | Not separated | Pink 1990 |
-| Infraspinatus / supraspinatus | Extremes of ROM (top of backswing; end of follow-through) | Not separated | Pink 1990 |
-| Serratus anterior | Constant/sustained across all phases (lead side) | **Lead** | Kao 1995 |
+| Subscapularis | Acceleration; high throughout, most active cuff muscle overall | **Trail 68%**, lead 41% | Jobe 1986; Pink 1990 |
+| Pectoralis major | Acceleration — highest shoulder value in the swing | **Both 93%**; trail ramps earlier (64% vs 18% at forward swing) | Pink 1990; Marta 2012 |
+| Latissimus dorsi | Forward swing (Pink 1990) / Acceleration (Jobe 1986, Marta 2012) — adjacent-phase discrepancy, not reconciled | Not separated; no %MMT value | Jobe 1986; Pink 1990; Marta 2012 |
+| Anterior deltoid | Trail: forward swing (21%). Lead: late follow-through (26%) | **Side-inverted** | Pink 1990 |
+| Middle deltoid | No peak — 2–8% MMT throughout | Both | Pink 1990 |
+| Posterior deltoid | No peak — 5–24% MMT, no pattern | Both | Pink 1990 |
+| Supraspinatus | Trail: takeaway (25%). Lead: early/late follow-through (28%) | **Side-inverted** | Pink 1990 |
+| Infraspinatus | Trail: takeaway (27%). Lead: early follow-through (**61%**) | **Side-inverted, large lead peak** | Pink 1990 |
+| Upper trapezius | Back swing (**52%**) | **Trail** | Kao 1995 via McHardy 2005 |
+| Middle trapezius | Trail: back swing (37%). Lead: forward swing (51%) | **Side-inverted** | Kao 1995 via McHardy 2005 |
+| Lower trapezius | No numeric value recovered at any phase | — | — |
+| Rhomboids | Forward swing (**68%** — highest scapular value) | **Lead** | Kao 1995 via McHardy 2005 |
+| Levator scapulae | Acceleration (62%) | **Lead** | Kao 1995 via McHardy 2005 |
+| Serratus anterior | Trail: acceleration (**69%**). Lead: constant/sustained across all phases (30% at back swing) | Both, differing patterns | Kao 1995; McHardy 2005 |
+| Triceps brachii (long head) | Downswing (50% MVC) | **Trail only**; lead unmeasured | Pezarat-Correia 2006, n=3 |
+| Brachioradialis | Backswing (45% MVC) | **Trail only**; lead unmeasured | Pezarat-Correia 2006, n=3 |
+| Biceps brachii | Backswing (26% MVC, Pezarat-Correia) **vs** late follow-through (raw µV, Bochnia/Grieß) — unresolved conflict | Trail (Pezarat); both (Bochnia) | See §3.1 |
 | Wrist extensors (pooled) | Rising address → contact, peak at contact/impact | Not separated | Glazebrook 1994 |
 | Wrist flexors (pooled) | Burst at contact/impact | Not separated | Glazebrook 1994 |
 | ECU | Downswing | **Trail** peak | Robinson 2023 |
@@ -542,9 +555,21 @@ Compiled from the sources above; “phase” uses each source's own terminology 
 | Pronator teres (amateurs) | Forward swing | **Trail** | Farber 2009 |
 | Pronator teres / FCU / biceps brachii (raw amplitude, all sides) | Late follow-through | Both, lead numerically higher in Bochnia's biceps data | Bochnia 2024; Grieß 2026 |
 
-**Read this table as directional, not exhaustive** — muscles absent from it (teres minor/major, triceps,
-brachioradialis, supinator, individual trapezius regions, intrinsic hand muscles) had no phase-of-peak
-data recoverable this session, per §§2–4.
+**Read this table as directional** — muscles still absent from it (teres minor, teres major, supinator,
+lower trapezius, lead-arm triceps and brachioradialis, intrinsic hand muscles) have **no** phase-of-peak
+data, per §§2–4 and §10.
+
+**The single most important structural finding for the app**: the trail side peaks *early* (takeaway/
+backswing) and the lead side peaks *late* (follow-through) for supraspinatus, infraspinatus, middle
+trapezius, anterior deltoid and ECRB alike. This side-inverted timing is the dominant organising pattern
+of the upper limb in the swing — the trail side positions and drives, the lead side stabilises then
+decelerates. Subscapularis and pectoralis major are the exceptions: both peak at acceleration on both
+sides.
+
+**"Peak near impact" is not a universal rule.** It holds for the pooled wrist flexors and extensors
+(Glazebrook, at contact) and for trail ECU (downswing), but Robinson 2023 puts lead ECU's peaks in
+backswing and follow-through, and the two large raw-µV studies put most muscle/side combinations' peak in
+**late follow-through**. Model peak phase per muscle and per side, never as one global rule.
 
 ---
 
@@ -687,10 +712,39 @@ this session, **explicitly labelled by source and normalisation type**:
 | Exceeds 100% (methodology-specific) | Pronator teres | 28.8%–120.9% depending on phase/side/skill | Farber 2009, **%MMT not %MVC** — see §0, not directly comparable to the MVIC/MVC rows above |
 | General literature statement | Forearm muscles broadly | “activity levels above the maximal voluntary contraction” reported in some reviewed studies | Marta et al. 2012 review — corroborates that forearm muscles routinely exceed nominal 100% reference values in this literature, whichever reference contraction is used |
 
-**No consolidated magnitude band was recoverable for**: individual deltoid heads, individual rotator-cuff
-muscles, latissimus dorsi, pectoralis major, teres minor/major, biceps brachii, triceps brachii,
-brachioradialis, supinator, or individually-named wrist flexors/extensors beyond the pooled Glazebrook
-figures and the ECU/ECRB directional (non-normalised) findings above.
+**Updated on the second pass** — bands now recoverable for muscles previously listed as having none
+(all **%MMT**, Pink 1990 via §1A; not comparable to the %MVIC/%MVC rows above):
+
+| Band | Muscle | Value | Source |
+|---|---|---|---|
+| Very high | Pectoralis major | 93% MMT peak (acceleration, both sides) | Pink 1990 |
+| High | Subscapularis | 68% MMT peak (trail, acceleration); 41% lead | Pink 1990 |
+| High | Infraspinatus (lead) | 61% MMT peak (early follow-through) | Pink 1990 |
+| Low–moderate | Supraspinatus | 7–28% MMT across all phases/sides | Pink 1990 |
+| Low–moderate | Infraspinatus (trail) | 7–27% MMT | Pink 1990 |
+| Low–moderate | Anterior deltoid | 5–26% MMT | Pink 1990 |
+| Low | Middle deltoid | 2–8% MMT, all phases, both sides | Pink 1990 |
+| Low | Posterior deltoid | 5–24% MMT, no pattern | Pink 1990 |
+| High | Trail triceps long head | 50% MVC (downswing) | Pezarat-Correia 2006, n=3 |
+| Moderate–high | Trail brachioradialis | 45% MVC (backswing) | Pezarat-Correia 2006, n=3 |
+| Moderate | Trail biceps brachii | 26% MVC (backswing) | Pezarat-Correia 2006, n=3 |
+| High | Trail latissimus dorsi | 53% MVC | Pezarat-Correia 2006, n=3 |
+
+**Still no band for**: teres minor, teres major, supinator, lower trapezius, lead-arm triceps and
+brachioradialis, individually-named wrist flexors/extensors beyond the pooled Glazebrook figures, and
+intrinsic hand muscles.
+
+**The commonly-quoted four-tier scheme (<20% low / 20–40% moderate / 40–60% high / >60% very high) could
+not be traced to any golf EMG paper.** What the golf literature actually does: Pink, Perry & Jobe 1993
+uses a **binary** cutoff at **30% MMT** ("relatively low" below, "relatively high" above); Glazebrook 1994
+reports raw percentages with no bands; Kao 1995, Marta 2012 and McHardy & Pollard 2005 use purely
+qualitative words with no numeric cutoffs. If the app implements a four-tier band, attribute it to general
+sports-EMG convention, **not** to any golf source.
+
+**Values above 100% are real and must not be clamped.** Farber 2009's amateur trail pronator teres reads
+120.9% MMT, and Marta et al. 2012 notes wrist flexor activity "above the maximal voluntary contraction".
+Dynamic ballistic EMG routinely exceeds a static isometric or manual-test reference. A colour mapping that
+saturates at 100% would silently truncate the single highest-activation muscle in the swing.
 
 ---
 
@@ -775,11 +829,14 @@ figures and the ECU/ECRB directional (non-normalised) findings above.
   unverified.
 - **Glazebrook et al. 1994's own four-phase scheme**: only “address” and “contact” are named in the
   accessible abstract; the other two phase names/boundaries in their scheme were not recoverable.
-- **Whether the lead/trail EMG asymmetry pattern for the "power" shoulder muscles (subscapularis, pec
-  major, lat dorsi) has ever been explicitly quantified per side** — every accessible source discusses
-  these muscles' *phase* of peak activity without stating a lead/trail split; do not assume trail-
-  dominance for these three without further sourcing, despite it being the mechanistically plausible
-  reading.
+- **RESOLVED for subscapularis and pectoralis major — see §1A.** The per-side split is now quantified,
+  and it only partly matches the mechanistically plausible reading:
+  - **Subscapularis is trail-dominant as expected** — 68% vs 41% at acceleration, and higher trail-side
+    in every phase after takeaway.
+  - **Pectoralis major is NOT cleanly trail-dominant** — it reads 93% on both sides at acceleration. The
+    trail side ramps earlier (64% vs 18% at forward swing), so the asymmetry is in *timing*, not peak
+    magnitude. See §1A's flagged anomaly on the identical cross-side values.
+  - **Latissimus dorsi remains unquantified per side** — do not assume trail-dominance for it.
 - **Sci-hub and similar mirror links surfaced in DuckDuckGo results for at least two of the classic
   papers (Kao 1995, Farber 2009) and were deliberately not used**, per this project's requirement to
   work from legitimate sources only — flagged so a future pass does not mistake their absence here for
@@ -837,6 +894,45 @@ figures and the ECU/ECRB directional (non-normalised) findings above.
     enthusiast source, used only as a pointer to Schmidt (2007) and Koike et al.; its own physics-based
     calculated grip-force-vs-clubhead-speed estimates (e.g. “100 mph → 92 lb”) are **the site author's own
     calculations, not empirical measurements, and are not reproduced in this document as findings.**
+
+### Added on the second research pass
+
+18. McHardy A, Pollard H (2005). “Muscle Activity During the Golf Swing.” *Br J Sports Med*
+    39(11):799–804. PMID 16244187. PMCID PMC1725059. **Source of the scapular %MMT figures in §1A via
+    its Table 3**, which lists the two most active muscles per side per phase from Pink 1990 and
+    Kao 1995. Distinct from McHardy, Pollard & Luo 2006 (item 11), which is the injury review.
+19. Pink M, Jobe FW, Perry J (1990). “Electromyographic Analysis of the Shoulder During the Golf Swing.”
+    *Am J Sports Med* 18(2):137–140. PMID 2343980. Full %MMT grid in §1A recovered from a scanned copy
+    and cross-validated 9/9 against item 18's Table 3.
+20. Pezarat-Correia P, Cabri J, Fernandes O, Sousa JP (2006). “Electromyographic Analysis of the Dominant
+    Upper Limb During the Golf Swing.” *Proc ECSS Lausanne* 3(1):70–85. ISSN 19360533. Sole golf source
+    for trail-arm triceps brachii (50% MVC) and brachioradialis (45% MVC); also biceps (26%) and
+    latissimus dorsi (53%). **n=3, trail arm only, 3-phase scheme, conference proceedings — indicative
+    only.**
+21. Sorbie GG, Hunter HH, Grace FM, Gu Y, Baker JS, Ugbolue UC (2016). “An Electromyographic Study of the
+    Effect of Hand Grip Sizes on Forearm Muscle Activity and Golf Performance.” *Res Sports Med*.
+    PMID 27267082. Second independent skill-level forearm finding (§9).
+22. Sorbie GG, Darroch P, Grace FM, Gu Y, Baker JS, Ugbolue UC (2017). “Commercial Golf Glove Effects on
+    Golf Performance and Forearm Muscle Activity.” *Res Sports Med*. PMID 28819996.
+23. Choi H, Park S (2020). “Three Dimensional Upper Limb Joint Kinetics of a Golf Swing with Measured
+    Internal Grip Force.” *Sensors* 20(13):3672. PMID 32630024. PMC7374515. Source of the trail-hand
+    threefold-torque and lead-precedes-trail 50–200 ms timing findings (§6).
+24. Budney DR (1979). “Measuring Grip Pressure During the Golf Swing.” *Res Q* 50(2):272–277.
+    PMID 472468. **No abstract on PubMed, no accessible full text — cited for completeness, contributes
+    no usable data.**
+25. Pink M, Perry J, Jobe FW (1993). “Electromyographic Analysis of the Trunk in Golfers.” *Am J Sports
+    Med* 21(3):385–388. PMID 8346752. Source of the verbatim 5-phase boundary definitions and of the
+    binary 30%-MMT banding noted in §8.
+26. van Trigt B, Galjee E, Hoozemans MJM, van der Helm FCT, Veeger DHEJ (2021). “Establishing the Role of
+    Elbow Muscles by Evaluating Muscle Activation and Co-contraction Levels at Maximal External Rotation
+    in Fastball Pitching.” *Front Sports Act Living*. PMC8669487. **Baseball, not golf** — used only as
+    the flagged supinator proxy in §10.
+27. Nakamura G, Abe M, Kumano H (2019). “Acute Compartment Syndrome of the Forearm Secondary to Hematoma
+    after Playing Golf.” *J Hand Surg Asian Pac Vol*. Clinical case report, lead-arm brachioradialis;
+    not activation data (§3.3).
+28. Kim DH, Millett PJ, Warner JJP, Jobe FW (2004). “Shoulder Injuries in Golf.” *Am J Sports Med*
+    32(5):1324–1330. Injury-laterality context (>90% of golfers' shoulder problems involve the lead
+    shoulder; lead-shoulder injuries ~3× trail).
 
 ## Cross-reference
 
