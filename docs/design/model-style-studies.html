@@ -1,0 +1,740 @@
+<title>Golf Muscle — Model Style Studies</title>
+
+<style>
+  :root {
+    --ink:        #14181c;
+    --ink-soft:   #4a545e;
+    --ink-faint:  #79848e;
+    --rule:       #d3dad9;
+    --page:       #f4f6f5;
+    --panel:      #ffffff;
+    --accent:     #b8341f;
+    --accent-dim: #d8674e;
+    --grid-line:  rgba(20,24,28,.06);
+
+    --display: "Helvetica Neue", "Arial Nova", Arial, sans-serif;
+    --body: ui-sans-serif, "Segoe UI", system-ui, sans-serif;
+    --data: ui-monospace, "Cascadia Mono", "Consolas", monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink:        #eef1f2;
+      --ink-soft:   #a7b2ba;
+      --ink-faint:  #6f7a83;
+      --rule:       #2b3339;
+      --page:       #0e1113;
+      --panel:      #161a1d;
+      --accent:     #e8593c;
+      --accent-dim: #b8402a;
+      --grid-line:  rgba(238,241,242,.06);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ink:        #eef1f2;
+    --ink-soft:   #a7b2ba;
+    --ink-faint:  #6f7a83;
+    --rule:       #2b3339;
+    --page:       #0e1113;
+    --panel:      #161a1d;
+    --accent:     #e8593c;
+    --accent-dim: #b8402a;
+    --grid-line:  rgba(238,241,242,.06);
+  }
+
+  :root[data-theme="light"] {
+    --ink:        #14181c;
+    --ink-soft:   #4a545e;
+    --ink-faint:  #79848e;
+    --rule:       #d3dad9;
+    --page:       #f4f6f5;
+    --panel:      #ffffff;
+    --accent:     #b8341f;
+    --accent-dim: #d8674e;
+    --grid-line:  rgba(20,24,28,.06);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--page);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: clamp(28px, 5vw, 72px) clamp(18px, 4vw, 44px) 96px;
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+  }
+
+  .eyebrow {
+    font-family: var(--data);
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(30px, 5vw, 46px);
+    line-height: 1.06;
+    letter-spacing: -.022em;
+    font-weight: 700;
+    margin: 10px 0 0;
+    text-wrap: balance;
+  }
+
+  .lede {
+    max-width: 64ch;
+    color: var(--ink-soft);
+    margin: 16px 0 0;
+    font-size: 17px;
+  }
+
+  .brief {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-top: 30px;
+  }
+
+  .brief div { background: var(--panel); padding: 15px 17px; }
+
+  .brief dt {
+    font-family: var(--data);
+    font-size: 10.5px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .brief dd {
+    margin: 6px 0 0;
+    font-size: 14.5px;
+    line-height: 1.45;
+  }
+
+  .scale-key {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 16px 0;
+  }
+
+  .scale-key .bar {
+    flex: 1 1 240px;
+    height: 13px;
+    min-width: 200px;
+    background:
+      linear-gradient(90deg,
+        rgba(184,52,31,0) 0%,
+        rgba(184,52,31,.28) 30%,
+        rgba(198,60,28,.62) 62%,
+        rgba(210,52,26,1) 100%),
+      repeating-linear-gradient(45deg, var(--grid-line) 0 4px, transparent 4px 8px);
+  }
+
+  .scale-key span {
+    font-family: var(--data);
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    gap: 30px;
+  }
+
+  .study {
+    margin: 0;
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .canvas {
+    position: relative;
+    background: var(--ground, var(--panel));
+    border-bottom: 1px solid var(--rule);
+    padding: 12px;
+  }
+
+  .canvas svg { display: block; width: 100%; height: auto; }
+
+  .tag {
+    position: absolute;
+    top: 11px;
+    left: 13px;
+    font-family: var(--data);
+    font-size: 10.5px;
+    letter-spacing: .14em;
+    color: var(--tagink, var(--ink-faint));
+  }
+
+  figcaption { padding: 18px 20px 22px; display: flex; flex-direction: column; gap: 10px; }
+
+  figcaption h2 {
+    font-family: var(--display);
+    font-size: 19px;
+    letter-spacing: -.012em;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .verdict {
+    font-family: var(--data);
+    font-size: 10.5px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0;
+  }
+
+  .verdict.pick { color: var(--accent); }
+
+  figcaption ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 7px; }
+  figcaption li { font-size: 14.5px; line-height: 1.5; color: var(--ink-soft); }
+  figcaption li strong { color: var(--ink); font-weight: 600; }
+
+  .closing {
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent);
+    background: var(--panel);
+    padding: 26px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .closing h2 {
+    font-family: var(--display);
+    font-size: 22px;
+    letter-spacing: -.014em;
+    margin: 0;
+  }
+
+  .closing p { margin: 0; max-width: 70ch; color: var(--ink-soft); }
+  .closing strong { color: var(--ink); }
+  .closing ol { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; color: var(--ink-soft); }
+
+  .caveat {
+    font-size: 13.5px;
+    color: var(--ink-faint);
+    border-top: 1px solid var(--rule);
+    padding-top: 18px;
+    max-width: 74ch;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .study { transition: border-color .18s ease; }
+    .study:hover { border-color: var(--ink-faint); }
+  }
+</style>
+
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">Decision gate · 3D model direction</p>
+    <h1>Ten ways to draw a transparent muscle mannequin</h1>
+    <p class="lede">
+      Every panel below draws the identical body, in the identical pose, at the identical instant of the
+      swing. Only the drawing treatment changes. That is deliberate — it is the only way to judge a visual
+      language rather than a drawing. Pick one direction (or parts of several) and it becomes the specification
+      for the real 3D build.
+    </p>
+
+    <dl class="brief">
+      <div>
+        <dt>Subject</dt>
+        <dd>189&nbsp;cm male, long femurs, 8-iron, right-handed</dd>
+      </div>
+      <div>
+        <dt>Instant shown</dt>
+        <dd>Early downswing — the busiest moment in the swing</dd>
+      </div>
+      <div>
+        <dt>View</dt>
+        <dd>Front. The golfer's lead side is on your right</dd>
+      </div>
+      <div>
+        <dt>Zones drawn</dt>
+        <dd>26 per side, front-facing muscles only</dd>
+      </div>
+    </dl>
+  </header>
+
+  <div class="scale-key">
+    <span>No effort</span>
+    <div class="bar"></div>
+    <span>Maximum effort</span>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <section class="closing">
+    <h2>What I'd build, and why</h2>
+    <p>
+      <strong>Study 02 as the base, with the depth handling from 03 and the reveal rule from 09.</strong>
+      A dark field is the only ground on which "transparent" actually reads as transparent — on white, an
+      unused muscle and empty space look identical, which defeats the contrast you asked for. Depth fading
+      is what stops a see-through body from turning into a tangle of lines once it rotates. And letting quiet
+      muscles sink to a bare outline means the eye goes straight to what is working, without ever losing the
+      full anatomical map you wanted kept for contrast.
+    </p>
+    <p>
+      Two things I would <em>not</em> carry forward: fibre hatching (05) costs a great deal of rendering work
+      to communicate something the outline shape already implies, and stepped bands (08) impose false
+      precision on data that is genuinely smooth.
+    </p>
+    <ol>
+      <li>Tell me which study, or which mix, to take forward.</li>
+      <li>The muscle-zone list gets finalised from the research now running, then the zone borders are rebuilt to match it exactly.</li>
+      <li>The chosen treatment is written up as the rendering specification, and the 3D build starts against it.</li>
+    </ol>
+  </section>
+
+  <p class="caveat">
+    On accuracy: the colours here are placeholders, set from general knowledge of the swing so the panels have
+    something plausible to show. They are <strong>not</strong> the final numbers. The real values come from the
+    cross-referenced research now in progress, and every muscle's value will carry its source. Treat these
+    panels as a judgement of <em>look</em> only. The pose is also a simplification — a symmetric address-style
+    stance, drawn front-on. The real model will be asymmetric and fully three-dimensional; back-of-body muscles
+    (glutes, hamstrings, lats from behind, the whole posterior chain) do not appear here at all and are a large
+    part of the swing.
+  </p>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // Half-body geometry, drawn for the figure's right side (viewer's left).
+  // Mirrored at render time; activation is set per side so lead/trail asymmetry survives the mirror.
+  // f = fibre direction in degrees, dp = depth (0 nearest the viewer, 1 furthest).
+  var MUSCLES = [
+    { id: "scm",       name: "Sternocleidomastoid", f: 70,  dp: .1,
+      d: "M182,108 C179,116 183,125 194,133 L200,131 L200,120 C192,116 188,113 186,107 Z" },
+    { id: "trap",      name: "Upper trapezius", f: 15,  dp: .8,
+      d: "M187,117 C172,123 152,131 133,146 L142,153 C160,141 178,133 191,128 Z" },
+    { id: "delt",      name: "Anterior deltoid", f: 80,  dp: .2,
+      d: "M128,147 C119,160 117,181 120,201 L137,205 C136,185 139,166 145,154 Z" },
+    { id: "pecclav",   name: "Pectoralis major, clavicular", f: 8, dp: .1,
+      d: "M152,142 L198,147 L198,158 C180,157 162,160 148,168 C144,158 146,148 152,142 Z" },
+    { id: "pecstern",  name: "Pectoralis major, sternal", f: 28, dp: .1,
+      d: "M198,162 L198,214 C186,212 171,206 156,196 C148,190 143,180 146,172 C162,164 182,160 198,162 Z" },
+    { id: "serr",      name: "Serratus anterior", f: 30,  dp: .5,
+      d: "M148,197 C157,204 163,214 166,227 L157,233 C153,220 147,210 141,204 Z" },
+    { id: "lat",       name: "Latissimus dorsi (lateral edge)", f: 40, dp: .85,
+      d: "M145,195 C141,214 141,238 147,259 L159,255 C154,235 154,214 156,197 Z" },
+    { id: "obl",       name: "External oblique", f: 45,  dp: .2,
+      d: "M156,202 C165,214 167,232 165,252 C163,270 158,287 152,301 L173,307 C177,288 179,266 179,244 C179,224 175,210 168,200 Z" },
+    { id: "rect",      name: "Rectus abdominis", f: 90,  dp: .1,
+      d: "M184,206 L200,206 L200,301 L186,301 C182,280 182,240 184,206 Z" },
+    { id: "bic",       name: "Biceps brachii", f: 88,  dp: .05,
+      d: "M126,177 C121,200 123,231 130,255 L147,252 C142,228 140,200 142,179 Z" },
+    { id: "tri",       name: "Triceps brachii (lateral head)", f: 88, dp: .9,
+      d: "M117,185 C115,208 117,235 124,257 L131,254 C124,232 122,206 124,183 Z" },
+    { id: "brach",     name: "Brachioradialis", f: 55,  dp: .05,
+      d: "M131,271 C137,292 147,314 159,334 L169,328 C157,308 147,288 141,269 Z" },
+    { id: "flex",      name: "Wrist and finger flexors", f: 52, dp: .05,
+      d: "M141,272 C149,294 159,316 171,336 C177,346 181,352 185,358 L195,350 C187,338 175,318 165,298 C159,286 155,278 153,272 Z" },
+    { id: "ext",       name: "Wrist and finger extensors", f: 52, dp: .75,
+      d: "M126,273 C130,296 138,318 148,338 L157,333 C147,313 139,291 135,271 Z" },
+    { id: "gmed",      name: "Gluteus medius (lateral)", f: 75, dp: .8,
+      d: "M148,295 C141,304 139,317 141,327 L149,327 C149,314 151,304 155,297 Z" },
+    { id: "tfl",       name: "Tensor fasciae latae", f: 80, dp: .35,
+      d: "M152,301 C145,312 143,327 145,341 L159,341 C159,326 159,312 163,303 Z" },
+    { id: "sart",      name: "Sartorius", f: 62,  dp: .1,
+      d: "M161,305 C161,326 169,360 177,396 C183,424 185,450 185,468 L176,470 C176,448 172,420 166,392 C160,358 152,325 152,305 Z" },
+    { id: "rf",        name: "Rectus femoris", f: 90,  dp: .05,
+      d: "M162,344 C158,370 156,406 158,442 L177,444 C179,406 179,370 181,346 Z" },
+    { id: "vl",        name: "Vastus lateralis", f: 82,  dp: .4,
+      d: "M143,346 C139,372 139,404 143,438 L158,440 C156,404 156,372 160,346 Z" },
+    { id: "vm",        name: "Vastus medialis", f: 72,  dp: .25,
+      d: "M177,398 C177,420 178,442 180,463 L193,460 C193,438 191,414 189,396 Z" },
+    { id: "add",       name: "Adductor group", f: 84,  dp: .55,
+      d: "M186,344 C182,368 180,396 182,421 L197,418 C197,392 197,366 199,344 Z" },
+    { id: "gasm",      name: "Gastrocnemius, medial head", f: 88, dp: .6,
+      d: "M169,488 C171,511 173,539 171,563 L184,560 C186,536 184,508 182,487 Z" },
+    { id: "gasl",      name: "Gastrocnemius, lateral head", f: 88, dp: .7,
+      d: "M141,490 C137,512 137,539 141,559 L152,556 C150,534 150,510 152,488 Z" },
+    { id: "sol",       name: "Soleus", f: 88,  dp: .8,
+      d: "M143,558 C143,581 145,601 147,617 L172,617 C174,598 176,578 176,556 Z" },
+    { id: "ta",        name: "Tibialis anterior", f: 86,  dp: .1,
+      d: "M155,492 C151,520 149,556 149,587 L162,587 C164,554 166,520 168,492 Z" },
+    { id: "per",       name: "Peroneus longus", f: 86,  dp: .45,
+      d: "M139,502 C135,528 135,557 137,579 L146,579 C146,554 146,528 148,502 Z" }
+  ];
+
+  // Body shell of the mannequin — the transparent "wood".
+  var SHELL = [
+    "M200,118 L186,120 C170,124 148,132 130,148 C124,158 126,171 134,187 L150,196 C154,214 152,236 158,258 C162,272 158,286 152,301 C146,313 148,327 156,339 L200,344 Z",
+    "M156,339 C142,353 138,380 140,410 C142,440 146,462 148,481 L182,483 C184,456 186,420 188,390 C190,365 190,350 192,341 Z",
+    "M148,486 C140,505 136,540 138,570 C139,595 141,610 142,623 L172,623 C174,600 176,570 178,540 C180,515 180,498 180,486 Z",
+    "M140,624 C136,634 134,645 136,651 L186,651 C188,645 186,633 180,624 Z",
+    "M124,157 C118,180 118,211 122,241 C124,257 128,265 132,271 L152,268 C154,250 156,220 154,190 C152,175 150,164 148,155 Z",
+    "M130,272 C134,300 146,331 162,357 C170,369 176,375 180,381 L196,369 C186,353 172,326 162,300 C156,286 152,278 150,271 Z",
+    "M182,378 C188,384 194,392 196,402 L200,402 L200,372 Z",
+    "M186,110 L200,110 L200,126 L184,126 Z"
+  ];
+
+  var HEAD = { cx: 200, cy: 74, rx: 30, ry: 38 };
+
+  // Wooden-mannequin articulation points, for the study that exposes them.
+  var JOINTS = [
+    [131, 150, 11], [136, 268, 8], [184, 379, 7],
+    [163, 340, 12], [165, 483, 10], [141, 622, 7],
+    [193, 120, 8], [186, 210, 9], [186, 300, 10]
+  ];
+
+  // Skeleton armature, for the study that shows bone inside the shell.
+  var BONES = [
+    "M200,112 L200,344",
+    "M132,152 L138,266", "M139,272 L182,376",
+    "M164,338 L160,478", "M160,486 L150,618",
+    "M156,150 C176,146 190,144 200,144",
+    "M152,300 C168,296 186,294 200,294",
+    "M150,178 C170,174 188,172 200,172",
+    "M152,196 C172,192 188,190 200,190",
+    "M154,214 C174,210 189,208 200,208",
+    "M156,232 C175,228 190,226 200,226"
+  ];
+
+  // Provisional early-downswing activation, 0 to 1. Superseded by the EMG synthesis.
+  var ACT = {
+    scm:      [.15, .18], trap:     [.30, .34], delt:     [.30, .36],
+    pecclav:  [.30, .58], pecstern: [.34, .84], serr:     [.58, .50],
+    lat:      [.50, .70], obl:      [.80, .56], rect:     [.44, .46],
+    bic:      [.30, .25], tri:      [.30, .46], brach:    [.32, .28],
+    flex:     [.55, .60], ext:      [.34, .36], gmed:     [.76, .40],
+    tfl:      [.50, .30], sart:     [.20, .18], rf:       [.46, .30],
+    vl:       [.60, .34], vm:       [.50, .30], add:      [.44, .56],
+    gasm:     [.36, .50], gasl:     [.30, .32], sol:      [.36, .34],
+    ta:       [.26, .24], per:      [.30, .28]
+  };
+
+  function clamp(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+
+  // Fixed-hue ramp: the hue stays red, opacity carries the effort.
+  function rampRed(a) {
+    a = clamp(a);
+    return "rgba(210,52,26," + (Math.pow(a, .85)).toFixed(3) + ")";
+  }
+
+  // Warm ramp: hue travels straw to vermilion as effort climbs.
+  function rampWarm(a) {
+    a = clamp(a);
+    var stops = [
+      [0.00, 242, 205, 120],
+      [0.35, 235, 165,  56],
+      [0.65, 224, 106,  30],
+      [1.00, 198,  36,  20]
+    ];
+    var i = 0;
+    while (i < stops.length - 2 && a > stops[i + 1][0]) { i++; }
+    var lo = stops[i], hi = stops[i + 1];
+    var t = (a - lo[0]) / (hi[0] - lo[0] || 1);
+    var r = Math.round(lo[1] + (hi[1] - lo[1]) * t);
+    var g = Math.round(lo[2] + (hi[2] - lo[2]) * t);
+    var b = Math.round(lo[3] + (hi[3] - lo[3]) * t);
+    return "rgba(" + r + "," + g + "," + b + "," + Math.min(1, a * 1.2).toFixed(3) + ")";
+  }
+
+  function el(tag, attrs, inner) {
+    var s = "<" + tag;
+    for (var k in attrs) {
+      if (attrs[k] !== null && attrs[k] !== undefined) { s += " " + k + '="' + attrs[k] + '"'; }
+    }
+    return inner === undefined ? s + "/>" : s + ">" + inner + "</" + tag + ">";
+  }
+
+  // side: 0 = the golfer's trail (right) side, drawn on the viewer's left.
+  //       1 = the golfer's lead (left) side, drawn on the viewer's right.
+  function halfMarkup(side, opt) {
+    var out = "";
+    var shellStroke = opt.shellStroke;
+    var i;
+
+    for (i = 0; i < SHELL.length; i++) {
+      out += el("path", {
+        d: SHELL[i], fill: opt.shellFill, stroke: shellStroke,
+        "stroke-width": opt.shellWidth, "stroke-linejoin": "round"
+      });
+    }
+
+    for (i = 0; i < MUSCLES.length; i++) {
+      var m = MUSCLES[i];
+      var a = (ACT[m.id] || [0, 0])[side];
+
+      if (opt.onlyActive && a < 0.30) { continue; }
+
+      var shown = opt.quantise ? Math.round(a * opt.quantise) / opt.quantise : a;
+      var fill = opt.ramp(shown);
+      var strokeAlpha = opt.lineAlpha;
+      var strokeW = opt.lineWidth;
+
+      if (opt.depthCue) {
+        strokeAlpha *= (1 - m.dp * 0.72);
+        strokeW *= (1 - m.dp * 0.45);
+        fill = opt.ramp(shown * (1 - m.dp * 0.42));
+      }
+
+      if (opt.hatch && shown > 0.06) {
+        out += el("path", {
+          d: m.d, fill: "url(#h" + opt.key + "-" + Math.round(m.f / 15) * 15 + ")",
+          opacity: (0.25 + shown * 0.75).toFixed(2)
+        });
+        out += el("path", { d: m.d, fill: opt.ramp(shown * 0.45), stroke: "none" });
+      } else {
+        out += el("path", { d: m.d, fill: fill, stroke: "none" });
+      }
+
+      if (opt.rim && shown > 0.34) {
+        out += el("path", {
+          d: m.d, fill: "none", stroke: opt.ramp(Math.min(1, shown + 0.3)),
+          "stroke-width": (strokeW * 1.9).toFixed(2), "stroke-linejoin": "round",
+          filter: opt.glow ? "url(#g" + opt.key + ")" : null
+        });
+      }
+
+      out += el("path", {
+        d: m.d, fill: "none", stroke: opt.line,
+        "stroke-opacity": strokeAlpha.toFixed(3),
+        "stroke-width": strokeW.toFixed(2), "stroke-linejoin": "round"
+      });
+    }
+
+    if (opt.bones) {
+      for (i = 0; i < BONES.length; i++) {
+        out += el("path", {
+          d: BONES[i], fill: "none", stroke: opt.boneColour,
+          "stroke-width": 3.4, "stroke-linecap": "round", "stroke-opacity": .5
+        });
+      }
+    }
+
+    if (opt.joints) {
+      for (i = 0; i < JOINTS.length; i++) {
+        out += el("circle", {
+          cx: JOINTS[i][0], cy: JOINTS[i][1], r: JOINTS[i][2],
+          fill: "none", stroke: opt.line, "stroke-opacity": .55, "stroke-width": 1.5
+        });
+      }
+    }
+
+    return el("g", { transform: side === 1 ? "matrix(-1,0,0,1,400,0)" : null }, out);
+  }
+
+  function defsFor(opt) {
+    var d = "";
+    if (opt.glow) {
+      d += '<filter id="g' + opt.key + '" x="-40%" y="-40%" width="180%" height="180%">' +
+           '<feGaussianBlur stdDeviation="2.6" result="b"/>' +
+           '<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>';
+    }
+    if (opt.hatch) {
+      var angles = {}, i;
+      for (i = 0; i < MUSCLES.length; i++) { angles[Math.round(MUSCLES[i].f / 15) * 15] = 1; }
+      for (var ang in angles) {
+        d += '<pattern id="h' + opt.key + '-' + ang + '" width="6" height="6" ' +
+             'patternUnits="userSpaceOnUse" patternTransform="rotate(' + ang + ')">' +
+             '<line x1="0" y1="0" x2="0" y2="6" stroke="' + opt.hatchColour +
+             '" stroke-width="1.6"/></pattern>';
+      }
+    }
+    return d ? "<defs>" + d + "</defs>" : "";
+  }
+
+  function figure(opt) {
+    var head = el("ellipse", {
+      cx: HEAD.cx, cy: HEAD.cy, rx: HEAD.rx, ry: HEAD.ry,
+      fill: opt.shellFill, stroke: opt.shellStroke, "stroke-width": opt.shellWidth
+    });
+    return '<svg viewBox="0 0 400 700" role="img" aria-label="Muscle mannequin, ' + opt.title + '">' +
+      defsFor(opt) + head + halfMarkup(0, opt) + halfMarkup(1, opt) + "</svg>";
+  }
+
+  var LIGHT_SHELL = "rgba(20,24,28,.34)";
+  var DARK_SHELL  = "rgba(198,214,222,.30)";
+
+  var STUDIES = [
+    {
+      key: "a", tag: "01", title: "Hairline contour",
+      ground: "#f7f8f7", tagink: "rgba(20,24,28,.45)",
+      opt: { line: "#12171b", lineAlpha: .55, lineWidth: 1, shellStroke: LIGHT_SHELL,
+             shellFill: "none", shellWidth: 1.1, ramp: rampRed },
+      verdict: "Baseline",
+      notes: [
+        "<strong>Every zone border drawn at one uniform weight.</strong> No shading, no depth tricks — the anatomy carries itself.",
+        "On a near-white ground, an unused muscle is indistinguishable from empty space, which weakens the contrast you asked for.",
+        "Cheapest to render and the most forgiving on any screen, in any light.",
+        "Lines pile up where limbs cross the body — see the forearms over the stomach."
+      ]
+    },
+    {
+      key: "b", tag: "02", title: "Dark field, luminous effort",
+      ground: "#0b0e10", tagink: "rgba(238,241,242,.5)",
+      opt: { line: "#9fb3bd", lineAlpha: .34, lineWidth: 1, shellStroke: DARK_SHELL,
+             shellFill: "none", shellWidth: 1.1, ramp: rampRed, rim: true, glow: true },
+      verdict: "Recommended base",
+      notes: [
+        "<strong>Dark ground is what makes transparency actually read as transparency.</strong> Zero effort genuinely disappears into the field.",
+        "Working muscles glow, with a lit edge that separates neighbouring muscles when both are hot.",
+        "Highest colour range of any option — the gap between a muscle at 30% and at 80% is obvious at a glance.",
+        "Commits the whole app to a dark interface; a light mode would need its own treatment."
+      ]
+    },
+    {
+      key: "c", tag: "03", title: "Depth-faded lines",
+      ground: "#0b0e10", tagink: "rgba(238,241,242,.5)",
+      opt: { line: "#9fb3bd", lineAlpha: .5, lineWidth: 1.2, shellStroke: DARK_SHELL,
+             shellFill: "none", shellWidth: 1, ramp: rampRed, depthCue: true },
+      verdict: "Carry the depth rule forward",
+      notes: [
+        "<strong>Muscles further from you are drawn fainter and thinner</strong>, so the body reads as solid space rather than flat tangle.",
+        "Compare the triceps and the lateral calf here against 02 — they recede instead of competing.",
+        "This is the single most important addition once the model can be spun, because a see-through body gets busy fast from angled views.",
+        "Risk: a genuinely hard-working muscle on the far side gets played down. Needs a floor so nothing important fades out entirely."
+      ]
+    },
+    {
+      key: "d", tag: "04", title: "Articulated mannequin",
+      ground: "#111417", tagink: "rgba(238,241,242,.5)",
+      opt: { line: "#a8bac4", lineAlpha: .4, lineWidth: 1, shellStroke: "rgba(198,214,222,.42)",
+             shellFill: "none", shellWidth: 1.4, ramp: rampRed, joints: true },
+      verdict: "Closest to your wooden figure",
+      notes: [
+        "<strong>The ball joints of an artist's posing figure are drawn in</strong>, on top of the muscle zones.",
+        "Makes the pose easier to read and copy — you can see where the body is hinging, which matters if the goal is imitating the position.",
+        "The joint rings add a second family of circles that competes with muscle borders in the shoulder and hip.",
+        "Could be a toggle rather than a permanent fixture."
+      ]
+    },
+    {
+      key: "e", tag: "05", title: "Fibre-direction hatching",
+      ground: "#0d1113", tagink: "rgba(238,241,242,.5)",
+      opt: { line: "#93a7b1", lineAlpha: .3, lineWidth: .9, shellStroke: DARK_SHELL,
+             shellFill: "none", shellWidth: 1, ramp: rampRed, hatch: true,
+             hatchColour: "rgba(226,110,72,.85)" },
+      verdict: "Not recommended",
+      notes: [
+        "<strong>Each zone is filled with lines running the way the real muscle fibres run</strong> — vertical in the abs, fanned across the chest, diagonal on the obliques.",
+        "Genuinely teaches which way a muscle pulls, which the outline alone cannot.",
+        "Costs a lot in 3D: fibre direction has to be authored per muscle and must stay correct as the body bends and rotates.",
+        "Hatching also breaks up at small sizes and on high-density screens, and clutters at the intensity you most need to read."
+      ]
+    },
+    {
+      key: "f", tag: "06", title: "Skeleton armature",
+      ground: "#0b0e10", tagink: "rgba(238,241,242,.5)",
+      opt: { line: "#9fb3bd", lineAlpha: .32, lineWidth: 1, shellStroke: DARK_SHELL,
+             shellFill: "none", shellWidth: 1, ramp: rampRed, bones: true,
+             boneColour: "#cfd9de" },
+      verdict: "Optional overlay",
+      notes: [
+        "<strong>Bones show through the transparent body</strong> — spine, ribs, and the long bones of the arms and legs.",
+        "Explains <em>why</em> a muscle fires: you can see the lever it is pulling on, which is the whole point of the kinematic chain.",
+        "The ribcage lines sit directly behind the chest and stomach muscles, the busiest region on the whole figure.",
+        "Best as something the user can switch on, not a default."
+      ]
+    },
+    {
+      key: "g", tag: "07", title: "Soft fill, bright edge",
+      ground: "#0f1315", tagink: "rgba(238,241,242,.5)",
+      opt: { line: "#8fa4ae", lineAlpha: .28, lineWidth: .9, shellStroke: DARK_SHELL,
+             shellFill: "none", shellWidth: 1, ramp: rampRed, rim: true },
+      verdict: "Sharper separation",
+      notes: [
+        "<strong>A bright rim is drawn on any muscle above roughly a third effort</strong>, with the fill kept softer.",
+        "Neighbouring hot muscles stay separable — the chest and the shoulder do not merge into one red mass.",
+        "Nearly identical rendering cost to 02, since it is one extra stroked outline.",
+        "The threshold creates a visible pop as a muscle crosses it, which can read as a step change where the data is smooth."
+      ]
+    },
+    {
+      key: "h", tag: "08", title: "Stepped effort bands",
+      ground: "#0b0e10", tagink: "rgba(238,241,242,.5)",
+      opt: { line: "#9fb3bd", lineAlpha: .34, lineWidth: 1, shellStroke: DARK_SHELL,
+             shellFill: "none", shellWidth: 1, ramp: rampRed, quantise: 4 },
+      verdict: "Not recommended",
+      notes: [
+        "<strong>Effort is rounded into four fixed levels</strong> instead of a continuous blend.",
+        "Easier to name what you are seeing — a muscle is at level three, not at some unnamed shade.",
+        "But it implies a precision the underlying measurements do not have, and it hides exactly what you asked to see: the smooth build and fade of effort through the swing.",
+        "Could survive as an optional readout beside the model rather than on it."
+      ]
+    },
+    {
+      key: "i", tag: "09", title: "Quiet muscles stay bare",
+      ground: "#0b0e10", tagink: "rgba(238,241,242,.5)",
+      opt: { line: "#9fb3bd", lineAlpha: .34, lineWidth: 1, shellStroke: DARK_SHELL,
+             shellFill: "none", shellWidth: 1, ramp: rampRed, onlyActive: true, rim: true },
+      verdict: "Carry the reveal rule forward",
+      notes: [
+        "<strong>Only muscles above about a third effort are filled at all</strong>; everything quieter drops away to nothing.",
+        "The busiest instant of the swing becomes instantly readable — you see the working chain and nothing else.",
+        "Directly trades against your contrast requirement: the unused muscles you wanted visible for comparison are gone.",
+        "The fix is to keep the outline of every muscle always, and only make the <em>fill</em> conditional — best of both."
+      ]
+    },
+    {
+      key: "j", tag: "10", title: "Warm ramp instead of pure red",
+      ground: "#0b0e10", tagink: "rgba(238,241,242,.5)",
+      opt: { line: "#9fb3bd", lineAlpha: .34, lineWidth: 1, shellStroke: DARK_SHELL,
+             shellFill: "none", shellWidth: 1, ramp: rampWarm, rim: true },
+      verdict: "Colour decision, not a style",
+      notes: [
+        "<strong>The colour travels straw to amber to deep red as effort climbs</strong>, rather than staying one red and only getting stronger.",
+        "Far more distinguishable steps in the middle of the range, where most muscles spend most of the swing.",
+        "Also the only option here that survives red-green colour blindness with its meaning intact.",
+        "Departs from your literal description of red fading to transparent — this is the one call I would push back on, and it can be applied to any of the nine studies above."
+      ]
+    }
+  ];
+
+  var html = "";
+  for (var s = 0; s < STUDIES.length; s++) {
+    var st = STUDIES[s];
+    st.opt.key = st.key;
+    st.opt.title = st.title;
+
+    var bullets = "";
+    for (var n = 0; n < st.notes.length; n++) { bullets += "<li>" + st.notes[n] + "</li>"; }
+
+    html +=
+      '<figure class="study">' +
+        '<div class="canvas" style="--ground:' + st.ground + ';">' +
+          '<span class="tag" style="--tagink:' + st.tagink + ';">' + st.tag + '</span>' +
+          figure(st.opt) +
+        "</div>" +
+        "<figcaption>" +
+          "<h2>" + st.title + "</h2>" +
+          '<p class="verdict' + (st.verdict.indexOf("Recommended") === 0 || st.verdict.indexOf("Carry") === 0 ? " pick" : "") + '">' + st.verdict + "</p>" +
+          "<ul>" + bullets + "</ul>" +
+        "</figcaption>" +
+      "</figure>";
+  }
+
+  document.getElementById("grid").innerHTML = html;
+})();
+</script>
