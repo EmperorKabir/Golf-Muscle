@@ -6,9 +6,12 @@ and with how much mechanical leverage (moment arm)? Also: the oblique-rotation d
 published moment-arm values, biarticular ambiguity, eccentric-vs-concentric action, and
 force-length/force-velocity effects on the activation-to-force-to-motion chain.
 
-Status: IN PROGRESS — building incrementally, one source at a time. Nothing entered without
-its own citation. Written by a single agent, sequential WebFetch only (no sub-agents, no
-WebSearch per operating constraint).
+Status: COMPLETE (first pass) — all 38 named muscle/muscle-groups from the task brief covered
+with O/I/A and a citation; oblique rotation rule established and cited; moment arms partially
+recovered with numeric values for knee/hip, trunk-rotator numeric values not accessible (gap,
+see §3); biarticular ambiguity, eccentric/concentric and force-length/force-velocity sections
+complete with citations. 42 distinct sources logged. Written by a single agent, sequential
+WebFetch only (no sub-agents, no WebSearch per operating constraint).
 
 ---
 
@@ -294,11 +297,95 @@ at a joint some distance from where naive anatomy would place its "action."
 
 ## 5. Eccentric vs concentric action — deceleration in striking/throwing sports
 
-*(pending)*
+**Principle:** a muscle active while LENGTHENING under load (eccentric action) is producing a
+braking/decelerating force, and the resulting joint motion is in the OPPOSITE direction to what
+that muscle would produce if it were shortening (concentric) at the same activation. Eccentric
+contractions can also produce more force than concentric contractions for a given level of
+neural drive/EMG — "people can produce large torques with lower surface EMG during eccentric
+contractions" — Paschalis, Margaritelis, Chatzinikolaou, Theodorou & Nikolaidis, "Eccentric
+Exercise and Muscle Damage: An Introductory Guide," *J Funct Morphol Kinesiol* 2026. PMID
+42029507, PMCID PMC13108084 [S40]. This is the direct mechanistic reason **EMG amplitude alone
+cannot distinguish concentric from eccentric action, and therefore cannot alone tell you which
+direction a muscle is driving a joint** — the same or even lower activation can produce a larger
+eccentric force than an equivalent concentric contraction would.
+
+**Golf-specific, load-bearing example — this project's own resolved pectoralis major finding:**
+this project's shoulder research (`docs/research/04-shoulder-arm-forearm-and-grip.md` §1A/§2.10,
+sourced from McHardy A, Pollard H (2005), "Muscle Activity During the Golf Swing," *Br J Sports
+Med* 39(11):799-804, PMCID PMC1725059, Discussion p.801-802, independently re-verified against
+the primary PDF) found trail and lead pectoralis major at the SAME EMG amplitude (93%/93% MMT)
+during acceleration, with the primary source's own Discussion explaining this mechanistically:
+"the right side continues the activity achieved during the early down swing, while the left
+pectoralis appears to maintain an eccentric contraction to control the left arm abduction and
+external rotation" — trail pec major contracts CONCENTRICALLY to drive internal
+rotation/adduction (the power stroke), lead pec major contracts ECCENTRICALLY at the same
+recorded amplitude to brake/control the lead arm. Identical activation, opposite mechanical job,
+exactly the case this task flagged as critical. The same source describes the follow-through
+rotator cuff (trail external rotators / lead internal rotators, i.e. trail infraspinatus/teres
+minor and lead subscapularis) as eccentrically loaded to decelerate the swing, proposed as a
+mechanism for golf-related shoulder injury, and reports the wrist flexors undergo a sudden
+concentric-to-eccentric switch at impact when the club/ground forces a deceleration event —
+proposed mechanism for wrist-flexor overuse injury.
+
+**Independent, non-golf corroboration that deceleration phases of throwing/striking sports rely
+on eccentric antagonist action:** Trasolini, Nicholson, Mylott et al. 2022, "Biomechanical
+Analysis of the Throwing Athlete and Its Impact on Return to Sport," *Arthroscopy, Sports
+Medicine, and Rehabilitation* 4(1). PMID 35141540, PMCID PMC8811517 [S39]: "the shoulder must be
+safely decelerated, compressed, and stabilized by forceful contraction of the infraspinatus,
+teres minor and major, latissimus dorsi, and posterior deltoid. Elbow extension must also be
+decelerated by way of eccentric contraction of the elbow flexors." This independently corroborates
+the same pattern McHardy & Pollard describe for golf — deceleration phases are driven by eccentric
+contraction of muscles whose concentric action is nominally in the opposite direction to the
+observed joint motion.
+
+**Also within this report's own §2:** the golf low-back-pain review [S18] states gluteus medius
+acts eccentrically during the backswing (controlling/decelerating pelvic motion) while gluteus
+maximus stabilises the pelvis — a further concrete golf-specific eccentric example outside the
+shoulder girdle.
+
+**Consequence for the app:** any muscle zone that is "lit up" (high activation colour) cannot be
+assumed to be concentrically producing its textbook action — for biarticular AND monoarticular
+muscles alike, high activation during a phase where the joint is visibly moving in the OPPOSITE
+direction to that muscle's concentric action is the expected, physiologically normal signature of
+eccentric braking, not an error in the data or the model.
 
 ## 6. Force-length and force-velocity relationships
 
-*(pending)*
+**Force-velocity:** muscle force output is not a fixed function of activation — it depends
+strongly on the muscle's instantaneous shortening/lengthening velocity. On the concentric
+(shortening) side, force falls as shortening velocity rises (classical Hill relationship,
+referenced as underpinning "much of our understanding of muscle force generation during dynamic
+movements"); on the eccentric (lengthening) side, force RISES above the isometric maximum as
+lengthening velocity increases, in a biphasic pattern — "an initial rapid and steep phase-1
+response followed by a longer and shallower phase-2 response" before plateauing — Kissane RWP,
+Askew GN, "Starting length and temperature dependence of eccentric muscle force-velocity
+behaviour," *J Exp Biol* 2026. PMID 42108769, PMCID PMC13286365 [S41]. The paper explicitly notes
+force depends on "the point during the ramp at which force is measured" — i.e. velocity and
+timing, not activation, are first-order determinants of instantaneous force during a fast
+movement such as a golf swing.
+
+**Force-length:** starting sarcomere/muscle length materially changes the RATE and magnitude of
+force development. On the ascending limb (shorter-than-optimal starting lengths), fewer
+cross-bridges are attached and force development is measurably slower: rate of relative force
+development at 0.95 L₀ (near optimal length) was significantly higher than at 0.90 L₀ (P=0.0012)
+and 0.85 L₀ (P<0.001) — same source [S41]. This means a muscle at identical activation produces
+different force depending on how stretched/shortened it already is when the signal arrives — e.g.
+a muscle pre-stretched at the top of the backswing (X-factor stretch, [S17]) is at a different
+point on its force-length curve than the same muscle at address.
+
+**Direct consequence — activation ≠ force in a fast movement:** combining the force-velocity and
+force-length findings with §5's eccentric-force finding [S40] ("people can produce large torques
+with lower surface EMG during eccentric contractions"): three independent physiological
+mechanisms (velocity, length, contraction mode) each decouple measured/inferred activation from
+actual force output. A golf swing is fast (peak trunk rotation velocities and joint angular
+velocities are high — see this project's kinematics research, T-032) and involves large,
+continuous length changes at almost every joint simultaneously, so all three decoupling
+mechanisms are active concurrently throughout the swing. **This is the central limitation of any
+EMG/activation-based colour-mapping approach**: the same %MVC/%MMT number can correspond to
+substantially different force and motion outputs depending on the phase of the swing, making
+activation a necessary but explicitly insufficient input for inferring motion — it must be
+combined with joint angle/velocity context (kinematics) and, where available, contraction-mode
+inference (§5) to be mechanically meaningful.
 
 ---
 
@@ -344,3 +431,7 @@ at a joint some distance from where naive anatomy would place its "action."
 | S36 | Wikipedia, "Flexor carpi radialis muscle" | https://en.wikipedia.org/wiki/Flexor_carpi_radialis_muscle | Wrist flexor group O/I/A (representative muscle + common origin) |
 | S37 | Wikipedia, "Extensor carpi radialis longus muscle" | https://en.wikipedia.org/wiki/Extensor_carpi_radialis_longus_muscle | Wrist extensor group O/I/A (representative muscle + common origin) |
 | S38 | Schumacher C, Sharbafi M, Seyfarth A, Rode C (2020). "Biarticular muscles in light of template models, experiments and robotics: a review." J R Soc Interface 17(163):20180413. PMID 32093540, PMCID PMC7061696 | https://pmc.ncbi.nlm.nih.gov/articles/PMC7061696/ | Biarticular torque-ratio dependency; Lombard's paradox; RF/hamstrings/gastrocnemius examples; inter-joint energy transfer |
+| S39 | Trasolini NA, Nicholson KF, Mylott J, et al. (2022). "Biomechanical Analysis of the Throwing Athlete and Its Impact on Return to Sport." Arthroscopy, Sports Medicine, and Rehabilitation 4(1). PMID 35141540, PMCID PMC8811517 | https://pmc.ncbi.nlm.nih.gov/articles/PMC8811517/ | Eccentric elbow flexor/posterior shoulder deceleration in throwing, corroborates golf pattern |
+| S40 | Paschalis V, Margaritelis NV, Chatzinikolaou PN, Theodorou AA, Nikolaidis MG (2026). "Eccentric Exercise and Muscle Damage: An Introductory Guide." J Funct Morphol Kinesiol 11(2):139. PMID 42029507, PMCID PMC13108084 | https://pmc.ncbi.nlm.nih.gov/articles/PMC13108084/ | Eccentric contractions produce more torque at lower EMG than concentric — activation/force decoupling |
+| S41 | Kissane RWP, Askew GN (2026). "Starting length and temperature dependence of eccentric muscle force-velocity behaviour." J Exp Biol. PMID 42108769, PMCID PMC13286365 | https://pmc.ncbi.nlm.nih.gov/articles/PMC13286365/ | Eccentric force-velocity biphasic response; force-length dependence of rate of force development (0.95 vs 0.90 vs 0.85 L0, P<0.01) |
+| S42 | This project, `docs/research/04-shoulder-arm-forearm-and-grip.md` §1A/§2.10, sourced from McHardy A, Pollard H (2005), "Muscle Activity During the Golf Swing," Br J Sports Med 39(11):799-804, PMCID PMC1725059, independently re-verified full-text | (internal cross-reference; see docs/research/04-shoulder-arm-forearm-and-grip.md) | Lead/trail pectoralis major 93%/93% MMT same amplitude, opposite contraction mode (trail concentric / lead eccentric); rotator cuff and wrist flexor eccentric deceleration mechanisms |
