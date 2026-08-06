@@ -293,3 +293,30 @@ amplitude figure of 50° total IR/ER range (§3) — broadly consistent (this is
 that range, not a contradiction) but flags that individual-study hip-rotation numbers vary
 considerably by measurement convention; treat as indicative magnitude, not a single ground truth.
 
+---
+
+## 7. Address posture and spinal loading — Edwards, Dickin & Wang (2020)
+
+Edwards N, Dickin C, Wang H (2020), "Low back pain and golf: A review of biomechanical risk
+factors," *Sports Medicine and Health Science* 2(1). PMC9219256 / doi:10.1016/j.smhs.2020.03.002.
+
+- **"In an optimal address position, golfers have 45° of trunk flexion and a neutral spine
+  profile."** This is the clearest single figure found for forward spine/trunk tilt at address —
+  **directly usable for the model's address pose**, though the review does not specify whether this
+  is measured from vertical or some other reference, or break it into thoracic vs lumbar
+  contribution — flagged for cross-check if a second source becomes available.
+- Effect of altered lumbar posture on rotation ROM (from a cited biomechanical experiment):
+  lumbar hyperextension reduced trunk rotation ROM by 4.2% but increased pelvis ROM by 4%; 22.5° of
+  lumbar flexion reduced trunk rotation ROM by 5% and pelvis ROM by 17%. (Relevant to rigging: the
+  model's spine curvature at address will materially affect how much rotation ROM "looks right" at
+  the top of the backswing.)
+- Spinal loading (not a kinematic angle, included for the injury-mechanism context this project may
+  want later): L4-L5 compressive force **6.5 to 8+ × body weight immediately after impact**; in golfers
+  with low back pain, compressive and lateral shear forces are 26.3% and 75.5% larger respectively
+  than in healthy golfers performing the same bending/lifting tasks (cited from a non-golf-specific
+  comparison task within the same review).
+- Coupled-motion description (qualitative, no degree figures given): "during trunk rotation, the
+  L2–L4 vertebrae bend away from the direction of rotation, while L4–S1 bend toward the direction of
+  rotation," producing the net trunk motion — i.e. the lumbar spine's contribution to axial rotation
+  is not a simple single-axis twist even within its small total ROM (§ below).
+
