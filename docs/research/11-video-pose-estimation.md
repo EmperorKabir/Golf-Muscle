@@ -126,4 +126,52 @@ independently by multiple different research groups to be the weakest part of ma
 performance, consistent with (and extending) the running-hip CMC=0.65/15°-offset finding the user
 supplied as context.
 
+### 1.4 MediaPipe-specific validation studies
+
+- Russo et al., *Sensors* 2026 (PMID 41977932, DOI 10.3390/s26072148), smartphone + MediaPipe vs
+  OPAL wearable sensors, gait: knee flexion MAE 4.10°±2.32° (right) / 3.15°±3.10° (left); knee
+  extension MAE 2.30–3.12°; knee ROM MAE 4.15–4.55°; correlation 0.845–0.916 for flexion — "poor
+  ankle measurement concordance" noted despite acceptable knee numbers.
+- Balci et al., *Front Sports Act Living* 2025 (PMID 41602810, DOI 10.3389/fspor.2025.1712332),
+  MediaPipe (2D and 3D) vs OptiTrack: MediaPipe 2D ICC 0.85.
+- Lazem et al. (Track-UL algorithm on MediaPipe), *JMIR Rehabil Assist Technol* 2026 (PMID
+  42114045, DOI 10.2196/87128), upper-limb ROM in stroke survivors vs Kinovea: shoulder 95% limits
+  of agreement −3.18 to 6.41° (lab) / −6.21 to 3.62° (home); elbow LoA −5.35 to 8.78° (lab) / −4.06
+  to 2.53° (home); ICC 0.97–0.99 — best MediaPipe numbers found, but for slow, controlled,
+  single-plane ROM tasks, not a ballistic multi-plane swing.
+- Kondo & Suzuki, *J Phys Ther Sci* 2026 (PMID 42306435, DOI 10.1589/jpts.38.270), Parkinson's
+  postural tracking: lumbar flexion ICC 0.98, thoracic flexion ICC 0.96, but **lateral trunk
+  flexion ICC only 0.80** — the off-sagittal trunk plane is again the weakest, consistent with
+  §1.3's rotational-DOF pattern.
+- Edriss et al., review, *Front Physiol* 2025 (PMID 40873758, DOI 10.3389/fphys.2025.1649330):
+  general mini-review of commercial vision sensors/AI pose frameworks for sport, concluding
+  2D-to-3D fusion is a "promising" but not yet solved direction — a review-level confirmation that
+  the field itself does not consider monocular/markerless 3D pose a solved problem for sport.
+
+### 1.5 Monocular-specific depth/rotation findings
+
+- Rode, Dunkel, Willi, Wolf, Xiloyannis & Riener, *Sci Rep* 2025 (PMID 41193590, DOI
+  10.1038/s41598-025-22626-7), "Assessment of monocular human pose estimation models for clinical
+  movement analysis": mean per-joint position error **146–249 mm in 3D when depth is considered**
+  (i.e. tens of centimetres of positional error once the camera-axis dimension is included, far
+  worse than the in-plane 2D error); knee flexion MAE ≈6–7°, elbow flexion MAE ≈8–9° in 3D.
+- Pratapneni, Halvorson, Silvestros, Harris & Bailey, *IEEE Access* 2026 (PMID 42238785, DOI
+  10.1109/access.2026.3687207), "Validating Single-Camera Pose Estimation Against Multi-Camera
+  Motion Capture for Accessible Biomechanical Assessment": explicit finding that "**proximal
+  joints and frontal-plane motions showed higher fidelity, with the greatest errors in distal,
+  dynamic joints**" — for monocular specifically, error is concentrated in exactly the fast/dynamic
+  segments, the same pattern as the multi-camera systems in §1.1–1.3 but from a single camera.
+- Guo, Gao, Dong, Jiang, Zhu & Wang, "A Survey of the State of the Art in Monocular 3D Human Pose
+  Estimation: Methods, Benchmarks, and Challenges," *Sensors* 2025 (PMID 40285099, DOI
+  10.3390/s25082409) — survey-level confirmation that depth ambiguity remains an open, named
+  challenge category in the monocular 3D pose literature as of 2025, not a solved problem.
+
+**No study found in this search isolates or quantifies "trunk axial rotation error" as its own
+number** — every trunk-relevant figure available (Kondo & Suzuki's lateral trunk flexion ICC 0.80
+vs sagittal 0.96–0.98; Helwig et al.'s internal/external rotation LoA ±15.75° vs flexion/extension
+LoA ±10.71°, §1.3; Adlou et al.'s transverse-plane range 3–57° vs sagittal 3–15°, §1.3) is an
+indirect proxy showing the off-sagittal/rotational axis is consistently the worst-performing axis
+by a wide margin, never the best. This is consistent with, not a refutation of, the brief's
+starting hypothesis that axial/rotational DOF are the hardest to recover from video.
+
 ---
