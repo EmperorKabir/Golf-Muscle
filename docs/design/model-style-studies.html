@@ -151,6 +151,13 @@ var SHELL_F=[
  "M200,240 L172,242 C170,272 166,302 160,332 C154,352 150,372 150,396 C150,430 154,470 158,506 C161,532 162,540 163,552 L192,550 C193,536 194,520 196,500 C198,470 200,430 200,396 Z"
 ];
 
+// Demonstration tiers — real assignments from the evidence programme.
+// D = never measured in golf; B = measured but magnitude inaccessible or single-source.
+var TIER_D={"Tensor fasciae latae":1,"Sartorius":1,"Foot extensors":1,"Patella":1,
+ "Iliotibial band":1,"Popliteal region":1,"Achilles tendon":1,"Heel and foot":1,"Teres major and minor":1};
+var TIER_B={"Brachioradialis":1,"Peroneus longus":1,"Gastrocnemius, medial":1,"Gastrocnemius, lateral":1,
+ "Tibialis anterior":1,"Vastus medialis":1,"Rectus femoris":1,"Lower trapezius":1,"Soleus":1,"Hand":1};
+
 function clamp(v){return v<0?0:v>1?1:v}
 function rampRed(a){a=clamp(a);return "rgba(212,54,26,"+Math.pow(a,.85).toFixed(3)+")"}
 function rampWarm(a){
@@ -168,6 +175,25 @@ function half(zones,side,o){
  var out="",i;
  for(i=0;i<zones.length;i++){
   var z=zones[i],a=z[2][side],dp=z[3],fill,sw=o.lineWidth,sa=o.lineAlpha;
+
+  if(o.showStates){
+   // Never measured: outline only, zero fill. Deliberately NOT the ramp's zero-colour,
+   // so "nobody has measured this" cannot be mistaken for "measured, and it does nothing".
+   if(TIER_D[z[0]]){
+    out+=el("path",{d:z[1],fill:"none",stroke:o.line,"stroke-opacity":(sa*.55).toFixed(3),
+      "stroke-width":sw.toFixed(2),"stroke-dasharray":"1 3","stroke-linejoin":"round"});
+    continue;
+   }
+   // Uncertain: luminance ceiling compressed so it can never reach full confident brightness,
+   // plus a qualitatively different marker rather than merely a paler shade of the same ramp.
+   if(TIER_B[z[0]]){
+    out+=el("path",{d:z[1],fill:o.ramp(a*.55),stroke:"none",opacity:.75});
+    out+=el("path",{d:z[1],fill:"none",stroke:o.line,"stroke-opacity":sa.toFixed(3),
+      "stroke-width":sw.toFixed(2),"stroke-dasharray":"5 2","stroke-linejoin":"round"});
+    continue;
+   }
+  }
+
   if(o.depthCue){sa*=(1-dp*.7);sw*=(1-dp*.45);a=a*(1-dp*.40);}
   if(o.onlyActive&&a<.30){
    out+=el("path",{d:z[1],fill:"none",stroke:o.line,"stroke-opacity":(sa*.5).toFixed(3),"stroke-width":sw.toFixed(2),"stroke-linejoin":"round"});
@@ -219,18 +245,27 @@ var STUDIES=[
    "The threshold creates a visible pop as a muscle crosses it, which reads as a step in data that is actually smooth."]},
  {key:"d",tag:"D",title:"Opacity only — your proposal",ground:"#0b0e10",tagink:"rgba(238,241,242,.5)",
   o:{line:"#9fb3bd",lineAlpha:.3,lineWidth:1,shell:DARK,shellW:1,ramp:rampOpacity},
-  verdict:"Under evidence review",
+  verdict:"Rejected as the primary channel — see F",
   notes:["<strong>One flat red, and only the transparency changes.</strong> Less used means more see-through, exactly as you described.",
-   "Cleanest possible rule, and unused muscles vanish completely — which is the effect you want.",
-   "<strong>The concern being tested:</strong> the body is see-through, so several muscles stack behind each other along your line of sight. Two half-faded zones overlapping can add up to look identical to one strong zone. Compare the thigh here against A.",
-   "An agent is checking this against perception research now, with authority to confirm or reject it."]},
+   "<strong>Why it fails here, mathematically.</strong> When transparent layers stack, the standard compositing rule gives α = α₁ + α₂(1−α₁). Two zones at 50% stacked produce <em>exactly</em> 75% — pixel-identical to a single zone at 75%. Not an approximation; an identity. With a see-through body and zones overlapping along every view ray, that ambiguity is the normal case, not an edge case.",
+   "Independently confirmed by precedent: a 2002 study of transparent anatomical and technical illustration abandoned fixed per-object opacity for this exact reason.",
+   "Opacity also doesn't appear at all in the standard rankings of how accurately people read quantities from visual properties, and perceived transparency is logarithmic and shifts with whatever sits behind it.",
+   "<strong>Your intent survives</strong> — see study F, where quiet muscles still fade toward invisible."]},
  {key:"e",tag:"E",title:"Warm ramp instead of flat red",ground:"#0b0e10",tagink:"rgba(238,241,242,.5)",
   o:{line:"#9fb3bd",lineAlpha:.34,lineWidth:1,shell:DARK,shellW:1,ramp:rampWarm,rim:true},
   verdict:"Colour decision, applies to any of the above",
   notes:["<strong>Colour travels straw to amber to deep red as effort climbs</strong>, rather than one red getting stronger.",
    "Far more distinguishable in the middle of the range, where most muscles spend most of the swing.",
    "The only option here that keeps its meaning for red-green colour blindness — brightness carries the signal even when hue is lost.",
-   "Departs from your literal red-to-transparent description. Can be combined with any treatment above."]}
+   "Departs from your literal red-to-transparent description. Can be combined with any treatment above."]},
+ {key:"f",tag:"F",title:"The recommendation, with all four states shown",ground:"#0b0e10",tagink:"rgba(238,241,242,.5)",
+  o:{line:"#9fb3bd",lineAlpha:.34,lineWidth:1,shell:DARK,shellW:1,ramp:rampWarm,rim:true,glow:true,showStates:true},
+  verdict:"Recommended",
+  notes:["<strong>Brightness carries the effort</strong> — dark through amber to bright — with transparency kept as a supporting effect so unused muscles still fade toward invisible, which was the point of your proposal. Brightness leads, transparency follows; they never disagree.",
+   "<strong>Dotted outline, no fill at all = never measured.</strong> Deliberately not the faintest shade of the scale, so \"nobody has measured this\" can never be misread as \"measured, and it does nothing\". Roughly two-thirds of the body sits in this state.",
+   "<strong>Dashed outline with dimmed fill = measured, but not confidently.</strong> These can never reach full brightness however active they are, so uncertain data physically cannot look as convincing as solid data.",
+   "The glow is additive, which means it composites the same regardless of draw order — avoiding roughly 4× frame cost and several hundred megabytes of memory that exact transparency sorting would need at this zone count.",
+   "Compare the calves and the hip strip against study A to see the three states side by side."]}
 ];
 
 var html="";
