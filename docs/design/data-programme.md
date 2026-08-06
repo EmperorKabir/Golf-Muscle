@@ -59,8 +59,50 @@ Define one record structure that every observation in every document is transcri
 | `confidence_tier` | A/B/C/D per the zone list |
 | `source_id`, `verbatim_quote` | Traceability back to the printed figure |
 
+### Profile dimensions — first-class, from the outset
+
+Per user decision D-011 (2026-08-07): collect for **all golfer profiles in one pass**, build and test against
+one. Retrofitting these fields later would mean re-cutting every piece, so they are part of the schema now
+even though V1 renders a single profile.
+
+| Field | Values |
+|---|---|
+| `sex` | male / female / unspecified |
+| `stature_cm` | Actual value where reported; else band; else unspecified |
+| `limb_proportion` | Femur/torso ratio where reported — almost never is (F-003) |
+| `skill` | professional / low handicap (<5) / mid (5–20) / high (>20) / unspecified |
+| `club` | driver / long iron / mid iron / short iron / wedge / putter / unspecified |
+| `shot_type` | full / three-quarter / punch / pitch / chip / bunker / shaped |
+| `handedness` | right / left — note F-025: the left-handed mirror is an assumption the literature itself flags |
+| `age_band` | Where reported |
+
 Rule: **a record is never created without a source and a verbatim anchor.** Inferred records are permitted
 only in Stage 6 and carry `inference: true` plus their derivation.
+
+**Consequence, stated plainly:** the dataset is a matrix of muscle × time window × profile cell. Adding
+profile dimensions multiplies the cells and therefore multiplies what Stage 3B counts as unfilled. It does
+not create sparsity — it *reveals* sparsity that pooling would have concealed. A hundred observations spread
+across six profiles is roughly seventeen each, not a hundred.
+
+### Evidence-based collapsing — the counterweight
+
+Profile dimensions may be **collapsed where the evidence positively supports pooling**, which shrinks the
+matrix without guessing:
+
+- **Club collapses for trunk muscles.** Direct EMG comparison across driver, 4-iron, 7-iron and pitching
+  wedge found no significant trunk activation difference (F-002). Trunk records may therefore pool across
+  clubs, citing that finding.
+- **Club does NOT collapse for lower limb** — activation varies by club there, non-monotonically (F-002).
+- **Shot type collapses for sequencing but not amplitude.** Proximal-to-distal sequence held across partial
+  and full swings, both sexes, both skill tiers (F-006); only amplitude and timing scale.
+- **Skill does not collapse.** Where measured, skill reverses direction of effect rather than merely scaling
+  it — amateur trail pronator teres 120.9% vs professional 57.4%, with the lead-arm relationship inverted
+  (F-019). Pooling across skill would destroy real signal.
+- **Sex does not collapse and cannot yet be filled** — no golf EMG study has ever compared sexes (F-005 era
+  finding, `05-club-shot-golfer-and-anthropometry.md`).
+
+Every collapse is recorded as a rule with its justifying finding, and is reversible if later evidence
+contradicts it.
 
 ## Stage 1 — Unit reconciliation
 
@@ -94,6 +136,108 @@ interpolation from `06-activation-curve-and-colour-method.md`:
 - Band widens where sources disagree (erector spinae, F-011), where crosstalk is likely (obliques, F-039),
   where only one lab has ever measured it (shoulder, F-031), and across interpolated instants.
 - Explicit onset/offset/peak markers with their own uncertainty.
+
+## Stage 3B — Evidence sufficiency scoring, and the collection loop
+
+*Added on user directive 2026-08-07. This is a gate, not a phase: nothing reaches Stage 8 without passing it,
+and failing it triggers more collection rather than a shrug.*
+
+The requirement: for every muscle at every point in time, know whether the evidence is **sufficient** and
+whether the sources **agree**. 100 observations with 97% agreement is settled. 10 observations at scattered
+time points with 5 agreeing is not, and demands more collection.
+
+### Correction to naive counting — this matters more than the raw number
+
+**Observation count is the wrong unit. Independent source count is the right one.**
+
+- 20 values from one laboratory is **one** independent observation of the world, not 20. Our entire
+  shoulder-girdle dataset comes from a single lab across 1986–1995 (F-031). It would score beautifully on
+  raw count and is in truth thinly evidenced.
+- The forearm has **five genuinely independent replications** (Farber 2009, Sorbie 2016/2017, Robinson 2023,
+  Bochnia 2024, Grieß 2026). That is real corroboration.
+
+**Worse, agreement can be high and meaningless when sources share ancestry.** Kim et al. 2004 and
+McHardy & Pollard 2005 both reproduce Kao et al. 1995. They agree perfectly — because they are the same
+measurement printed three times. Counting that as three-fold corroboration would be self-deception.
+
+Therefore every record carries a **provenance lineage**, and concordance is computed only across records with
+**distinct measurement origins**. Reproductions are marked and excluded from the count while still being
+retained for verification.
+
+### Tolerance — what "agree" means
+
+Two observations agree when they fall within the tolerance band for their data class:
+
+| Data class | Tolerance for agreement |
+|---|---|
+| Same unit, same normalisation | ±15 percentage points, or ±20% of the consensus value, whichever is larger |
+| Different units within the %-family (%MMT / %MVC / %EMGmax) | Same magnitude band only (low / moderate / high / very high) — never a point comparison |
+| Raw µV | Shape only: agreement on rank order of phases and on peak phase. Magnitude comparison forbidden (F-016) |
+| Ordinal (+ to +++++) | Same or adjacent ordinal level |
+| Timing (onset/offset/peak) | ±1 phase, or ±40 ms once registered to the master timeline |
+
+Tolerances are **proposals to be tuned in Stage 3B itself**, once dispersion across the real dataset is
+visible. They are recorded as parameters, not hard-coded.
+
+### The score
+
+Scoring operates on **muscle × time window × profile cell**, after any evidence-based collapsing from Stage 0.
+Scoring a pooled cell that was never justified by a collapse rule is the single easiest way to fake
+sufficiency, and is forbidden.
+
+For each muscle × time window × profile cell:
+
+- `n_sources` — distinct measurement origins after lineage collapse
+- `n_subjects` — pooled participants across those sources
+- `concordance` — fraction of independent records falling within tolerance of the consensus
+- `unit_spread` — how many incompatible unit families are represented
+- `method_spread` — surface vs fine-wire vs ultrasound vs model
+- `crosstalk_flag` — per F-039
+
+### Status, four-way not two-way
+
+| Status | Criteria | Action |
+|---|---|---|
+| **Sufficient** | ≥3 independent origins, concordance ≥0.85, ≥20 pooled subjects | Passes to Stage 8 |
+| **Provisional** | 2 independent origins, or concordance 0.60–0.85 | Usable, band widened, flagged for more collection |
+| **Insufficient** | 1 origin, or concordance <0.60, or timing conflict unresolved | **Blocks Stage 8 for that muscle. Triggers targeted collection** |
+| **Irreducible** | Measurement is physically incompatible with a full-speed swing (F-049) | Loop terminates. Marked permanently unmeasurable, never "pending" |
+
+The fourth status exists because without it the collection loop never terminates on the diaphragm, pelvic
+floor and deep abdominals — where no future study is realistically possible.
+
+### The loop
+
+```
+Score every muscle × time window
+        │
+        ├── Sufficient ──────────────> Stage 8
+        ├── Provisional ─────────────> usable now, queued for more collection
+        ├── Irreducible ─────────────> Stage 6 bounded inference only, permanently labelled
+        └── Insufficient ──> targeted collection ──> transcribe to Stage 0 schema ──> rescore
+                                     ▲                                                    │
+                                     └────────────────────────────────────────────────────┘
+```
+
+Targeted collection is **directed by the score**, not by general searching: the ledger names exactly which
+muscle, which time window, and which deficiency (too few origins, poor concordance, unit incompatibility) —
+so each research round has a specific target rather than trawling.
+
+### Honest expectation of the first scoring pass
+
+On current data, very little will reach Sufficient:
+
+- **Forearm wrist flexors/extensors** — best positioned; five independent origins, but four unit families
+  between them, so likely **Provisional** pending Stage 1.
+- **Trail gluteus maximus** — two independent origins agreeing on dominance across different normalisations,
+  which is strong; but only two. **Provisional**.
+- **Entire shoulder girdle** — single lab. **Insufficient** on origin count, despite having the most complete
+  numeric grid in the project.
+- **Erector spinae** — concordance fails outright; two sources differ 2–3× (F-011). **Insufficient**.
+- **~66% of zones** — zero data. **Insufficient** or **Irreducible**.
+
+This is the honest starting position and it justifies the scale of further collection. The score's purpose is
+to make that visible and to aim the next round, not to flatter the dataset.
 
 ## Stage 4 — Kinematic chain constraint propagation
 

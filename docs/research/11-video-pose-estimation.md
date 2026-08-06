@@ -174,4 +174,409 @@ indirect proxy showing the off-sagittal/rotational axis is consistently the wors
 by a wide margin, never the best. This is consistent with, not a refutation of, the brief's
 starting hypothesis that axial/rotational DOF are the hardest to recover from video.
 
+Two general sports-AI scoping/systematic reviews add outer-bound context but not golf- or
+rotation-specific numbers: Aulton et al., "The Application of Deep Learning Human Pose Estimation
+in Sport: A Systematic Review" (2025, PMID 41369858), screened 371 articles and found "most
+studies relied on private datasets for algorithm training and validation, limiting reproducibility
+and generalizability" — a field-level warning that many sport-pose accuracy claims are not
+independently reproducible. Souaifi et al., "Artificial Intelligence in Sports Biomechanics" (2025,
+PMID 40868401), PRISMA-ScR scoping review of 73 studies (Jan 2015–Dec 2024, 3248 screened, Cohen's
+κ=0.84): pooled figures across all sports (not golf-specific) include CNN technique-assessment
+agreement with international experts of **94%**, and computer-vision positional accuracy "within
+15 mm compared to marker-based systems" for the tasks it covers — the abstract contains no mention
+of golf, muscle activation, or joint-kinetics-from-video anywhere in the 73-study set.
+
 ---
+
+## 2. High-speed limitation — can standard video pipelines cope with the golf downswing?
+
+The golf downswing lasts ≈0.25 s with clubhead speed approaching 90 mph (≈40 m/s) at impact —
+several orders of magnitude faster and more rotational than the walking/running/jumping tasks
+that comprise nearly the entire markerless-validation evidence base assembled in §1.
+
+**Direct, quantified confirmation that standard video frame rates miss golf's critical moment.**
+McNally, Vats, Pinto, Dulhanty, McPhee & Wong, "GolfDB: A Video Database for Golf Swing Sequencing"
+(arXiv:1903.06528, 2019 — also the source for §3/§4 below) built their 1400-video dataset from
+YouTube footage **sampled at 30 fps, 720p**, and state explicitly: **"at 30 fps, it was rare that
+the precise moment of impact was captured."** This is a primary-source, quantitative admission
+that the standard video frame rate used for the largest public golf-swing video dataset cannot
+reliably capture the single most biomechanically important instant of the swing. Some source clips
+were slow-motion at "upwards of 240 frames per second," but this was the exception in their corpus,
+not the rule, and ordinary broadcast/consumer/YouTube golf video defaults to 30 fps.
+- Frame-interval arithmetic (elementary, not a citation): at 30 fps the interval between frames is
+  33.3 ms; at 40 m/s clubhead speed the club travels **≈1.3 m between consecutive frames** —
+  meaning a 30 fps camera can localise impact to no better than roughly a metre of clubhead travel,
+  and the "impact frame" is frequently a motion-blurred smear rather than a sharp image at all.
+  At 240 fps (4.17 ms/frame) the same travel distance drops to ≈0.17 m per frame — still coarse
+  relative to a golf-ball diameter (42.7 mm) but two orders of magnitude better than 30 fps.
+- Yamamoto et al. 2023 (§1, PMID 38033658/PMCID PMC10684732) used a dedicated **240 Hz** camera
+  (Sony RX100M7, 1824×616) specifically to analyse golf swings with markerless pose (HRNet) —
+  i.e. the one golf-specific markerless-pose study located in this entire search deliberately
+  chose 8× the standard 30 fps rate, an implicit confirmation from a working golf-biomechanics lab
+  that 30 fps is judged inadequate for this task. Even so, the authors did **not** validate their
+  2D pose output against any 3D/marker-based ground truth (see §1/§4), and stated outright: "the
+  golf swing is a 3D motion involving the rotation and twisting of the body, the method used in
+  this study is inferior with respect to accuracy, compared with 3D motion analysis."
+
+**Golf swing kinematics/kinetics studies that do report a frame rate overwhelmingly use dedicated
+multi-camera infrared systems, not ordinary video.** Yang, Chang, Chao, Tai & Tsai, "The effects
+of different iron shaft weights on golf swing performance," *Front Bioeng Biotechnol* 2024 (PMID
+38380262), used **nine infrared high-speed cameras** — no frame rate was extractable from the
+abstract, but the camera-count/type (dedicated infrared marker system rather than an ordinary
+camcorder) is itself evidence of the equipment class golf biomechanics research judges necessary.
+Watson et al., "Ground Reaction Force and Centre of Pressure During the Golf Swing... A Systematic
+Review," *Sports Med* 2026 (PMID 41653371), 24 studies passing quality screening (score 7–8/10),
+found **zero video-based or markerless measurement methods among them** — every included GRF/CoP
+study used force-plate instrumentation; the review does not even raise markerless capture as an
+alternative. This independently confirms the golf-kinetics literature has not yet attempted
+markerless/video capture at all, consistent with §6's finding for muscle activation specifically.
+
+**Motion blur as a distinct failure mode from frame rate.** No golf-specific study quantifying
+motion-blur degradation of pose-estimation accuracy was found. The closest sport-specific evidence
+is Wang et al., "Badminton Swing Trajectory Reconstruction," *Sci Rep* 2026 (PMID 41922587, DOI
+10.1038/s41598-026-46443-8): badminton smash instantaneous velocity "can exceed 100 m per second,"
+and the authors report that **event cameras** (which sidestep frame-based motion blur entirely by
+recording per-pixel brightness changes asynchronously) achieved a **42.3% reduction in trajectory
+reconstruction error compared to traditional optical-flow methods** on frame-based video — direct
+evidence that motion blur is treated as a significant, quantified error source in fast racquet-
+sport motion, addressed by hardware (event cameras), not by standard consumer video pipelines.
+Zhang et al., "Basketball Action Pose Estimation," *Sci Rep* 2025 (PMID 40783613, DOI
+10.1038/s41598-025-14985-y) similarly names "motion blur, occlusions, and complex backgrounds" as
+named challenges for athlete pose estimation but does not quantify the blur contribution in
+isolation. No equivalent event-camera or motion-blur-isolating study exists for golf specifically.
+
+**Section 2 conclusion**: the golf-specific evidence found (GolfDB's own admission; Yamamoto et
+al.'s deliberate 240 Hz choice; Watson et al.'s finding of zero markerless golf-kinetics studies)
+converges on the same answer — ordinary consumer/broadcast video frame rates (24–30 fps) are
+judged inadequate by the field's own working practitioners for the fast, high-velocity phase of
+the golf swing, and dedicated high-speed capture (≥240 fps, or dedicated infrared multi-camera
+rigs) is what is actually used whenever golf kinematics are studied seriously. No study locates or
+quantifies a minimum sufficient frame rate for golf specifically; the number is inferred from
+practitioner choice (240 Hz), not derived from a validation study that tested multiple frame rates
+against ground truth and reported the accuracy/fps trade-off.
+
+---
+
+## 3. Golf-specific video/pose datasets
+
+### 3.1 GolfDB
+
+McNally, Vats, Pinto, Dulhanty, McPhee & Wong, "GolfDB: A Video Database for Golf Swing
+Sequencing," arXiv:1903.06528 (2019), full text via ar5iv (https://ar5iv.labs.arxiv.org/html/1903.06528):
+- **1400 high-quality golf swing videos**, YouTube-sourced, **248 unique golfers** (male and
+  female, professional and amateur), each video labelled with: 8 event frames, bounding box,
+  player name, player sex, club type, and view type (face-on / down-the-line).
+- Videos **sampled at 30 fps, 720p resolution**; some source clips slow-motion up to 240 fps, but
+  not the majority (§2).
+- **2D only** — no 3D joint or marker data; the dataset provides bounding boxes and event labels,
+  not skeletal keypoints (pose extraction is left to the user/downstream model).
+- Eight labelled events: **Address (A), Toe-up (TU), Mid-backswing (MB), Top (T), Mid-downswing
+  (MD), Impact (I), Mid-follow-through (MFT), Finish (F)** — directly usable for aligning a swing
+  timeline (see §4).
+- **Licence: Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**, per
+  the repository (github.com/wmcnally/golfdb). **This licence is incompatible with a free public
+  app that is not itself non-commercial** unless the app remains strictly non-commercial in
+  perpetuity (CC BY-NC forbids commercial use/redistribution of the licensed material or derivative
+  works incorporating it) — a constraint the project must record if GolfDB or its video content is
+  ever redistributed or trained-on-and-shipped rather than used purely for internal research
+  reference.
+- Preprocessed 160×160 clips distributed via Google Drive; original YouTube URLs also provided for
+  independent re-preprocessing at other resolutions.
+
+### 3.2 CaddieSet
+
+Jung, Hong, Jeong, Jeong, Choi, Kim & Lee, "CaddieSet: A Golf Swing Dataset with Human Joint
+Features and Ball Information," arXiv:2508.20491 (2025), full text via ar5iv
+(https://ar5iv.labs.arxiv.org/html/2508.20491), GitHub: github.com/damilab/CaddieSet:
+- **924 golf swings analysed in the arXiv abstract summary (613 driver, 23 3-wood, 288 iron
+  I4–I9), while the repository page states 1,757 shots from 8 individuals across two camera
+  angles (face-on and down-the-line)** — the discrepancy between the paper abstract's swing count
+  and the repository's shot count was not resolved in this search and should be treated as an open
+  item if the project uses this dataset (possibly reflecting different processing/filtering stages
+  or a dataset update between the arXiv submission and current repo state).
+- **2D keypoints only**, extracted with **HRNet** (17 COCO-format joints: shoulders, elbows,
+  wrists, hips, knees, ankles), coordinates scaled to bounding-box width to normalise across
+  camera positions/distances.
+- Swing segmented into the same style of 8 phases as GolfDB: **Address, Takeaway, Backswing, Top,
+  Downswing, Impact, Follow-through, Finish**.
+- Pose/event-extraction pipeline validation reported in-paper: their event-sequencing detector
+  reached **78.0% overall accuracy, rising to 94.1% when the Address and Finish events are
+  excluded** (compare 91.8% "six-event" baseline reported for SwingNet in the original GolfDB
+  paper, §4) — i.e. address/finish detection is the recurring weak point across two independent
+  golf-video datasets, not just GolfDB. Object detection backbone: Faster R-CNN alone scored 56.4
+  AP on MS COCO; combined with HRNet pose refinement, AP rose to 74.9.
+- 15 hand-defined swing-influence metrics used to predict ball trajectory via interpretable ML,
+  validated qualitatively against "established golf domain knowledge" (not against 3D ground-truth
+  kinematics).
+- No stated video frame rate found in the accessible text.
+- **Licence: MIT** (per GitHub repository footer) — permissive, compatible with a free public app,
+  a materially better position than GolfDB's CC BY-NC 4.0 if this dataset were to be used directly.
+  Dataset download mechanics were not confirmed accessible in this search (a "data" folder exists
+  in the repo but no working download link was visible in the fetched content).
+
+### 3.3 Other golf video/pose-adjacent resources found (not full video-pose datasets)
+
+- Lauer, "Learning golf swing signatures from a single wrist-worn inertial sensor," arXiv:2506.17505
+  (2025): trains on **video of professional golfers to reconstruct full-body 3D kinematics via
+  "biologically accurate human mesh recovery,"** then distils that into a wrist-IMU-only inference
+  model. Relevant as evidence that video-derived 3D mesh recovery is being used as a *training
+  label source* for other sensing modalities in golf, but the paper's own deployed product is
+  IMU-based, not video-based, at inference time — an implicit signal that the author judged
+  on-course video capture (§2's "impractical camera placement," directly below) less practical
+  than a single wearable for field use.
+- The WIT-KinNet smartwatch paper, arXiv:2606.22876 (2026), 36 golfers, 7 club types, full/half/
+  quarter swings, evaluated against **optical motion-capture ground truth**, achieved **mean
+  absolute error 8.11° ± 1.84° across full-body joint angles** from a single wrist IMU — and states
+  outright that existing **camera-based golf methods "require impractical camera placement"** as
+  their stated motivation for avoiding video entirely. This is an independent, golf-domain-specific
+  statement (not the user's supplied context, a separate primary source) that camera-based capture
+  is considered a practical liability for golf swing capture by researchers actively building
+  alternatives to it. Included for context, not as a video-pose accuracy source, since it is an
+  IMU method.
+- "How Can I Swing Like Pro?: Golf Swing Analysis Tool for Self Training," Liao, Hwang & Koike,
+  arXiv:2105.10153 (2021): a video-synchronisation and 3D-pose-visualisation coaching tool that
+  aligns amateur and pro swing videos by phase using a neural encoder; a UI/coaching tool, not a
+  released dataset, and no accuracy-vs-ground-truth figures found.
+- UCF Sports Action dataset (used in Turner et al., arXiv:1512.07502, 2015) includes golf-swing
+  clips among nine sports as an action-recognition benchmark (classify "this video shows a golf
+  swing"), not a pose/kinematics dataset — mentioned only to flag it is not usable for joint-angle
+  extraction purposes.
+
+**Section 3 conclusion**: two purpose-built golf video/pose datasets exist (GolfDB, CaddieSet),
+both 2D-only, both YouTube/consumer-video-sourced (no confirmed high-frame-rate golf pose
+dataset), with materially different licences — GolfDB CC BY-NC 4.0 (non-commercial only), CaddieSet
+MIT (permissive). Neither dataset provides 3D ground-truth kinematics, and neither has been
+validated against marker-based motion capture (§1's entire evidence base is non-golf).
+
+---
+
+## 4. Golf swing event detection from video
+
+McNally et al.'s SwingNet (GolfDB paper, arXiv:1903.06528, full detail via ar5iv), a hybrid
+CNN(MobileNetV2)-RNN(bidirectional LSTM) trained/evaluated on GolfDB, detects the same 8 events
+listed in §3.1. **Per-event PCE (percent correct event, within a frame tolerance) from their
+Table 2** (self-consistency-checked: the 8 values average to exactly 76.1%, confirming the figures
+are internally coherent and not summarisation error):
+
+| Event | Address | Toe-up | Mid-back­swing | Top | Mid-down­swing | Impact | Mid-follow-through | Finish | **Average** |
+|---|---|---|---|---|---|---|---|---|---|
+| PCE | 31.7% | 84.2% | 88.7% | 83.9% | 98.1% | **98.4%** | 97.6% | 26.5% | **76.1%** |
+
+Also reported: **91.8%** average when restricted to the six events excluding Address and Finish.
+
+- **The two long, static "hold" events (Address, Finish) are the hardest to localise precisely**
+  (31.7% and 26.5%), not the fast-motion events — Impact itself is the single best-detected event
+  at 98.4%. This is an important, counter-intuitive nuance for the project: the failure mode in
+  the one dataset with a per-event breakdown is boundary ambiguity within a long stationary phase
+  (many visually near-identical frames each equally plausible as "the" address/finish frame), not
+  motion blur at speed — though this does not contradict §2's frame-rate concern, since the model
+  still only had 30 fps input to work with for locating impact, and 98.4% PCE is measured against
+  a tolerance window, not against a marker-based/force-plate ground-truth reference for the true
+  ball-contact instant (GolfDB has no such reference — event labels were established by human
+  video annotation, not instrumented ground truth).
+- CaddieSet's own event/sequence-detection pipeline (§3.2) reports the same qualitative pattern —
+  78.0% overall, rising to 94.1% when Address and Finish are excluded — independently reproducing
+  GolfDB's finding that the static bookend events are the harder detection problem across two
+  unrelated groups' datasets/models, which strengthens confidence this is a real, general property
+  of golf-swing event detection rather than an artefact of one model.
+- **No successor paper improving on SwingNet's PCE numbers was located** — a targeted arXiv search
+  for "event spotting" + golf returned zero results, and a broader golf+video/pose search (§ full
+  list of hits already enumerated in §3) surfaced no post-2019 golf event-detection accuracy paper
+  beyond GolfDB/SwingNet and CaddieSet's downstream reuse of the same task.
+- Direct relevance to this project's timeline alignment: event PCE at ~76–98% (except the two
+  static bookends) is a frame-classification accuracy, not a joint-angle accuracy — it tells you
+  *which frame* is impact/top-of-backswing with reasonable confidence, but says nothing about
+  whether the joint angles measured *at* that frame are correct (that is §1's question, and §1
+  found no golf-specific joint-angle validation exists at all).
+
+---
+
+## 5. 3D pose from monocular video, and trunk axial rotation specifically
+
+**General monocular 3D pose state of the art (non-sport, lab-controlled benchmarks — Human3.6M,
+the standard benchmark of simple, slow, single-subject indoor actions filmed multi-view then
+evaluated monocular-style)**: recent top methods report mean per-joint position error (MPJPE) of
+**37.6 mm (OPFormer 2025, PMID 40849577)**, **45.2 mm (SMPLer 2024, DOI 10.1109/tpami.2023.3341630)**,
+and **47.6 mm (CGFusionFormer 2025, DOI 10.3390/s25196052)**. These are best-case numbers on a
+benchmark of deliberately slow, simple, non-occluded, non-rotating actions (walking, sitting,
+posing) — i.e. even under near-ideal conditions, state-of-the-art monocular 3D pose carries
+**3.7–4.8 cm of average joint-position error**, before any golf-specific speed/rotation/occlusion
+penalty is applied. Guo, Gao, Dong, Jiang, Zhu & Wang's 2025 survey (*Sensors*, PMID 40285099, DOI
+10.3390/s25082409) confirms depth ambiguity remains a named, unsolved "fundamental challenge" of
+single-view 3D pose as of 2025, addressed only partially by diffusion-based refinement, temporal
+consistency constraints, and multi-hypothesis generation — none of which eliminates the ambiguity,
+they only regularise it using learned priors from (non-golf) training data.
+
+**Clinical/applied monocular studies (closer to real-world, non-benchmark conditions)** confirm
+this ceiling degrades further outside the lab:
+- Rode, Dunkel, Willi, Wolf, Xiloyannis & Riener, *Sci Rep* 2025 (PMID 41193590, DOI
+  10.1038/s41598-025-22626-7): mean per-joint position error **146–249 mm in 3D when depth is
+  considered** — i.e. up to a quarter of a metre of positional error once the camera-axis
+  dimension is included, roughly 3–5× worse than the Human3.6M benchmark numbers above, for
+  clinical movement analysis; angle-level MAE ≈6–7° knee flexion, ≈8–9° elbow flexion.
+- Pratapneni, Halvorson, Silvestros, Harris & Bailey, *IEEE Access* 2026 (PMID 42238785, DOI
+  10.1109/access.2026.3687207): explicit finding that "proximal joints and frontal-plane motions
+  showed higher fidelity, with the greatest errors in distal, dynamic joints" for single-camera
+  pose — the depth/rotation problem is worst precisely where a joint moves fast and off the
+  camera's primary viewing plane.
+- Horsak et al., *J Biomech* 2025 (PMID 41046587, §1.2): monocular CameraHMR/SMPL validity RMSD
+  5.5±1.1° vs marker-based, for simple sagittal-plane gait only — the single golf-relevant proxy
+  in this search for "how good is a single consumer camera at 3D angle recovery," and even that
+  is a slow, non-rotational, single-plane task.
+
+**Trunk axial rotation specifically — direct answer to the brief's central question**: no study
+located in this search reports a dedicated trunk-axial-rotation (i.e. transverse-plane torso/pelvis
+twist, the specific golf DOF the brief flags as most important and hardest to see) RMSE or LoA
+figure, golf or otherwise. What exists is consistently unfavourable indirect evidence:
+- Depth ambiguity is fundamentally a same-axis problem as axial rotation for a camera viewing a
+  torso largely front-on or side-on: rotation about the vertical (long) body axis moves anatomical
+  landmarks predominantly *along the camera's depth axis* (the axis every monocular-pose survey
+  identifies as the weakest-resolved dimension, §1.5), rather than across the image plane where
+  2D keypoint detectors (the first stage of every pipeline reviewed here — HRNet, MediaPipe,
+  OpenPose-family, SMPL/CameraHMR) are comparatively reliable. This is a structural/geometric
+  argument, not a numeric citation, and is stated here as reasoning rather than as a sourced fact.
+- Every rotational/transverse-plane number actually measured in this search is markedly worse than
+  the matched flexion/extension number from the same study: Helwig et al.'s int/ext-rotation LoA
+  ±15.75° vs flexion/extension LoA ±10.71° (§1.3, fast cutting-sport task); Adlou et al.'s
+  transverse-plane accuracy range 3–57° vs sagittal-plane 3–15° (§1.3); D'Souza et al.'s explicit
+  statement that "hip and knee rotations [are] non-comparable between systems" (§1.3); Poomulna et
+  al.'s finding that hip rotation is one of the measures exceeding 10° RMSD (§1.3); Kondo & Suzuki's
+  lateral trunk flexion ICC 0.80 vs sagittal trunk flexion ICC 0.96–0.98 (§1.4).
+- Yamamoto et al.'s golf-specific paper (§1, §2, PMID 38033658) — the only markerless golf-pose
+  study found that discusses 3D rotation at all — used a single sagittal-plane camera and states
+  directly that their method "is inferior with respect to accuracy, compared with 3D motion
+  analysis" precisely *because* "the golf swing is a 3D motion involving the rotation and twisting
+  of the body." The authors did not attempt to quantify trunk rotation from their video at all;
+  they measured only forward/anterior tilt (a sagittal-plane angle) and explicitly could not
+  address the transverse-plane swing-path question (inside-out vs outside-in) from their single
+  camera. This is the single clearest golf-specific admission in the literature that monocular
+  video cannot currently deliver trunk axial rotation.
+
+**Section 5 conclusion**: no source found refutes the brief's starting hypothesis that depth/
+rotation ambiguity makes monocular video unsuitable for recovering trunk axial rotation; every
+piece of indirect and direct evidence available (general monocular-pose surveys naming depth
+ambiguity as unsolved; every matched rotation-vs-flexion accuracy comparison found being worse for
+rotation; and the one golf-specific video study explicitly declining to attempt trunk rotation
+measurement and stating its method is inferior for exactly this reason) points the same direction.
+This should be treated as a corroborated, multiply-sourced conclusion, not a single-study claim.
+
+---
+
+## 6. Muscle activation or joint moments derived from video of a golf swing
+
+**No published work deriving muscle activation from video of a golf swing was found in this
+search**, extending T-031's finding (`docs/research/09-inverse-activation-estimation.md`, F-036)
+that no muscle-level model of the golf swing exists in the literature at all, video-driven or
+otherwise. A targeted Europe PMC search ("golf swing muscle activation video estimation") returned
+only Verikas et al., "Electromyographic Patterns during Golf Swing" (2016, PMID 27120604), which
+uses **surface EMG, not video**, to study activation sequence and shot-quality prediction — the
+closest hit, and it is not a video-derived-activation study at all.
+
+**Joint kinetics (forces/moments, one level below muscle activation) from golf video**: also not
+found. Watson et al.'s 2026 systematic review of golf GRF/CoP research (§2, PMID 41653371, 24
+studies screened at quality ≥7/10) found **zero markerless/video-based studies** among the entire
+included set — every GRF/CoP figure in the golf literature the review covers comes from
+force-plate instrumentation. No golf-specific video-to-GRF or video-to-joint-moment pipeline of any
+kind was located.
+
+**General (non-golf) video-to-kinetics evidence, for context on what is and is not currently
+possible anywhere, extending the user-supplied Vonstad et al. reference point**:
+- Vonstad, Bach, Vereijken, Su & Nilsen, *J Neuroeng Rehabil* 2022 (PMID 35152877, DOI
+  10.1186/s12984-022-00998-5) — already the primary source cited in T-031 §8 — found an LSTM
+  predicting vertical GRF from **true 3D marker kinematics** achieved RMSE 4.3% BW / R²≈0.95, but
+  from **plain 2D video-derived kinematics** degraded to **RMSE 10.7% BW / R²≈0.77** (a simpler
+  XGBoost model was worse still, RMSE 19.8% BW), on a **slow, low-force balance weight-shifting
+  exergame task in older adults** — nothing resembling golf-downswing loading.
+- Feng, Ugbolue, Yang & Liu, *Bioengineering* 2025 (PMID 40564405, DOI
+  10.3390/bioengineering12060588): CNN-based GRF/CoP estimation from markerless kinematics during
+  **walking** (slow/normal gait): GRF component r 0.956–0.988, relative RMSE 6.03–9.44%; CoP r
+  0.896–0.977, relative RMSE 6.41–7.90%.
+- Schreff et al., *Children* 2026 (PMID 41897076, DOI 10.3390/children13030363): markerless-derived
+  GRF/virtual-pivot-point analysis in paediatric **walking**: R²>0.95 across age groups.
+- OpenCap-specific fast/high-force tasks (§1.2) again show the pattern breaking down at speed and
+  impact: drop-jump vertical GRF MAE >6% despite r>0.90 (Färber et al., PMID 41876778); children's
+  vertical-jump landing-phase peak-force bias **>40%**, explicitly flagged "weak agreement" (You et
+  al., PMID 42280894).
+
+**Section 6 conclusion — this directly corroborates and extends the parallel-strand finding
+supplied in the brief**: every task in this search where video-derived GRF/kinetics achieved good
+agreement (R²>0.95, RMSE <10% BW) was slow, low-impulse, and non-rotational (walking, weight-
+shifting, paediatric gait). Every task involving a fast impact/landing phase (drop-jump, vertical-
+jump landing) showed RMSE/bias rising sharply (>6% to >40%) specifically at the impact instant —
+the golf swing's defining biomechanical event is exactly this kind of high-force, sub-second
+impact. No study of any kind — golf or otherwise — has attempted video-to-muscle-activation for a
+motion at golf-downswing speed, and the one domain (golf GRF) with an existing systematic review
+confirms the entire published golf-kinetics literature is force-plate-only.
+
+---
+
+## 7. OpenCap specifically — validated accuracy, movements, golf applicability, licence
+
+**What OpenCap is**: Uhlrich, Falisse, Kidziński, Muccini, Ko, Chaudhari, Hicks & Delp, "OpenCap:
+Human movement dynamics from smartphone videos," *PLoS Comput Biol* 2023 (PMID 37856442, PMCID
+PMC10586693, DOI 10.1371/journal.pcbi.1011462) — open-source platform computing **both kinematics
+(motion) and dynamics (forces, muscle activations, joint loads/moments)** from **two or more
+synchronised smartphone videos**, via a pipeline of: 2D pose estimation → deep-learning-assisted
+biomechanical-model-constrained 3D kinematics → physics-based (OpenSim-based) musculoskeletal
+simulation for muscle activations and joint loads/moments. The founding paper's headline validation
+claim is a **100-subject field study** in which a clinician using OpenCap estimated musculoskeletal
+dynamics **25× faster than a lab-based approach at <1% of the cost** — a throughput/cost claim, not
+itself a per-joint accuracy claim (the accuracy claims are established by the independent
+validation literature in §1.1–1.2, not by the founding paper's own abstract, which states only that
+OpenCap "accurately predicts dynamic measures" without giving the number in the abstract text
+retrieved).
+
+**Validated accuracy (pooled, from the independent literature assembled in §1.1)**: pooled RMSE
+5.877° (→4.940° after publication-bias correction), r=0.845 vs criterion devices, across 12 studies/
+184 participants/1087 RMSE values (Çabuk et al. 2026, PMID 41783455). Individual-study range: as
+good as RMSE <2° for level-gait joint waveforms and CoM RMSE <6 mm (de Borba et al., §1.2), as poor
+as sagittal-hip-during-gait RMSE >10° (Svetek et al., §1.2) and drop-jump frontal-knee RMSE >6°
+with the paper's own authors concluding "OpenCap currently cannot be recommended for [that specific
+clinical] risk assessment" (Färber et al., §1.2).
+
+**Which movements OpenCap has been validated on, per the studies located in this search**: walking
+(multiple speeds), running (treadmill, multiple speeds), double-leg squat, countermovement jump,
+drop jump, jump-landing (natural and cued-stiff), standing balance (including in children with
+cerebral palsy), vertical jump (in children), gait in knee-osteoarthritis patients, upper-extremity
+reachable workspace, single-leg Trendelenburg-test-adjacent tasks. **No study located anywhere in
+this search has validated OpenCap on golf, or on any comparably fast, axially-rotational, whole-
+body ballistic movement** — a targeted Europe PMC search for "OpenCap golf swing" returned zero
+relevant hits. The closest task-type analogues in the validated set (drop jump, countermovement
+jump, cutting/change-of-direction — though the latter used Theia3D not OpenCap, §1.3) are
+consistently where accuracy is reported worst (§1.2, §1.3), which is the basis for judging OpenCap
+**unvalidated, not merely "less accurate," for a golf swing** — the nearest validated proxies are
+already the system's weakest-performing category.
+
+**Kinetics/muscle-activation claim specifically**: OpenCap's founding paper claims muscle
+activations and joint loads as an output, computed via OpenSim static optimisation/muscle-driven
+simulation on top of the estimated kinematics (i.e. it inherits every limitation of static-
+optimisation-based activation estimation documented in T-031, `09-inverse-activation-estimation.md`
+— redundancy problem, cost-function dependence, R²/r 0.0–0.97 spread vs real EMG depending on
+muscle/task, degrading for fast/individual/biarticular cases — on top of whatever kinematic error
+OpenCap itself contributes at the input stage). No study located in this search independently
+validates OpenCap's muscle-activation output against EMG for any task, golf or otherwise; the
+kinetics/GRF-specific validations found (§1.2, §6) are joint-moment/GRF-level, not muscle-
+activation-level, and even those show the same fast/impact degradation pattern.
+
+**Licence**: opencap-core is **Apache License 2.0** (github.com/stanfordnmbl/opencap-core) — a
+permissive licence compatible with a free public app. This is the more favourable licence position
+of the resources reviewed in this file (better than GolfDB's CC BY-NC 4.0, on par with CaddieSet's
+MIT). Note this covers the *code*; OpenCap's hosted web-application processing service (which the
+founding paper describes as doing the actual cloud-based kinematics/dynamics computation) is a
+separate consideration from the open-source repository licence if the project intended to depend
+on Stanford's hosted infrastructure rather than self-hosting the pipeline.
+
+**Section 7 conclusion — direct answer to the brief's OpenCap question**: OpenCap's own founding
+paper and the entire independent validation literature located here cover walking, running,
+jumping, squatting, standing balance and gait-pathology tasks — never golf, never a comparably fast
+axially-rotational whole-body movement. Its best-case accuracy (RMSE <2–6° in slow sagittal-plane
+tasks) is well outside marker-based clinical-grade precision even there; its worst-case accuracy
+(RMSE >10°, LoA in the tens of degrees, >40% bias at fast/impact phases) occurs specifically in the
+task category (fast, dynamic, impact-involving) that a golf swing belongs to. Using OpenCap for
+golf would be extrapolating a system beyond every published validation condition, in precisely the
+direction (speed, impact, off-sagittal rotation) that has been shown, repeatedly and independently,
+to degrade its accuracy. The licence (Apache 2.0) is not a barrier; the absence of any golf or
+comparable-speed/rotation validation is.
+
+---
+
