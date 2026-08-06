@@ -110,6 +110,17 @@
 - T-034 Functional anatomy — origins, insertions, actions and moment arms for all 57 muscle zones; what motion each zone produces when it contracts — IN PROGRESS
 - T-035 Synthesise T-030..T-034 into a mechanism model linking activation → joint moment → motion, and state precisely what remains unresolvable — TODO
 
+### Research operating notes (learned the hard way 2026-08-06 — read before dispatching any research agent)
+- **Session usage ceiling is real.** On 2026-08-06 at ~23:45 all ten concurrent agents died mid-run with "You've hit your session limit". Root cause: five dispatched agents each spawned their own sub-agents, doubling concurrent load. **Always instruct research agents not to spawn sub-agents, and dispatch in batches of 2–3.** User accepts hitting the ceiling but requires batching (2026-08-06).
+- **Agents must write their report file incrementally**, not at the end. All ten agents above died having written nothing, losing the entire run.
+- **WebSearch budget is exhausted for this session (200/200).** WebFetch still works.
+- **Best remaining search route — Europe PMC REST API**, returns structured JSON with abstracts, PMIDs, PMCIDs and open-access flags:
+  `https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TERMS&format=json&pageSize=25&resultType=core`
+  The normal europepmc.org site is JS-rendered and returns only the page shell to WebFetch — useless.
+- PubMed HTML search works: `https://pubmed.ncbi.nlm.nih.gov/?term=...`. Open full text: `https://pmc.ncbi.nlm.nih.gov/articles/PMCxxxxxxx/`.
+- **Dead ends, do not retry:** physio-pedia.com returns 403; teachmeanatomy.info paths return 404; drmillett.com PDF paths return 404; guessing NCBI Bookshelf NBK ids wastes calls (find ids via `https://www.ncbi.nlm.nih.gov/books/?term=...`).
+- **Writing standard (user, 2026-08-06): efficient but no omission of data.** Never summarise away a numeric value or citation.
+
 ## Phase 2 — Core app
 - T-020 Time-slider architecture: swing timeline (address → follow-through), scrubbing, playback, slow motion — TODO
 - T-021 Per-muscle colour mapping: activation value → red-to-transparent gradient shading — TODO
