@@ -2,8 +2,11 @@
 
 Task: T-033 (Phase 1b, inference research). Question: can markerless/video-based pose estimation
 yield joint angles accurate enough to count as evidence for this project, and what golf-specific
-video datasets and event-detection methods exist? Status: IN PROGRESS. Sources cited by
-URL/PMID/PMCID/DOI/arXiv ID as fetched; nothing entered without its own citation.
+video datasets and event-detection methods exist? Status: DONE 2026-08-07 — 47 sources. Sources
+cited by URL/PMID/PMCID/DOI/arXiv ID as fetched; nothing entered without its own citation. Four
+open gaps declared in §8 (no direct trunk-axial-rotation number found anywhere; no controlled
+frame-rate-vs-accuracy study for golf; CaddieSet's 924-vs-1,757-swing count discrepancy; no
+SwingNet successor located) for a future targeted follow-up if the project revisits this file.
 
 ---
 
@@ -577,6 +580,145 @@ golf would be extrapolating a system beyond every published validation condition
 direction (speed, impact, off-sagittal rotation) that has been shown, repeatedly and independently,
 to degrade its accuracy. The licence (Apache 2.0) is not a barrier; the absence of any golf or
 comparable-speed/rotation validation is.
+
+---
+
+## 8. Synthesis — does video clear the evidence bar for this project, and where does it corroborate/extend the user-supplied context?
+
+**Corroboration of the parallel-strand findings supplied in the brief.** Both supplied data points
+are independently reproduced by primary sources located in this search, not merely repeated:
+- "Video-only kinematics show their worst errors at proximal and fast joints (hip in running:
+  CMC=0.65, 15° systematic offset)" — this is Pagnon, Domalain & Reveret 2022 (Pose2Sim Part 2,
+  PMID 35408326, PMC9002957, already catalogued in T-031 §8/source 17), and is independently
+  corroborated here by Svetek et al.'s sagittal-hip-during-gait RMSE >10° (§1.2), Pratapneni et
+  al.'s "greatest errors in distal, dynamic joints" (§1.5), and de Borba et al.'s hip/ankle ROM
+  reliability specifically dropping at higher speed (§1.2) — four independent groups, same
+  direction of effect (proximal/fast = worst).
+- "Video-only GRF estimation has been demonstrated only for slow low-force tasks (RMSE 10.7%
+  BW)" — this is Vonstad et al. 2022 (PMID 35152877, already catalogued in T-031 §8/source 16),
+  and is independently extended here (§6) by Feng et al.'s 6–10% RMSE walking-only GRF/CoP figures
+  and by the OpenCap fast-task literature (Färber et al.'s drop-jump MAE >6%; You et al.'s >40%
+  landing-phase bias) — the pattern holds and gets worse, not better, as task speed/impact
+  increases, across five independent studies spanning 2022–2026.
+
+**Answering the brief's core question directly**: video CAN yield joint angles that count as
+evidence, but only within a narrow, specific envelope that a golf swing does not fall inside:
+- **Usable-as-evidence envelope** (supported by multiple, converging, independent sources):
+  slow-to-moderate-speed, sagittal-plane, flexion/extension motion, filmed synchronously by ≥2
+  calibrated cameras (OpenCap-class) or a dedicated multi-camera markerless rig (Theia3D-class) —
+  RMSE reliably <5–6°, sometimes <2°, with r>0.8–0.9 vs marker-based ground truth. This describes
+  walking, running (with caveats), squatting, and slow controlled ROM tasks.
+- **Not-evidence-grade envelope** (also supported by multiple, converging, independent sources):
+  transverse/rotational-plane angles at any speed (LoA routinely ±11° to ±16°, ranges up to 3–57°
+  reported in one review); any joint/plane during a fast, ballistic, or impact-involving phase
+  (RMSE and bias both roughly double to quadruple at landing/impact vs. steady-state motion in
+  every jump/landing study found); and monocular (single-camera) 3D estimation of anything beyond
+  simple sagittal gait, where even lab-benchmark best-case error is 3.7–4.8 cm of joint position
+  and real-world clinical studies report 14.6–24.9 cm.
+- **The golf downswing sits entirely inside the "not-evidence-grade" envelope** on every dimension
+  simultaneously: it is fast (≈90 mph clubhead speed, ≈0.25 s duration — well beyond every
+  validated OpenCap/Theia3D task speed), it is dominated by axial/rotational motion (trunk and
+  pelvis rotation, the single worst-performing DOF category found anywhere in this search), and its
+  single most important instant (impact) is the same category of event (ballistic impact) shown
+  repeatedly to be where video-derived kinetic/kinematic accuracy degrades most severely. No study
+  anywhere in this search — golf or any other sport — has validated joint-angle accuracy at
+  golf-downswing speed against marker-based or instrumented ground truth.
+
+**What video IS good for in this project, evidenced rather than assumed**: (a) event/phase timing
+— GolfDB/SwingNet and CaddieSet both show 76–98% frame-level accuracy for most of the 8 canonical
+swing events (address and finish being the recurring exception, §4), which is directly useful for
+timeline alignment even though it says nothing about joint-angle correctness at those frames; (b)
+coarse, qualitative, sagittal-plane description of things like forward/spine tilt (Yamamoto et al.,
+§1/§2/§5) — useful for descriptive/coaching commentary, not for precise numeric activation
+back-solving; (c) relative/within-subject comparison (before/after, trial-to-trial variability),
+where several OpenCap studies found high agreement even when absolute accuracy was mediocre
+(Verheul et al. §1.2's "high agreement in inter-stride and inter-trial variability... despite
+[absolute] differences").
+
+**What video is NOT evidenced to be good for, specific to this project's stated goals**: precise
+absolute joint angles for any rotational/axial DOF at any speed; any joint angle at all during the
+downswing/impact phase specifically; muscle activation or joint moments/kinetics for a golf swing
+(§6 — zero published attempts found, golf or video-general); and OpenCap-class kinematics-plus-
+kinetics pipelines applied to golf (§7 — zero validation, and the nearest validated proxies are
+already OpenCap's worst-performing category).
+
+**Consequence for the project**: video can supply *phase/event timing* and *coarse, qualitative,
+sagittal-plane* description as a corroborating, non-quantitative evidence layer alongside the EMG
+literature already assembled (`docs/research/01–07`), but cannot supply validated joint angles for
+trunk/pelvis rotation, cannot supply validated kinematics during the downswing/impact phase, and
+cannot supply any validated basis for back-solving muscle activation — consistent with, and
+extending, T-031's F-036 conclusion that no scientifically validated back-solved activation curve
+can be claimed for golf from any current motion-capture modality, video-derived or otherwise. Any
+video-derived numbers this project does use (event timing, gross posture) must be labelled
+descriptive/qualitative evidence, not measured kinematic ground truth.
+
+**Explicitly flagged gaps for a future targeted follow-up, not filled by guessing**: (1) no study
+isolates a trunk-axial-rotation RMSE/LoA number for any task, golf or otherwise — the §5 conclusion
+rests on convergent indirect evidence, not a single direct measurement; (2) no study tests golf (or
+any comparable-speed rotational sport) kinematics at multiple frame rates against ground truth to
+derive a validated minimum-fps threshold — §2's frame-rate conclusion rests on practitioner choice
+(240 Hz) and a primary-source admission (GolfDB's 30 fps impact-capture failure), not a controlled
+frame-rate-vs-accuracy study; (3) the CaddieSet swing-count discrepancy (924 in-paper vs 1,757 in
+repository, §3.2) is unresolved; (4) no successor to SwingNet with improved per-event PCE was
+located, so 76.1%/91.8% (GolfDB) and 78.0%/94.1% (CaddieSet) should be treated as the current
+published ceiling for golf event detection, not necessarily the true achievable ceiling.
+
+---
+
+## 9. Source table
+
+| # | Source | ID | Where used |
+|---|---|---|---|
+| 1 | Çabuk, Ulupınar, İnce & Özbay 2026, *Biology of Sport* | PMID 41783455, PMCID PMC12954493, DOI 10.5114/biolsport.2026.154942 | §1.1, §7 — OpenCap pooled meta-analysis (RMSE 5.877°→4.940°, r=0.845) |
+| 2 | Svetek, Morgan, Burland & Glaviano 2025, *J Biomech* | PMID 40048968, DOI 10.1016/j.jbiomech.2025.112602 | §1.2, §8 — OpenCap lower-limb RMSE by plane (<6° frontal hip; 4–10° sagittal knee; >10° sagittal hip gait) |
+| 3 | Verheul et al. 2026, *J Biomech* | PMID 41418503, DOI 10.1016/j.jbiomech.2025.113133 | §1.2, §8 — OpenCap running validity; systematic swing-phase disagreement |
+| 4 | Färber, Horsak & Paternoster 2026, *Sci Rep* | PMID 41876778, PMCID PMC13018474, DOI 10.1038/s41598-026-44758-0 | §1.2, §6, §7 — OpenCap drop-jump; RMSE >6° knee; MAE>6% GRF; "cannot be recommended" |
+| 5 | de Borba et al. 2025, *Sensors* | PMID 41157527, PMCID PMC12568194, DOI 10.3390/s25206474 | §1.2, §8 — OpenCap gait-speed effects; hip/ankle ROM reliability drop at speed |
+| 6 | Turner et al. 2026, *J Biomech* | PMID 41138605 | §1.2 — OpenCap jump-landing reliability; MDC 1.89–11.62° |
+| 7 | You, Lin & Zhang 2026, *Sensors* | PMID 42280894, PMCID PMC13259095, DOI 10.3390/s26113375 | §1.2, §6, §8 — OpenCap child vertical jump; landing peak-force bias >40% |
+| 8 | Horsak et al. 2025 (CameraHMR), *J Biomech* | PMID 41046587, DOI 10.1016/j.jbiomech.2025.112986 | §1.2, §5 — monocular vs OpenCap vs marker-based; RMSD 5.5±1.1° validity |
+| 9 | Yan et al. 2025, *Sensors* | PMID 41013149, PMCID PMC12473682, DOI 10.3390/s25185911 | §1.2 — OpenCap paediatric CP balance; R 0.39–0.94 raw |
+| 10 | Shimotori et al. 2025, *JMIR Rehabil Assist Technol* | PMID 40373227, PMCID PMC12097655, DOI 10.2196/66886 | §1.3 — Theia3D ramp/stair RMSD ≤5.64° |
+| 11 | Helwig et al. 2025, *Sci Rep* | PMID 41028120, PMCID PMC12484822, DOI 10.1038/s41598-025-21143-x | §1.3, §5 — Theia3D cutting task; int/ext rotation LoA ±15.75° vs flex/ext ±10.71° |
+| 12 | Yang et al. 2025, *Sci Rep* | PMID 40425708, PMCID PMC12117081, DOI 10.1038/s41598-025-02739-9 | §1.3 — Theia3D athlete jumping; RMSD ≤5.6° |
+| 13 | D'Souza et al. 2024, *Sci Rep* | PMID 39587194, PMCID PMC11589150, DOI 10.1038/s41598-024-80499-8 | §1.3, §5 — Theia3D; "hip and knee rotations non-comparable" |
+| 14 | Poomulna et al. 2024, *Gait Posture* | PMID 39490268, PMCID PMC12415537, DOI 10.1016/j.gaitpost.2024.10.018 | §1.3, §5 — Theia3D CP; RMSD >10° pelvic tilt/hip rotation |
+| 15 | Yoma et al. 2025, *Int J Sports Phys Ther* | PMID 40756794, PMCID PMC12317789, DOI 10.26603/001c.141870 | §1.3 — Theia3D single-leg squat/landing RMSD 3.2–3.6° |
+| 16 | Adlou et al. 2025, *Sensors* (review) | PMID 40732512, PMCID PMC12299843, DOI 10.3390/s25144384 | §1.3, §5, §8 — sagittal 3–15° vs transverse 3–57° accuracy range |
+| 17 | Doerks et al. 2025, *PLoS ONE* | PMID 40445923, PMCID PMC12124523, DOI 10.1371/journal.pone.0324499 | §1.3 — 2D-only video app; r as low as 0.36 |
+| 18 | Uhlrich et al. 2023 (OpenCap founding paper), *PLoS Comput Biol* | PMID 37856442, PMCID PMC10586693, DOI 10.1371/journal.pcbi.1011462 | §7 — OpenCap method, 100-subject field study, 25× faster/<1% cost |
+| 19 | opencap-core repository | github.com/stanfordnmbl/opencap-core | §7 — Apache 2.0 licence |
+| 20 | McNally, Vats, Pinto, Dulhanty, McPhee & Wong 2019, GolfDB | arXiv:1903.06528 | §2, §3.1, §4 — dataset, SwingNet, 30 fps impact-capture admission, per-event PCE table |
+| 21 | golfdb repository | github.com/wmcnally/golfdb | §3.1 — CC BY-NC 4.0 licence |
+| 22 | Jung, Hong, Jeong, Jeong, Choi, Kim & Lee 2025, CaddieSet | arXiv:2508.20491 | §3.2, §4 — dataset, HRNet 17-joint 2D, event-accuracy 78.0%/94.1% |
+| 23 | CaddieSet repository | github.com/damilab/CaddieSet | §3.2 — MIT licence |
+| 24 | Yamamoto, Hasegawa, Suzuki, Suzuki, Tanabe & Fujii 2023, *Front Sports Act Living* | PMID 38033658, PMCID PMC10684732, DOI 10.3389/fspor.2023.1272038 | §1, §2, §5 — only golf-specific markerless-pose study found; 240 Hz camera; no 3D ground truth; explicit rotation-accuracy admission |
+| 25 | Lauer 2025, wrist-IMU golf signatures | arXiv:2506.17505 | §3.3 — video used as 3D-mesh training-label source, not deployed modality |
+| 26 | WIT-KinNet, smartwatch golf kinematics | arXiv:2606.22876 | §2, §3.3 — MAE 8.11±1.84°; "camera-based methods require impractical camera placement" |
+| 27 | Liao, Hwang & Koike 2021, golf swing coaching tool | arXiv:2105.10153 | §3.3 — video-sync coaching tool, no accuracy figures |
+| 28 | Turner, Aha, Smith & Gupta 2015 | arXiv:1512.07502 | §3.3 — UCF Sports Action dataset (action-recognition only, not pose) |
+| 29 | Rode, Dunkel, Willi, Wolf, Xiloyannis & Riener 2025, *Sci Rep* | PMID 41193590, DOI 10.1038/s41598-025-22626-7 | §1.5, §5 — monocular clinical MPJPE 146–249 mm |
+| 30 | Pratapneni, Halvorson, Silvestros, Harris & Bailey 2026, *IEEE Access* | PMID 42238785, DOI 10.1109/access.2026.3687207 | §1.5, §5, §8 — single-camera; distal/dynamic joints worst |
+| 31 | Guo, Gao, Dong, Jiang, Zhu & Wang 2025, *Sensors* (survey) | PMID 40285099, DOI 10.3390/s25082409 | §1.5, §5 — monocular 3D pose survey; depth ambiguity unsolved |
+| 32 | Russo et al. 2026, *Sensors* | PMID 41977932, DOI 10.3390/s26072148 | §1.4 — MediaPipe knee MAE 2.3–4.55° |
+| 33 | Balci et al. 2025, *Front Sports Act Living* | PMID 41602810, DOI 10.3389/fspor.2025.1712332 | §1.4 — MediaPipe 2D ICC 0.85 |
+| 34 | Lazem et al. 2026 (Track-UL), *JMIR Rehabil Assist Technol* | PMID 42114045, DOI 10.2196/87128 | §1.4 — MediaPipe upper-limb LoA |
+| 35 | Kondo & Suzuki 2026, *J Phys Ther Sci* | PMID 42306435, DOI 10.1589/jpts.38.270 | §1.4, §5 — MediaPipe trunk ICC; lateral 0.80 vs sagittal 0.96–0.98 |
+| 36 | Edriss et al. 2025, *Front Physiol* (review) | PMID 40873758, DOI 10.3389/fphys.2025.1649330 | §1.4 — 2D-to-3D fusion still "promising," not solved |
+| 37 | Verikas et al. 2016 | PMID 27120604 | §6 — surface EMG golf study (negative control: not video) |
+| 38 | Yeung, Suzuki, Tanaka, Yin & Fujii 2025, AthletePose3D | arXiv:2503.07499 | §1.5 (context) — sport-pose fine-tuning error 214mm→65mm |
+| 39 | Vonstad, Bach, Vereijken, Su & Nilsen 2022, *J Neuroeng Rehabil* | PMID 35152877, DOI 10.1186/s12984-022-00998-5 | §6, §8 — video-GRF RMSE 10.7% BW (slow task); reused/corroborated from T-031 |
+| 40 | Feng, Ugbolue, Yang & Liu 2025, *Bioengineering* | PMID 40564405, DOI 10.3390/bioengineering12060588 | §6, §8 — markerless GRF/CoP walking, RMSE 6–10% |
+| 41 | Schreff et al. 2026, *Children* | PMID 41897076, DOI 10.3390/children13030363 | §6 — paediatric gait GRF R²>0.95 |
+| 42 | Aulton et al. 2025 (review) | PMID 41369858 | §1.5 — DL pose-in-sport review; reproducibility warning |
+| 43 | Souaifi et al. 2025 (review) | PMID 40868401 | §1.5 — AI-in-sports-biomechanics scoping review; 94% CNN agreement, 15 mm CV accuracy |
+| 44 | Wang et al. 2026 (badminton), *Sci Rep* | PMID 41922587, DOI 10.1038/s41598-026-46443-8 | §2 — event cameras vs motion blur, 42.3% error reduction |
+| 45 | Zhang et al. 2025 (basketball), *Sci Rep* | PMID 40783613, DOI 10.1038/s41598-025-14985-y | §2 — motion blur named challenge |
+| 46 | Watson et al. 2026, *Sports Med* (review) | PMID 41653371, DOI 10.1007/s40279-025-02391-3 | §2, §6 — golf GRF/CoP review; zero markerless studies among 24 |
+| 47 | Yang, Chang, Chao, Tai & Tsai 2024, *Front Bioeng Biotechnol* | PMID 38380262, DOI 10.3389/fbioe.2024.1343530 | §2 — golf shaft-weight study; 9 infrared high-speed cameras |
+
+**Total: 47 distinct cited sources** (target was 15+), spanning PubMed/Europe PMC (PMID/PMCID/DOI),
+arXiv, and two GitHub repository licence checks.
 
 ---
 

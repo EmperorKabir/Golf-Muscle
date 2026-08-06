@@ -15,7 +15,9 @@ normalised.
 
 ---
 
-## Status: IN PROGRESS — being written incrementally, do not treat as final until this line is removed.
+## Status: COMPLETE (single-session pass, no sub-agents, WebFetch-only per session constraints). See
+§14 for a coverage summary against the 12 requested items, and the numbered "flagged"/"gap" notes
+throughout for items needing a follow-up pass.
 
 ---
 
@@ -485,4 +487,136 @@ inference, not a directly sourced golf-specific finding**:
   model; do not attempt to invent a stature-scaling correction to the angles themselves without
   further primary-source support, since none was found and the scale-invariance argument is the
   standard default assumption in biomechanics absent contrary evidence.
+
+---
+
+## 13. Additional corroborating sources (pelvis/thorax velocity timing; clinical ROM context)
+
+### 13.1 Steele KM, Roh EY, Mahtani G, et al. (2018), "Golf Swing Rotational Velocity: The Essential
+Follow-Through," *Annals of Rehabilitation Medicine* 42(5):713. PMC6246863 / doi:10.5535/arm.2018.42.5.713.
+
+Reports professional-golfer pelvis/upper-torso rotational velocity figures **numerically identical**
+to those Zhou et al. 2022 (§1.2) present as their professional reference cohort (downswing peak
+upper torso 551.7±47.6°/s; impact 458.5±73.0°/s; follow-through 929.2±185.1°/s; pelvis downswing peak
+415.2±32.9°/s; impact 288.8±70.9°/s; follow-through 309.8±42.1°/s; X-prime downswing −183.4±41.4°/s,
+impact −170.3±63.0°/s, follow-through −729.4±160.8°/s). **This is very likely the same underlying
+professional-golfer dataset reused between the two papers** (Zhou 2022 built its Swing Performance
+Index on this normative cohort) rather than two independent confirmations — treat as one data source
+appearing in two publications, not corroboration from two separate samples. Steele et al.'s specific
+contribution: peak upper-torso rotational velocity and peak X-prime occur **after impact, in the
+follow-through**, for both amateurs and professionals, with amateurs significantly reduced versus
+professionals (p<0.05) — the follow-through, not the downswing, carries the single fastest rotation
+of the whole swing for the upper torso.
+
+### 13.2 Beak SH, Choi A, et al. (2013), "Upper torso and pelvis linear velocity during the downswing
+of elite golfers," *Biomedical Engineering Online* 12:13. PMC3599250 / doi:10.1186/1475-925X-12-13.
+14 male professional golfers, age 29±8y, 8.2±4.8y career; peak clubhead speed 45.4±3.9 m/s;
+**downswing duration 0.31±0.04 s**.
+
+Linear (not angular) segment speed, with **timing as % of downswing** — useful for cross-checking
+the animation's downswing timing curve even though the quantity itself is translational:
+- Upper torso maximum linear speed 0.440±0.11 m/s, occurring at **59±26% of downswing**.
+- Pelvis maximum linear speed 0.434±0.11 m/s, occurring at **47±23% of downswing** — i.e. the pelvis's
+  peak linear speed leads the upper torso's by roughly 12 percentage points of downswing duration,
+  consistent with the proximal-to-distal sequencing principle in §2.
+- Segment-coupling: upper-torso/pelvis speed correlation r=0.97±0.02; pelvis's anterior/posterior
+  linear motion led the upper torso's in 93% of trials.
+
+### 13.3 Hsu et al. (2026), "The influence of sex on shoulder and hip joint resting position and
+mobility in elite golfers," *Scientific Reports*. PMC12902067 / doi:10.1038/s41598-026-36493-3.
+**Clinical/static resting-position and passive-ROM measures (not in-swing kinematics)** — included
+for anatomical-budget context only, not as swing pose data:
+
+| Measure | Male right | Male left | Female right | Female left |
+|---|---|---|---|---|
+| Shoulder internal rotation, resting position | 53.30 ± 10.37° | 77.51 ± 16.47° | 52.51 ± 15.08° | 58.30 ± 20.56° |
+| Hip internal rotation, resting position | 29.02 ± 17.03° | 32.52 ± 13.65° | 14.64 ± 10.13° | 14.55 ± 7.59° |
+| Hip straight-leg-raise ROM | 55.80 ± 14.85° | 60.37 ± 10.42° | 69.96 ± 12.32° | 69.09 ± 11.10° |
+
+Note these clinical resting-position hip-internal-rotation values (~29–33° in males) are
+**meaningfully lower** than the in-swing lead-hip internal-rotation peak of ~42–44° reported by Lin
+et al. 2023 (§6) and the ~50° amplitude figure pooled by Bourgain 2022 (§3) — a reminder that
+dynamic, loaded, swing-specific joint excursion can exceed passive clinical-exam ROM, so clinical
+norms should not be used as a hard ceiling when animating the swing itself.
+
+### 13.4 Hara D, Nakashima Y, et al. (2016), "Dynamic Hip Kinematics During the Golf Swing After
+Total Hip Arthroplasty," *American Journal of Sports Medicine* 44(7):1801–9. In-vivo fluoroscopic
+measurement: **≈50° of axial (internal/external) hip rotation on both lead and trail sides** during
+the swing in this implant population — an independent (non-optical-motion-capture) method broadly
+corroborating the ~40–50° hip axial rotation range reported by the other sources in §3/§6.
+Cup-head translation during the swing was minimal (≈1.3–1.5 mm), with no bone-to-bone or
+bone-to-implant contact at any swing phase — of limited direct relevance to this project beyond
+confirming the ~50° hip rotation figure from a completely different measurement modality.
+
+---
+
+## Bibliography (all sources cited above, in order of first appearance)
+
+1. Severin AC, Burkett BJ, McKean MR, et al. (2022). "Three-dimensional kinematics in healthy older
+   adult males during golf swings." *Sports Biomechanics*. PMC7044058. doi:10.1080/14763141.2019.1649452.
+2. Zhou JY, et al. (2022). "The Swing Performance Index: Developing a single-score index of golf
+   swing rotational biomechanics quantified with 3D kinematics." *Frontiers in Sports and Active
+   Living*. PMC9816382. doi:10.3389/fspor.2022.986281.
+3. Grathwohl J, Sillevis R (2024). "Improving Golf Swing Kinematics in a 78-Year-Old Golfer with
+   Lower Back Pain: A Case Report." *American Journal of Case Reports*. PMC11642117.
+   doi:10.12659/AJCR.946077.
+4. Wheare MJ, et al. (2021). "Reliability and Validity of the Polhemus Liberty System for Upper Body
+   Segment and Joint Angular Kinematics of Elite Golfers." *Sensors* 21(13):4330. PMC8271493.
+   doi:10.3390/s21134330.
+5. Chen et al. (2024). "Does Overhead Squat Performance Affect the Swing Kinematics and Lumbar Spine
+   Loads during the Golf Downswing?" *Sensors* 24(5). PMC10893031. doi:10.3390/s24041252.
+6. Lin et al. (2023). "Lower Limb Biomechanics during the Golf Downswing in Individuals with and
+   without a History of Knee Joint Injury." *Bioengineering* 10(2). PMC10215287.
+7. Edwards N, Dickin C, Wang H (2020). "Low back pain and golf: A review of biomechanical risk
+   factors." *Sports Medicine and Health Science* 2(1). PMC9219256. doi:10.1016/j.smhs.2020.03.002.
+8. Bourgain M, Rouch P, Rouillon O, Thoreux P, Sauret C (2022). "Golf Swing Biomechanics: A
+   Systematic Review and Methodological Recommendations for Kinematics." *Sports* 10(6):91.
+   PMC9227529. doi:10.3390/sports10060091. (Systematic review of 92 kinematics articles; pooled
+   Tables 6–10 values attributed to Murakami et al. and Kim et al. within it are cited as
+   "Bourgain 2022, citing Murakami/Kim" since the primary papers' own text was not independently
+   fetched in this session.)
+9. White AA, Panjabi MM (1990). *Clinical Biomechanics of the Spine*, 2nd ed., J.B. Lippincott, p.107
+   — segmental lumbar ROM table, retrieved via Wikipedia's "Lumbar vertebrae" article citation
+   (secondary retrieval, flagged in §9).
+10. McNally WJ, et al. (2019). "GolfDB: A Video Database for Golf Swing Sequencing." CVPR Workshops
+    2019. Repository: github.com/wmcnally/golfdb (fetched directly).
+11. Steele KM, Roh EY, Mahtani G, et al. (2018). "Golf Swing Rotational Velocity: The Essential
+    Follow-Through." *Annals of Rehabilitation Medicine* 42(5):713. PMC6246863.
+    doi:10.5535/arm.2018.42.5.713.
+12. Beak SH, Choi A, Choi MT, Mun JH (2013). "Upper torso and pelvis linear velocity during the
+    downswing of elite golfers." *Biomedical Engineering Online* 12:13. PMC3599250.
+    doi:10.1186/1475-925X-12-13.
+13. Hsu et al. (2026). "The influence of sex on shoulder and hip joint resting position and mobility
+    in elite golfers." *Scientific Reports*. PMC12902067. doi:10.1038/s41598-026-36493-3.
+14. Hara D, Nakashima Y, Hamai S, et al. (2016). "Dynamic Hip Kinematics During the Golf Swing After
+    Total Hip Arthroplasty." *American Journal of Sports Medicine* 44(7):1801–9.
+15. Horan SL, et al. — cited only secondhand via Bourgain 2022 (§2, §10) for the head/pelvis/torso
+    kinematic-sequence and head-rotation-speed claim; primary paper not independently located or
+    fetched in this session — **flagged as unverified**, do not treat as independently confirmed.
+16. McHardy A, Pollard H (2005) and the Jobe/Pink/Perry/Kao/Bechler five-phase EMG lineage — carried
+    over by reference from `docs/research/01-phase-taxonomy-and-timing.md` for phase-boundary
+    consistency; not re-fetched in this session.
+17. Cheetham PJ, Rose GA, Hinrichs RN, et al. and Neal RJ, et al. — the classic golf kinematic-
+    sequence originators, referenced only as named/discussed inside Bourgain 2022's review text
+    (§2); **their primary papers could not be located directly in Europe PMC/PubMed in this session**
+    (search returned only recent unrelated kinematic-sequence papers) — a genuine access gap, not
+    just unsummarised text.
+
+---
+
+## 14. Coverage summary against the 12 requested items
+
+| # | Item | Coverage |
+|---|---|---|
+| 1 | Pelvis rotation (address/top/impact/finish, peak velocity+timing) | **Good** — top/impact/finish angles (§1.1), peak velocities by phase (§1.1/1.2/13.1), % downswing timing for peak linear speed (§13.2). Address-specific pelvis rotation angle only from a single n=1 case report (§1.3) — weak for address specifically. |
+| 2 | Thorax rotation (as above) | **Good** — same sources as pelvis; X-factor/X-prime relates the two directly. |
+| 3 | Spine segmentation; lumbar rotation limit | **Good** — lumbar limit figure sourced (§9); thoracic-specific total ROM figure not found (flagged gap). |
+| 4 | Lead/trail shoulder (abd/add, flex/ext, IR/ER) | **Partial** — lead shoulder well covered event-by-event (§4); trail shoulder only as pooled amplitude (§3), no event-resolved trail-shoulder table found despite searching. |
+| 5 | Elbows (lead straight-arm question, trail at top) | **Partial** — only amplitude figures (lead 26°, trail 95°, §3), consistent with "lead arm stays close to straight, trail elbow bends substantially at top" but no absolute degree value at any single event for either elbow — a genuine gap despite repeated search attempts. |
+| 6 | Wrists (flex/ext, dev, cock angle, release timing) | **Good** — full event-resolved table both sides (§4); release/timing curve not separately isolated but top-of-backswing and impact values bound it. |
+| 7 | Hips/knees (flex at address, knee flexion through swing, hip IR/ER both sides) | **Good** — §1.1, §3, §6, §13.3/13.4 give multiple independent datasets; address-specific knee/hip flexion values not found as a clean standalone figure (only address trunk/pelvis figures exist), flagged gap. |
+| 8 | Posture (forward spine tilt at address, side bend at impact) | **Partial** — a single clear address trunk-flexion figure (45°, §7); side bend at impact only isolated for the lumbar segment (21°, §8), not whole-trunk. |
+| 9 | Head (position/stability) | **Weak** — only a provisional, unverified rotational-speed figure (§10); no translation/sway data found at all. |
+| 10 | Public 3D mocap datasets | **Resolved as "none found"** — GolfDB exists but is 2D video, non-commercial licence, not joint-angle data (§11); CMU database unconfirmed due to a TLS failure. |
+| 11 | Anthropometry/stature scaling | **Resolved as "no golf-specific source found"** — answered via the general angle-invariance principle in biomechanics, explicitly flagged as reasoned inference rather than a directly-cited golf-specific finding (§12). |
 
