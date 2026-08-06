@@ -1,0 +1,54 @@
+# 14 — Deep Core and Intra-Abdominal Pressure in the Golf Swing
+
+Status: IN PROGRESS (T-036). Incremental write-up; sources appended as retrieved.
+
+Scope: diaphragm, pelvic floor, transversus abdominis (TrA), intra-abdominal pressure (IAP) as a
+spinal stabilising mechanism, and breathing pattern during the golf swing. Model currently has
+**no diaphragm and no pelvic floor zone**. Prior research (Marta et al. 2012) established that
+TrA and multifidus have never been measured in golf with fine-wire EMG.
+
+---
+
+## 0. Source log (running list, numbered as added)
+
+1. Hodges PW, Eriksson AE, Shirley D, Gandevia SC (2005). "Intra-abdominal pressure increases stiffness of the lumbar spine." *J Biomech*. PMID 16023475. DOI 10.1016/j.jbiomech.2004.08.016.
+2. Hodges PW, Gandevia SC (2000). "Changes in intra-abdominal pressure during postural and respiratory activation of the human diaphragm." *J Appl Physiol*. PMID 10956340. DOI 10.1152/jappl.2000.89.3.967.
+3. Hodges PW, Gandevia SC (2000). "Activation of the human diaphragm during a repetitive postural task." *J Physiol*. PMID 10618161. DOI 10.1111/j.1469-7793.2000.t01-1-00165.xm.
+4. Hodges PW, Butler JE, McKenzie DK, Gandevia SC (1997). "Contraction of the human diaphragm during rapid postural adjustments." *J Physiol*. PMID 9423192. DOI 10.1111/j.1469-7793.1997.539bb.x.
+5. Hodges PW, Heijnen I, Gandevia SC (2001). "Postural activity of the diaphragm is reduced in humans when respiratory demand increases." *J Physiol*. PMID 11744772. DOI 10.1111/j.1469-7793.2001.00999.x.
+6. Gandevia SC, Butler JE, Hodges PW, Taylor JL (2002). "Balancing acts: respiratory sensations, motor control and human posture." *Clin Exp Pharmacol Physiol*. PMID 11906469. DOI 10.1046/j.1440-1681.2002.03611.x.
+7. Cholewicki J, Juluru K, McGill SM (1999). "Intra-abdominal pressure mechanism for stabilizing the lumbar spine." *J Biomech*. PMID 10050947. DOI 10.1016/s0021-9290(98)00129-8.
+8. Cholewicki J, Juluru K, Radebold A, Panjabi MM, McGill SM (1999). "Lumbar spine stability can be augmented with an abdominal belt and/or increased intra-abdominal pressure." *Eur Spine J*. PMID 10552322, PMCID PMC3611203. DOI 10.1007/s005860050192.
+9. Cholewicki J, Ivancic PC, Radebold A (2002). "Can increased intra-abdominal pressure in humans be decoupled from trunk muscle co-contraction during steady state isometric exertions?" *Eur J Appl Physiol*. PMID 12070622. DOI 10.1007/s00421-002-0598-0.
+10. Cholewicki J, Reeves NP (2004). "All abdominal muscles must be considered when evaluating the intra-abdominal pressure contribution to trunk extensor moment and spinal loading." *J Biomech*. PMID 15111085. DOI 10.1016/j.jbiomech.2003.09.021 (letter/comment, no abstract retrieved).
+11. Cholewicki J, McGill KC, Shah KR, Lee AS (2010). "The effects of a three-week use of lumbosacral orthoses on trunk muscle activity and on the muscular response to trunk perturbations." *BMC Musculoskelet Disord*. PMID 20609255, PMCID PMC2912792. DOI 10.1186/1471-2474-11-154.
+12. Ivancic PC, Cholewicki J, Radebold A (2002). "Effects of the abdominal belt on muscle-generated spinal stability and L4/L5 joint compression force." *Ergonomics*. PMID 12167204. DOI 10.1080/00140130210136035.
+13. Sembera M, Busch A, Kobesova A, et al. (2022). "Postural-respiratory function of the diaphragm assessed by M-mode ultrasonography." *PLoS ONE*. PMID 36215306, PMCID PMC9550028. DOI 10.1371/journal.pone.0275389.
+14. Illidi CR, Romer LM (2022). "Stabilising function of the human diaphragm in response to involuntary augmented breaths induced with or without lower-limb movements." *Exp Physiol*. PMID 36177711 [PMCID as retrieved: PMC10092310 — verify]. DOI 10.1113/ep090605.
+15. Stokes IA, Gardner-Morse MG, Henry SM (2010). "Intra-abdominal pressure and abdominal wall muscular function: Spinal unloading mechanism." *Clin Biomech*. PMID 20655636. DOI 10.1016/j.clinbiomech.2010.06.018.
+16. Liu T, Khalaf K, Adeeb S, El-Rich M (2019). "Numerical Investigation of Intra-abdominal Pressure Effects on Spinal Loads and Load-Sharing in Forward Flexion." *Front Bioeng Biotechnol*. PMID 31921829. DOI 10.3389/fbioe.2019.00428.
+17. Hodges PW, Richardson CA (1999). "Transversus abdominis and the superficial abdominal muscles are controlled independently in a postural task." *Neurosci Lett*. PMID 10327176. DOI 10.1016/s0304-3940(99)00216-5.
+18. Hodges PW, Gandevia SC, Richardson CA (1997). "Contractions of specific abdominal muscles in postural tasks are affected by respiratory maneuvers." *J Appl Physiol*. PMID 9292460. DOI 10.1152/jappl.1997.83.3.753.
+19. Hodges PW, Cresswell AG, Daggfeldt K, Thorstensson A (2000). "Three dimensional preparatory trunk motion precedes asymmetrical upper limb movement." *Gait Posture*. PMID 10899662. DOI 10.1016/s0966-6362(99)00055-7.
+20. Mannion AF, Pulkovski N, Schenk P, Hodges PW, Gerber H, Loupas T, Gorelick M, Sprott H (2008). "A new method for the noninvasive determination of abdominal muscle feedforward activity based on tissue velocity information from tissue Doppler imaging." *J Appl Physiol*. PMID 18187614. DOI 10.1152/japplphysiol.00794.2007.
+21. Hodges PW, Richardson CA (1996). "Inefficient muscular stabilization of the lumbar spine associated with low back pain: a motor control evaluation of transversus abdominis." *Spine*. PMID 8961451. DOI 10.1097/00007632-199611150-00014.
+22. Vesentini G, et al. (2019). "Pelvic Floor and Abdominal Muscle Cocontraction" (systematic review). *Clinics (Sao Paulo)*. PMID 31778432, PMCID PMC6862713. DOI 10.6061/clinics/2019/e1319.
+23. Silva VR, Riccetto CL, Martinho NM, et al. (2016). Gametherapy/TrA-PFM co-activation study. *Int Braz J Urol*. PMID 27564290, PMCID PMC5006775. DOI 10.1590/s1677-5538.ibju.2014.0580.
+24. Cervera-Cano M, Valcárcel-Linares D, et al. (2024). "Ultrasound Evaluation of Core Muscle Activity" (pelvic floor, multifidus, diaphragm excursion, LBP case-control). *Diagnostics*. PMID 39451633, PMCID PMC11506778. DOI 10.3390/diagnostics14202310.
+25. Hwang YI, Park DJ (2017). ADIM + pelvic floor coactivation study. *J Exerc Rehabil*. PMID 28702446, PMCID PMC5498091. DOI 10.12965/jer.1734996.498.
+26. Becker LC, Kohlrieser DA (2014). "Conservative management of sports hernia in a professional golfer: a case report." *Int J Sports Phys Ther*. PMID 25383252, PMCID PMC4223293. (Only golf + abdominal/core rehab hit found; not a physiological measurement study.)
+27. Hamada Y, Akasaka K, Okubo Y, et al. (2025). "Effects of a Golfers' Low Back Pain Exercise Prevention Program on Physical Function and Golf Performance in Adolescent Golfers." *BMC Sports Sci Med Rehabil*. PMID 41272883, PMCID PMC12639999. DOI 10.1186/s13102-025-01287-z.
+28. Grathwohl J, Sillevis R (2024). "Improving Golf Swing Kinematics in a 78-Year-Old Golfer with Lower Back Pain: A Case Report." *Am J Case Rep*. PMID 39645574, PMCID PMC11642117. DOI 10.12659/AJCR.946077.
+29. Chen ZH, Pandy M, Huang TY, Tang WT (2024). "Does Overhead Squat Performance Affect the Swing Kinematics and Lumbar Spine Loads during the Golf Downswing?" *Sensors*. PMID 38400409, PMCID PMC10893031. DOI 10.3390/s24041252.
+30. Thomas ZM, Wilk KE (2023). "The Golfer's Fore, Fore +, and Advanced Fore + Exercise Program." *Int J Sports Phys Ther*. PMID 37425113, PMCID PMC10324324. DOI 10.26603/001c.74973.
+31. Yamane M, Aoki M, Sasaki Y, Hayashi T (2022). "Feedforward coactivation of trunk muscles during rapid shoulder movements" (fine-wire EMG psoas major, quadratus lumborum, TrA, lumbar multifidus). *JSES Int*. PMID 35813146, PMCID PMC9264006. DOI 10.1016/j.jseint.2022.04.003.
+32. Weber T, Debuse D, Salomoni SE, et al., Hodges PW (2017). "Trunk muscle activation during movement with a new exercise device for lumbo-pelvic reconditioning" (fine-wire + surface EMG). *Physiol Rep*. PMID 28320889, PMCID PMC5371561. DOI 10.14814/phy2.13188.
+33. De Martino E, Salomoni SE, Winnard A, et al., Hodges PW, van Dieën JH, Caplan N (2020). "Hypogravity reduces trunk admittance and lumbar muscle activation in response to external perturbations" (intramuscular EMG). *J Appl Physiol*. PMID 32163325, PMCID PMC7191503. DOI 10.1152/japplphysiol.00756.2019.
+34. Zemková E, Amiri B, Horníková H, Zapletalová L (2024). "Potential neurophysiological and biomechanical risk factors for sport-related back problems: A scoping review." *Sports Med Health Sci*. PMID 34070164 [dup PMID as retrieved — verify], PMCID PMC11067771. DOI 10.1016/j.smhs.2023.12.006.
+35. Daigle F, Léonard G, Émond M, et al. (2022). "Pressure Biofeedback Unit vs. RUSI in Older Adults" (TrA thickness-change validity limits). *J Geriatr Phys Ther*. PMID 33577235. DOI 10.1519/jpt.0000000000000295.
+36. Valentín-Mazarracin I, Nogaledo-Martín M, López-de-Uralde-Villanueva I, et al. (2021). "Reproducibility of Manual Palpation vs. RUSI for Deep Abdominal Muscles." *Diagnostics*. PMID 33668663. DOI 10.3390/diagnostics11020298.
+37. Fernández-Carnero S, Martin-Saborido C, et al. (2021). "RUSI Technique in Lumbopelvic Region: Systematic Review & Meta-Analysis." *J Clin Med*. PMID 34884401. DOI 10.3390/jcm10235699.
+38. Payán-Salcedo HA, Arias-Coronel F, Estela-Zape JL, Serna-Orozco MF (2024). "Diaphragmatic Ultrasonography in Sports Performance — Systematic Review." *Life (Basel)*. PMID 39459550, PMCID PMC11508651. DOI 10.3390/life14101250.
+39. Ladriñán-Maestro A, Sánchez-Infante J, Rodríguez-Sanz D, Sánchez-Sierra A (2026). "Short-term Effects of Inspiratory Muscle Warm-up and Fatigue in Professional Basketball Players." *Eur J Appl Physiol*. PMID 41493585. DOI 10.1007/s00421-025-06116-2.
+40. Akkuş Uçar M, Yılmaz C, Soylu HH, et al. (2025). "Short-term Resistance Training Effects in Older Women" (diaphragm thickness). *Front Public Health*. PMID 40791617, PMCID PMC12337280. DOI 10.3389/fpubh.2025.1630525.
+

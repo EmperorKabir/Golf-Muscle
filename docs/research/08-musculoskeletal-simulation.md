@@ -157,9 +157,154 @@ publisher site). DOI: 10.1007/s10439-023-03273-3.
   axial rotation angle as a measured/modelled DOF, corroborating that axial rotation is
   tractable in OpenSim spine extensions generally (model identity pending).
 
-*(Still pending: Hamner 2010 running model, Gait2392, MoBL-ARMS upper-extremity model,
-Thoracoscapular Shoulder Model, Christophy 2012 and Bruno 2015 lumbar models — fetching
-next.)*
+### 3.5 Hamner, Seth, Delp 2010 — running model (basis of many derivatives)
+Hamner SR, Seth A, Delp SL. "Muscle contributions to propulsion and support during
+running." *J Biomech* 2010;43(14):2709–2716. DOI: 10.1016/j.jbiomech.2010.06.025.
+PMID 20691972, PMCID PMC2973845. Free full text via PMC.
+- 3-D muscle-actuated running simulation, **92 musculotendon actuators** (lower-limb
+  focused, as in Gait2392 lineage). Findings: quadriceps dominate braking/support in early
+  stance; soleus/gastrocnemius dominate propulsion/support in late stance; arm
+  contribution to mass-centre acceleration <1% (i.e. this model's upper body/arms are
+  near-irrelevant to its stated purpose and not built out with real musculature).
+- Confirmed still in active comparative use: Luis I, Afschrift M, De Groote F,
+  Gutierrez-Farewik EM 2022, *Front Bioeng Biotechnol*, PMID 36277379/PMCID PMC9583830,
+  compares the Hamner model against other generic models for muscle-excitation
+  estimation across walking speeds.
+
+### 3.6 Gait2392/Gait2354 (Delp/Anderson-Pandy lineage)
+Direct SimTK/OpenSim documentation page for this model returned HTTP 404 on this fetch
+pass; identity and specs corroborated indirectly via active 2025–2026 usage citations
+(e.g. Zang et al. 2026, *Bioengineering*, PMID 42510440, "individually scaled OpenSim
+gait2392 models" for metabolic-power estimation) confirming the model remains a standard,
+actively-used generic OpenSim gait model as of 2026 but **DOF/muscle count for this
+specific model could not be independently re-verified via primary source in this research
+pass** — treat any figure for Gait2392 (commonly cited elsewhere as 23 DOF / 92 lower-limb
+muscles with a single lumped torso segment and one 3-DOF or often-locked lumbar joint) as
+UNVERIFIED pending direct confirmation; do not rely on it for load-bearing decisions
+without checking the OpenSim model file directly.
+
+### 3.7 MoBL-ARMS Dynamic Upper Limb Model — Saul et al. 2015
+Saul KR, Hu X, Goehler CM, Vidt ME, Daly M, Velisar A, Murray WM. "Benchmarking of dynamic
+simulation predictions in two software platforms using an upper limb musculoskeletal
+model." *Comput Methods Biomech Biomed Engin* 2015;18(13):1445–1458.
+DOI: 10.1080/10255842.2014.916698. PMID 24995410, PMCID PMC4282829. Free in PMC.
+SimTK project: https://simtk.org/projects/upexdyn (13,163 downloads as of last check;
+license listed on the SimTK page as a **"Creative Commons ANC [non-commercial] Use
+Agreement"** — NOTE: non-commercial licences are a hard blocker for this project's "free
+public Android app" plan if the app has any monetisation/ads, or possibly even if fully
+free depending on exact NC clause wording; must re-verify exact licence text before any
+use, see §6).
+- **7 DOF used for dynamic simulation** (reduced from a 15-DOF kinematic foundation):
+  shoulder elevation/rotation, elevation plane, elbow flexion, forearm rotation, wrist
+  flexion, wrist deviation.
+- **50 Hill-type muscle-tendon actuators representing 32 distinct muscles/compartments.**
+- Scope: **shoulder to hand only** — glenohumeral joint with clavicle/scapula motion,
+  elbow, forearm, wrist, thumb, index finger; "hand reoriented into a grip posture" for
+  simulation. **No trunk/torso segment at all** — this model assumes a fixed thorax/torso
+  and cannot represent trunk rotation; it would need to be grafted onto a separate
+  trunk/lower-body model for a golf swing.
+- Computation time (cross-platform benchmarking, EMG-driven simulations): **OpenSim
+  3–43 minutes per simulation**; **SIMM-SD/Fast 2 to 20+ hours** for equivalent runs.
+  Computed Muscle Control (CMC) optimization: **average 1 hour 18 minutes 36 seconds
+  (1:18:36) of compute per 1 second of simulated motion** — i.e. roughly **4,700× slower
+  than real time** for CMC on this model/platform combination. This is a directly-quoted,
+  concrete computational-cost figure (see §5).
+
+### 3.8 Thoracoscapular Shoulder Model — Seth, Dong, Matias, Delp 2019
+Seth A, Dong M, Matias R, Delp S. "Muscle Contributions to Upper-Extremity Movement and
+Work From a Musculoskeletal Model of the Human Shoulder." *Front Neurorobot*
+2019;13:90. DOI: 10.3389/fnbot.2019.00090. PMID 31780916, PMCID PMC6856649. Open access.
+SimTK project: https://simtk.org/projects/thoracoscapular
+- **6 DOF at the scapulothoracic joint** alone (independent scapular motion, not
+  artificially coupled to the humerus as in older models), plus glenohumeral and other
+  joint DOF (exact grand total not stated in the abstract/methods excerpt fetched).
+- **16 major shoulder muscles**, subdivided into ~50+ individual muscle bundles/paths
+  (e.g. trapezius = 4 bundles, deltoid = 3 bundles), built from van der Helm's muscle
+  parameter set.
+- Includes the trunk/thorax as an anatomical reference (thorax sensor at T1 spinous
+  process; scapulothoracic joint modelled against an ellipsoid thorax surface) but this is
+  a **shoulder-complex model, not a full trunk/spine model** — the thorax itself is
+  effectively a fixed/rigid reference body, not muscle-actuated for axial rotation.
+- Method: **Computed Muscle Control (CMC)**, tracking IK-derived joint angles.
+- **Computation time (concrete, directly quoted):** IK 1.0–1.3× real-time; **CMC
+  377–408× real-time** (i.e. ~6.3–6.8 minutes of compute per 1 second of simulated
+  motion); **forward dynamics 11–18× real-time** (i.e. ~11–18 seconds of compute per 1
+  second of simulated motion) — a "4–17× speedup" vs prior shoulder models is claimed.
+- Licence: page text states "the model and simulation environment (OpenSim) are freely
+  available, deployable, and modifiable for **any research or commercial use without
+  restrictions**" — the most permissive licence statement found so far in this research
+  pass (contrast with MoBL-ARMS's apparent NC restriction, §3.7). Exact licence file
+  text still to be independently confirmed (see §6).
+
+### 3.9 Christophy 2012 and Bruno 2015 lumbar spine models (via Carpenedo et al. 2025 review)
+Direct primary-source fetch of the individual 2012/2015 papers was not completed this
+pass; both are characterised via a systematic review that tabulates them alongside dozens
+of other thoraco-lumbar models:
+
+Carpenedo M, et al. "Advances in Musculoskeletal Modeling of the Thoraco-Lumbar Spine: A
+Systematic Review." *Ann Biomed Eng* 2025;53(11):2883–2910.
+DOI: 10.1007/s10439-025-03818-8. PMID 40913215, PMCID PMC12575568. Open access.
+This review is the single most useful source located for the trunk-rotation question and
+is used as the master comparison table for §3/§4:
+
+| Model | Year | Lumbar joint DOF | Muscle fascicles | Axial rotation | Flex-ext | Type |
+|---|---|---|---|---|---|---|
+| Christophy | 2012 | 3 | 238 | Limited | Primary | Multibody (MB) |
+| Bruno | 2015 | 3 | 248 | Limited | Primary | Multibody (MB) |
+| Ignasiak | 2016 | 6 | 454–508 | **Yes** | Yes | Multibody (MB) |
+| Rajaee | 2021 | — | 56 | Limited | Primary | Finite Element (FE) |
+
+- Review-wide statistics: of 26 original multibody spine models surveyed, **15/26 (58%)
+  used only 3-DOF lumbar joints** (these are stated to have only "Limited" axial rotation
+  capability — 3-DOF joints in this literature typically = flexion-extension + lateral
+  bending + a constrained/coupled axial term, not a free independent axial DOF at every
+  level), while **10/26 (38%) used full 6-DOF joints**, which the review states "better
+  accommodate axial rotation capability." **Ignasiak (2016) is explicitly named as
+  properly supporting axial rotation.**
+- Ribcage/thorax representation: included in 61% of models, either as "a lumped rigid
+  segment" (21 models) or as an articulated rib system (a minority, e.g. Ignasiak).
+- Dynamics approach across all 46 surveyed models: **34/46 (74%) inverse-dynamics (ID)
+  based; 6/46 (13%) forward-dynamics (FD) based; 2/46 (4%) FD-assisted hybrid.** The large
+  majority use ID + optimisation criteria minimising muscle stress/cost, not forward
+  simulation from activation.
+- Licensing (review's own summary): "MB models... benefited from open-source
+  availability" via OpenSim/SimTK; separately, "three AnyBody-based models can be
+  consulted by requesting a free [AnyBody] trial licence" (i.e. NOT free/open — requires a
+  commercial licence holder, see §6).
+
+**Direct answer to the brief's trunk-rotation question, using this review's own
+categorisation: Christophy (2012) and Bruno (2015) — both influential, widely-reused
+OpenSim lumbar models — have only "Limited" axial rotation, i.e. they are NOT adequate
+for representing the transverse-plane trunk rotation that is the core of a golf swing.
+Ignasiak (2016) is the one multibody model in this review explicitly credited with proper
+6-DOF, axial-rotation-capable lumbar joints.**
+
+### 3.10 Remus et al. 2023 — muscle-driven FORWARD-DYNAMICS hybrid FE-multibody lumbosacral model
+Remus R, Selkmann S, Lipphaus A, Neumann M, Bender B. "Muscle-driven forward dynamic
+active hybrid model of the lumbosacral spine: combined FEM and multibody simulation."
+*Front Bioeng Biotechnol* 2023;11:1223007. DOI: 10.3389/fbioe.2023.1223007.
+PMID 37829567, PMCID PMC10565495. Open access.
+**This is the single strongest piece of evidence located in this entire research pass
+that muscle activation CAN genuinely drive motion forward in a spine/trunk model** — see
+full detail cross-referenced in §2 below. Key figures: rigid vertebrae L1–S1 coupled to
+fibre-reinforced FE intervertebral discs, ligaments, facet joints; **129 muscle fascicles
+per side (119 without transversus abdominis)** across 12 muscle groups (latissimus dorsi,
+quadratus lumborum, multifidus, erector spinae components, abdominals, psoas major, etc.).
+"All postures were generated purely muscle-actuated, without prescribing complete
+kinematics to the dynamic bones" — genuine forward dynamics, not tracking/CMC. BUT:
+**validation and simulated movement were restricted to the sagittal plane only**
+(flexion 0°→+30°, extension to −10°, 13 load cases with/without up to 20 kg handheld
+loads) — **trunk axial rotation was explicitly NOT modelled**; the authors list "axial
+rotations and lateral flexions ... non-symmetric loads" as future work. Computation time:
+**~30 minutes per load case on a desktop PC (Intel i7-10700K @ 3.80GHz, 32GB RAM, Windows
+11)** for a single quasi-static-to-dynamic posture-change simulation. Validation: predicted
+intradiscal pressure within ±4.4% average deviation from in vivo literature values; high
+qualitative agreement between predicted and EMG-measured relative muscle-group force
+changes; intra-abdominal pressure predictions matched measurements for upright posture.
+
+*(Still to fetch: OpenSim core software licence text, AnyBody commercial licence/cost,
+LifeMOD/Visual3D licensing, general muscle-redundancy review literature, and any
+real-time/mobile-feasible musculoskeletal simulation literature — continuing.)*
 
 ## 4. Known limitations — muscle redundancy, co-contraction, non-uniqueness
 
