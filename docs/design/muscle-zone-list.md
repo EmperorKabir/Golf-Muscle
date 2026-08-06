@@ -189,6 +189,148 @@ weight, and the renderer's uncertainty treatment should reflect that.
    maximus and the hamstrings — are invisible from the front. The current style studies show only anterior
    zones and therefore omit the most important part of the swing.
 
+## Revision 2 — whole-body extension (user directive, 2026-08-06)
+
+> "Bear in mind many subtle and support muscles can activate — core, even feet, calves etc. The whole body
+> needs assessing deeply."
+
+Revision 1 had structural gaps: **no foot musculature at all**, no deep calf compartment, no diaphragm or
+pelvic floor, and several genuine muscles pooled into single blobs (forearm flexors/extensors as two zones,
+deep hip rotators as one zone, erector spinae undifferentiated into its three columns). Those pooled zones
+hide exactly the subtle stabiliser detail the user is asking for.
+
+The additions below are all **swing-relevant**: the golfer stands on the ground, and every force reaching
+the clubhead passes through the foot. Ground reaction force data already in
+`03-lower-limb-and-hip-activation.md` shows lead-foot vertical force peaking near 95% bodyweight ~40 ms
+before impact, and free-moment torque of 17–19 Nm at the lead foot. **Something must generate and control
+that, and none of it is currently represented in the model.**
+
+### Foot and ankle — added (previously absent entirely)
+
+| Zone | Tier | Note |
+|---|---|---|
+| Tibialis posterior | D | Primary dynamic arch support and inverter; controls pronation under load |
+| Flexor hallucis longus | D | Big-toe flexor; the last contact point in push-off |
+| Flexor digitorum longus | D | Toe flexion, arch support |
+| Extensor hallucis longus | D | — |
+| Extensor digitorum longus | D | — |
+| Peroneus brevis | D | Eversion; distinct from peroneus longus, which is already listed |
+| Peroneus tertius | D | — |
+| Plantaris | D | Vestigial in many people; include for completeness, flag anatomical variability |
+| Popliteus | D | Unlocks the knee; relevant to lead-knee rotation under load |
+| Abductor hallucis | D | Intrinsic; medial arch |
+| Flexor digitorum brevis | D | Intrinsic |
+| Quadratus plantae, lumbricals, interossei (grouped) | D | Intrinsic; grouped because no source separates them in any sporting task |
+| Abductor digiti minimi (foot) | D | Intrinsic; lateral border |
+
+### Deep core and respiratory — added
+
+| Zone | Tier | Note |
+|---|---|---|
+| Diaphragm | D | Generates intra-abdominal pressure; a genuine trunk stabiliser, not merely respiratory |
+| Pelvic floor (levator ani group) | D | The floor of the pressurised abdominal canister |
+| Intercostals (internal and external) | D | Rib cage control during forced trunk rotation |
+
+Intra-abdominal pressure is a recognised spinal-stabilisation mechanism. Whether it has been measured in
+golf is now an explicit research question (T-036).
+
+### Spine — pooled zones split, deep layers added
+
+| Zone | Tier | Note |
+|---|---|---|
+| Iliocostalis (thoracic and lumbar) | B | Erector spinae was previously one pooled zone; the three columns have different lines of action |
+| Longissimus (thoracic and lumbar) | B | As above |
+| Spinalis | D | Smallest of the three columns |
+| Semispinalis (thoracis and cervicis) | D | Deep rotator layer |
+| Rotatores | D | Segmental rotators — named for the very action that defines the golf swing, never measured in it |
+| Interspinales and intertransversarii | D | Segmental; likely proprioceptive more than force-producing |
+| Splenius capitis and cervicis | D | — |
+| Serratus posterior superior and inferior | D | — |
+
+Note: existing zones 31 and 32 (erector spinae thoracic/lumbar, tier A from Li 2023's T8/L3 electrodes) are
+**retained as-is**. Surface electrodes at T8 and L3 cannot distinguish iliocostalis from longissimus, so the
+tier-A data stays attached to the pooled zones while the split columns carry their own lower tiers. Do not
+double-count these when building the activation model.
+
+### Neck — added
+
+| Zone | Tier | Note |
+|---|---|---|
+| Scalenes (anterior, middle, posterior) | D | — |
+| Longus colli and longus capitis (deep neck flexors) | D | — |
+| Suboccipital group | D | Head stability; the head stays notably still through the swing |
+
+### Hip and pelvis — pooled zone split, muscles added
+
+| Zone | Tier | Note |
+|---|---|---|
+| Psoas major | D | Split from iliopsoas; distinct origin on the spine, so it acts on the lumbar spine as well as the hip |
+| Iliacus | D | Split from iliopsoas; purely pelvic origin |
+| Piriformis | D | Split out of the previously pooled "deep external rotators" |
+| Obturator internus and externus | D | As above |
+| Superior and inferior gemellus | D | As above |
+| Quadratus femoris | D | As above |
+| Pectineus | D | — |
+| Gracilis | D | Biarticular — hip adduction plus knee flexion |
+| Sartorius | D | Longest muscle in the body; biarticular, and a hip external rotator |
+
+### Forearm — pooled zones split into individual muscles
+
+Previously two zones ("wrist and finger flexors", "wrist and finger extensors"). The tier-A data from
+Glazebrook 1994 was recorded on **pooled electrode sites**, so the pooled zones are retained for that data
+and the individual muscles are added beneath them.
+
+| Zone | Tier | Note |
+|---|---|---|
+| Flexor carpi radialis | B | Individually fine-wire tested by Farber 2009, but only pronator teres results were accessible |
+| Flexor carpi ulnaris | B | Raw-µV data exists (Bochnia 2024) — usable as shape only |
+| Flexor digitorum superficialis | B | Sorbie 2016 measured it (amateur vs pro, grip size) |
+| Flexor digitorum profundus | D | — |
+| Flexor pollicis longus | D | Thumb control on the grip |
+| Palmaris longus | D | Absent in ~15% of people — flag anatomical variability |
+| Extensor carpi radialis longus | D | — |
+| Extensor carpi radialis brevis | B | Farber 2009 identified it as the amateur's peak muscle; Bochnia 2024 raw µV |
+| Extensor carpi ulnaris | B | Robinson 2023 — trail peaks downswing, lead peaks backswing and follow-through |
+| Extensor digitorum | D | — |
+| Pronator quadratus | D | Deep; distinct from pronator teres which is already listed and tier A |
+
+### Hand — pooled zone split
+
+| Zone | Tier | Note |
+|---|---|---|
+| Thenar group | D | Thumb; grip force data exists but is force-sensor, not EMG |
+| Hypothenar group | D | Little-finger side — and Langlais & Broker 2014 found the lead hand's **last three fingers** dominate grip force, making this group mechanically important and completely unmeasured |
+| Interossei and lumbricals (hand) | D | — |
+| Adductor pollicis | D | — |
+
+### Shoulder girdle — added
+
+| Zone | Tier | Note |
+|---|---|---|
+| Pectoralis minor | D | Scapular depression and anterior tilt |
+| Subclavius | D | — |
+| Coracobrachialis | D | — |
+
+### Revised totals
+
+| | Revision 1 | Revision 2 |
+|---|---|---|
+| Zone groups | 59 | **~120** |
+| Rendered zones (× 2 sides) | 118 | **~240** |
+| Tier A (numeric data) | 30 | 30 — unchanged; no new zone has data |
+| Tier D (never measured) | 18 | **~79** |
+
+**The proportion of the body with no golf measurement rises from 30% to roughly 66% once the whole body is
+represented honestly.** That is not a regression — it is the same truth at higher resolution. The previous
+list looked better covered only because it omitted the muscles nobody has studied.
+
+### Consequence for the visual design
+
+At ~240 zones the unmeasured state stops being an edge case and becomes the majority of the figure. If
+tier D renders as a conspicuous treatment, two-thirds of the body will shout for attention and drown the
+23 zones that carry real data. The unmeasured state must therefore be **quiet but discoverable** — visible
+on inspection, never competing with actual activation. This directly constrains T-028.
+
 ## Open items this list creates
 
 - T-019: define the unit-reconciliation strategy across %MMT / %MVC / %EMGmax / raw µV before T-021.

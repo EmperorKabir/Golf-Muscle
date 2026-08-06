@@ -110,6 +110,16 @@
 - T-034 Functional anatomy — origins, insertions, actions and moment arms for all 57 muscle zones; what motion each zone produces when it contracts — IN PROGRESS
 - T-035 Synthesise T-030..T-034 into a mechanism model linking activation → joint moment → motion, and state precisely what remains unresolvable — TODO
 
+- **D-009 Whole-body depth is required, including subtle and support muscles** (user, 2026-08-06): "many subtle and support muscles can activate, core, even feet, calves etc. the whole body needs assessing deeply." Reaffirmed that **data collection and analysis is by far the most important part of this project**. Consequence: T-012's zone list expanded from 59 groups to ~120 (Revision 2, `docs/design/muscle-zone-list.md`) — foot musculature (previously absent entirely), deep calf compartment, diaphragm and pelvic floor, deep spinal layers, neck, and the forearm/deep-hip-rotator/erector-spinae zones split from pooled blobs into individual muscles.
+- **F-034 Representing the whole body honestly raises the unmeasured share from 30% to ~66%.** No newly added zone has any golf EMG data. The earlier list looked better covered only because it omitted the muscles nobody has studied. **Consequence for T-028:** at ~240 rendered zones the never-measured state becomes the majority of the figure, so it must be quiet but discoverable — visible on inspection, never competing with the 23 zones carrying real data.
+- **F-035 Ground reaction force data implies foot muscle work that the model does not represent.** Lead-foot vertical force peaks near 95% bodyweight ~40 ms before impact, with 17–19 Nm free-moment torque at the lead foot (`03-lower-limb-and-hip-activation.md`). Something generates and controls that, and no foot muscle was in the zone list. Now added as tier D pending T-037.
+
+### New research strands from D-009
+- T-036 Deep core — diaphragm, pelvic floor, transversus abdominis, intra-abdominal pressure as a spinal stabilising mechanism, and breathing pattern during the golf swing — IN PROGRESS
+- T-037 Foot, ankle and deep calf — plantar pressure distribution during the golf swing, intrinsic foot musculature, tibialis posterior, toe flexors, and the foot's role in transmitting ground reaction force — IN PROGRESS
+- T-038 Neck and deep spinal layers — head stability during the swing, scalenes, deep neck flexors, semispinalis, rotatores — TODO
+- T-039 Individual forearm and hand muscles — recover per-muscle data where pooled electrodes were used; Farber 2009's unpublished FCR/FCU/ECRB results, Sorbie 2016 grip-size study — TODO
+
 ### Research operating notes (learned the hard way 2026-08-06 — read before dispatching any research agent)
 - **Session usage ceiling is real.** On 2026-08-06 at ~23:45 all ten concurrent agents died mid-run with "You've hit your session limit". Root cause: five dispatched agents each spawned their own sub-agents, doubling concurrent load. **Always instruct research agents not to spawn sub-agents, and dispatch in batches of 2–3.** User accepts hitting the ceiling but requires batching (2026-08-06).
 - **Agents must write their report file incrementally**, not at the end. All ten agents above died having written nothing, losing the entire run.
