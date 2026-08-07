@@ -56,6 +56,31 @@ These are removed from consideration permanently. Do not re-propose them.
   overlapping zones defeats opacity as a quantitative channel
 - Warm luminance ramp versus flat red (F-005)
 
+## Settled encoding (D-020, from `activation-encoding.md`)
+
+- **Brightness carries effort.** Monotonic-luminance warm ramp, dark through amber to bright.
+- **Transparency is a supporting channel only**, bounded and always agreeing with brightness, so unused
+  muscles still fade toward invisible — preserving the user's original intent.
+- **Opacity alone is rejected** as the primary channel: stacked transparent layers are mathematically
+  ambiguous (two zones at 50% composite to exactly one zone at 75%), and overlap is the normal condition
+  on a see-through body.
+- **Depth-based fading as a style is rejected** (D-020) — the user can orbit and zoom in 3D, so a baked
+  distance fade is meaningless. Any camera-relative legibility aid is an implementation detail (T-060).
+- **Four render states:** active, inactive, uncertain (dashed outline, compressed brightness ceiling so it
+  can never look as confident as solid data), never-measured (dotted outline, zero fill, deliberately not
+  the ramp's zero-colour).
+
+## Quality bar for the 3D build (D-021 — binding)
+
+The vector studies are retired. They settled the colour system and nothing else. The 3D model must:
+
+1. **Fill each muscle across its full anatomical extent.** Not a strip, not a suggestion — the complete
+   footprint of the muscle as it exists on the body.
+2. **Outline every zone properly** — clean, continuous, single-weight boundaries in the manner of
+   `target-zone-linework.png`.
+3. Cover the whole body, front and back, with no bare regions.
+4. Show no polygon topology.
+
 ## Honest constraint on the interim studies
 
 Hand-authored 2D vector studies cannot reach the quality of the reference images — those are sculpted 3D

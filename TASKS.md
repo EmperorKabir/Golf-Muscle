@@ -1,5 +1,16 @@
 # Golf Muscle — Task List (single source of truth)
 
+## ▶ START HERE NEXT SESSION (user directive, 2026-08-07 evening)
+**Before doing any work, re-read the entire project context to rebuild big-picture understanding** — what is actually required, what the intentions are for building it, and what the end use is. The user has explicitly allowed this to take substantial time. Read in this order:
+1. This whole file — decisions D-001..D-021, findings F-001..F-074, and every task list below.
+2. `docs/design/data-programme.md` — the nine-stage method and the sufficiency gate.
+3. `docs/design/muscle-zone-list.md` — ~120 muscle groups and their confidence tiers.
+4. `docs/design/model-visual-spec.md` + `docs/design/reference/` — the settled visual target.
+5. `docs/design/evidence-database-architecture.md` — the database design.
+6. All 16 documents in `docs/research/`.
+
+**Then**, in this order and not before: (a) come back to the user with further follow-up questions; (b) continue data-point collection and research; (c) inference; (d) app building. Do not start building.
+
 ## Protocol (binding)
 - This file is the single source of truth for all project work. Read it in full at every session start.
 - Before starting ANY task: find its entry here, or add one first. No work happens without an entry.
@@ -194,12 +205,20 @@
 - **F-073 The four render states are now specified.** **Never measured (tier D, ~2/3 of zones):** outline only, zero fill, and explicitly **not** the ramp's zero-colour — so "never measured" is visually distinct from "measured and inactive". **Uncertain (tiers B/C):** Value-Suppressing Uncertainty Palette logic (Correll, Moritz & Heer 2018) — compress the usable luminance range so uncertain zones can never render at full confident brightness, paired with a qualitatively different marker (sparse hatching or desaturation) rather than merely a paler point on the same ramp, per Correll & Gleicher's critique of false precision. Rendered as study F in the published artifact. Closes T-028.
 - **F-074 Stated implementation risks for the encoding.** (1) Convenience regression — implementation drifting back to opacity-only despite the spec. (2) Depth-cue fade and data-driven alpha competing for the same visual property; they must be kept in separate bounded ranges. (3) Categorical tier boundaries producing visible banding or snapping under range compression rather than a smooth confidence gradient. Note: Liu & Heer 2018's exact figures could not be re-verified this session (ACM paywall, unparseable PDF) — flagged rather than guessed; Crameri et al. 2020 carries that part of the argument instead.
 
+### Decisions 2026-08-07 (evening — resolving F-065)
+- **D-018 The synergy constraint is answered by showing the whole pattern, not individual muscles.** User's resolution to F-065: if the brain commands groups rather than single muscles, then display all the muscles of that group firing together. The app then shows what is effectively the brain's actual command — a pattern — and the golfer replicates the pattern, which is natural and achievable. **This dissolves the objection rather than working around it**, and requires no change to the data model: we already hold per-muscle activation, and co-active muscles will naturally appear together. **Consequence:** never present a single isolated muscle as an instruction; the unit of meaning is the simultaneous pattern.
+- **D-019 The app's purpose is education between swings, not control during them.** User accepts the focus-of-attention evidence and states it does not change the app's purpose: a golfer may not reliably control individual muscles mid-swing, but the app eradicates obvious beginner mistakes, builds general feel, and educates — for example noticing certain muscles firing when they should not. The golfer can still focus on outcome while playing. **Consequence:** framing is off-course education and diagnosis. This fully survives F-065, which only warned against real-time in-swing cueing.
+- **D-020 Encoding decision: study F adopted. Study B (depth-based fading) rejected.** User's reasoning on B: distance-based fading is not relevant in a real 3D model because the user can orbit and zoom freely. Accepted. *Minor note for implementation, not a challenge:* with a transparent body, some near/far distinction may still be needed at any given camera position to stop the figure reading as a tangle — but it would be computed live from the camera, never baked, and is an implementation detail rather than a style choice. Recorded in T-060.
+- **D-021 The vector studies are rejected on quality and are now retired.** User: study F is "so badly done"; the 3D model must **fill the full muscle** and **outline properly**. Hand-authored 2D vector work has reached its useful limit — it settled the colour system and nothing more. All further visual work happens on real 3D geometry against the three reference images. No more SVG studies.
+
 ### New research strands from D-016, D-015, D-014, D-017
 - T-055 Verify the fire/relax/direction claim (D-016) — concentric vs eccentric vs isometric as a third state, force-velocity consequences, whether an activation pattern uniquely determines movement (Lombard's paradox, initial conditions), muscle-synergy literature on whether individual-muscle voluntary control is even possible, and focus-of-attention evidence on whether per-muscle cueing helps or harms a skilled ballistic movement — IN PROGRESS
 - T-056 Validate non-golf inference transfer (D-015) and build a graded transfer rulebook; harvest transferable data for the never-measured muscles, prioritising rotational-sport EMG (baseball pitch, tennis serve, discus, hammer, javelin, cricket bowl, hockey slap shot) as the closest analogue tier — IN PROGRESS
 - T-057 Design the evidence database architecture (D-014) — storage engine, full schema, lineage graph, sufficiency query, ingestion pipeline, validation constraints, backup and corruption recovery — IN PROGRESS
 - T-058 Determine the activation encoding (D-017) — evaluate opacity-only against perceptual-channel evidence, with particular attention to whether transparency compositing across ~240 overlapping zones defeats opacity as a quantitative channel — IN PROGRESS
 - T-059 Apply the swing-relative renormalisation (F-063) across the dataset once Stage 1 completes; retain original laboratory values and reference definitions untouched — TODO
+- T-060 Implementation detail deferred to the 3D build: decide whether any live camera-relative near/far distinction is needed to keep the transparent figure legible at a given viewpoint. Must be computed from the camera each frame, never baked. Depth fading as a *style option* is closed (D-020) — TODO
+- T-061 Build the 3D model to the D-021 standard: every muscle zone **filled across its full anatomical extent** with **properly drawn outlines**, front and back, no bare regions, no polygon topology visible. Acceptance criteria are the three reference images in `docs/design/reference/` — TODO
 
 ### New research strands from D-009
 - T-036 Deep core — diaphragm, pelvic floor, transversus abdominis, intra-abdominal pressure as a spinal stabilising mechanism, and breathing pattern during the golf swing — IN PROGRESS
